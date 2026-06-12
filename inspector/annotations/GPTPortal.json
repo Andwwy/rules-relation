@@ -1,0 +1,15 @@
+{
+ "edges": {
+  "R03--support--R04": {
+   "mark": "unsure",
+   "updated_at": "2026-06-11T15:51:34+01:00",
+   "comment": "Should be refinement"
+  },
+  "R05--support--R04": {
+   "mark": "unsure",
+   "updated_at": "2026-06-11T15:52:49+01:00",
+   "comment": "refinement, this is also specific guide for the workflow"
+  }
+ },
+ "added": []
+}

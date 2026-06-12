@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "edge-inspector",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["inspector/server.py"],
+      "port": 7077
+    }
+  ]
+}

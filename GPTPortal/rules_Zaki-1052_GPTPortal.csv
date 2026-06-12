@@ -1,0 +1,114 @@
+annotator,source_url,source,extracted_by,line_start,line_end,rule_text,tag,user_comment,llm_rationale,created_at
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,10,10,"You will review, refactor as needed, and ensure all of the code is working, fully-functional, well-designed, modular, responsive, and ready for production.",PRESCRIPTION,,"The agent is required to review, refactor, and ensure code meets production-ready standards.",2026-06-10 13:22:20.970567
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,14,14,You always follow best practices.,PRESCRIPTION,what are best practices? this loooks liek a parent rule,The agent must always adhere to best practices when writing code.,2026-06-10 13:22:21.005904
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,15,15,First think very deeply and thoroughly step-by-step - describe your careful and systematic plan for what to build in great detail.,PRESCRIPTION,"vague, need examples of synthetic plan",The agent is required to think through and describe a detailed plan before building anything.,2026-06-10 13:22:21.044383
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,17,18,### Core Workflow: Research → Plan → Implement → Validate,PREFERENCE,dpeendent on the parent rule of research->plan->implement->validate,,2026-06-10 13:24:30.978438
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,19,19,"Start every feature with: ""Let me research the codebase and create a plan before implementing.""",PRESCRIPTION,"line below has relevant info 
+
+In chat, this takes the form of asking the clarifying questions about their goals and process/progress before proceeding.",The agent must begin every feature by researching the codebase and creating a plan.,2026-06-10 13:22:21.077308
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,20,20,Research - Understand existing patterns and architecture through systematic file exploration,PRESCRIPTION,,The agent is required to systematically explore files to understand existing patterns and architecture.,2026-06-10 13:22:21.110686
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,21,21,Plan - Propose approach with architectural reasoning and verify with me if uncertain,PRESCRIPTION,,The agent must propose an approach with reasoning and check with the user when uncertain.,2026-06-10 13:22:21.143500
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,22,22,"Implement - Build complete, production-ready solutions with tests and error handling",PRESCRIPTION,,"The agent is required to build complete, production-ready solutions that include tests and error handling.",2026-06-10 13:22:21.176109
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,22,23,2. **Plan** - Propose approach with architectural reasoning and verify with me if uncertain,,dpeendent on the parent rule of research->plan->implement->validate,,2026-06-10 13:25:29.069077
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,23,23,"Validate - ALWAYS run formatters, linters, and tests after implementation",PRESCRIPTION,,"The agent must always run formatters, linters, and tests after finishing an implementation.",2026-06-10 13:22:21.208842
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,24,25,"4. **Validate** - ALWAYS run formatters, linters, and tests after implementation",PRESCRIPTION,dependent on the parent rule of research->plan->implement->validate,,2026-06-10 13:25:48.916918
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,29,29,"If we fail to achieve our goal within three tries (whether due to error messages or other issues), stop, step back, and reflect on precisely what information you need from me to best assist.",PRESCRIPTION,"context, this is ### 3-Try Rule for Terminal/Script Execution",The agent must stop and gather needed information from the user after three failed attempts instead of continuing blindly.,2026-06-10 13:22:21.241249
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,29,29,"Rather than blindly reaching for solutions, intelligently gather information - ask for code output, files, context, or whatever else is necessary.",PRESCRIPTION,related to rule above and overall about ### 3-Try Rule for Terminal/Script Execution,The agent is required to gather relevant information intelligently rather than guessing at solutions.,2026-06-10 13:22:21.276111
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,33,33,Attempt one logical fix per error before asking for guidance,PRESCRIPTION,related to ### Systematic Debugging Process,The agent must try one logical fix for each error before seeking user guidance.,2026-06-10 13:22:21.313615
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,34,34,Add and verify logs to validate assumptions,PRESCRIPTION,related to ### Systematic Debugging Process,The agent is required to add and verify logs to confirm its assumptions during debugging.,2026-06-10 13:22:21.375408
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,34,34,"When stuck: ""Reflect on 5-7 different possible sources of the problem, distill those down to 1-2 most likely sources, and then add logs to validate your assumptions before implementing the actual code fix""",PRESCRIPTION,related to ### Systematic Debugging Process,The agent is required to analyze multiple problem sources and validate assumptions with logs before applying a fix.,2026-06-10 13:22:21.449275
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,35,35,"If first try fails, show and explain error outputs",PRESCRIPTION,related to ### Systematic Debugging Process,The agent must show and explain error outputs when the first fix attempt does not succeed.,2026-06-10 13:22:21.409693
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,38,42,"### Step-by-Step Planning
+- Detailed pseudocode before implementation
+- Root cause analysis over quick fixes
+- Extensive planning before action with systematic methodology",PREFERENCE,feles softer? also super vageu,,2026-06-10 13:27:25.942993
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,46,47,"- Professional yet direct tone, content-first with minimal fluff",PREFERENCE,,,2026-06-10 13:27:39.900950
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,47,48,- Structured responses with clear formatting,PREFERENCE,,,2026-06-10 13:27:43.753026
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,48,49,- Support learning process and treat mistakes as growth opportunities,PREFERENCE,,,2026-06-10 13:27:46.209054
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,49,49,Directly point out mistakes in reasoning rather than softening corrections,PRESCRIPTION,,The agent must be direct about reasoning errors rather than softening its feedback.,2026-06-10 13:22:21.481690
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,50,50,Don't end with opt-in follow-up suggestions unless specifically relevant,PROHIBITION,,The agent must not append optional follow-up suggestions at the end of responses unless they are specifically relevant.,2026-06-10 13:22:21.515466
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,54,62,"Unless answering a quick question, start responses with:
+
+```
+**Language > Specialist**: {programming language used} > {the subject matter EXPERT SPECIALIST role}
+**Includes**: CSV list of needed libraries, packages, and key language features if any
+**Requirements**: qualitative description of VERBOSITY, standards, and the software design requirements
+## Plan
+Briefly list your step-by-step plan, including any components that won't be addressed yet
+```",PRESCRIPTION,this all feels like a rule! and relevant,,2026-06-10 13:28:30.247757
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,66,80,"End responses with:
+
+```
+---
+
+**History**: complete, concise, and compressed summary of ALL requirements and ALL code you've written
+
+**Source Tree**: 
+- (💾=saved: link to file, ⚠️=unsaved but named snippet, 👻=no filename) file.ext
+- 📦 Class (if exists)
+    - (✅=finished, ⭕️=has TODO, 🔴=otherwise incomplete) symbol
+- 🔴 global symbol
+
+**Next Task**: NOT finished=short description of next task | FINISHED=list EXPERT SPECIALIST suggestions for enhancements/performance improvements
+```",PREFERENCE,,,2026-06-10 13:29:45.369565
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,85,85,Code must start with path/filename as a one-line comment,PRESCRIPTION,all realted to coding standards general rule,The agent must include the file path and name as a comment at the top of every code block.,2026-06-10 13:22:21.646311
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,86,86,"Comments MUST describe purpose, not effect",PRESCRIPTION,all realted to coding standards general rule,"The agent is required to write comments that explain why code exists, not what it mechanically does.",2026-06-10 13:22:21.707009
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,87,87,"Prioritize modularity, DRY, performance, and security",PRESCRIPTION,all realted to coding standards general rule,The agent must prioritize these four qualities in all code it produces.,2026-06-10 13:22:21.740234
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,88,88,"Keep functions small and focused - if you need comments to explain sections, split into functions",PRESCRIPTION,all realted to coding standards general rule,The agent is required to keep functions small and split them up rather than adding section comments.,2026-06-10 13:22:21.775567
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,89,89,Prefer explicit over implicit: clear function names over clever abstractions,PREFERENCE,all realted to coding standards general rule,"The agent is encouraged to use clear, explicit naming rather than clever abstractions.",2026-06-10 13:22:21.808702
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,90,90,Early returns to reduce nesting - flat code is readable code,PREFERENCE,all realted to coding standards general rule,The agent is encouraged to use early returns to keep code flat and readable.,2026-06-10 13:22:21.841273
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,92,96,"### Verbosity Auto-Scaling
+Automatically scale verbosity based on task complexity:
+- Simple tasks: Concise, direct solutions
+- Medium complexity: Moderate explanation with key decisions
+- Complex tasks: Verbose with extracted functions, architectural reasoning, and alternatives",PREFERENCE,,,2026-06-10 13:30:40.423229
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,101,101,Refactor repetitive logic into reusable functions or shared modules.,PRESCRIPTION,,The agent must refactor repeated logic into reusable functions or modules.,2026-06-10 13:22:21.875432
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,104,104,"Code must be clear, minimal, and easy to reason about. Clever hacks or obscure optimizations are discouraged.",PRESCRIPTION,,"The agent is required to write clear, minimal code and avoid clever or obscure optimizations.",2026-06-10 13:22:21.907545
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,107,107,Each function or module must do one thing well.,PRESCRIPTION,,"The agent must ensure every function or module has a single, well-defined responsibility.",2026-06-10 13:22:21.940037
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,110,110,"UI logic, state management, and backend comms should be modular and decoupled. Avoid mixing layers.",PRESCRIPTION,,"The agent must keep different concerns separated and not mix UI, state, and backend logic together.",2026-06-10 13:22:21.975239
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,113,113,Always raise errors early. Never suppress silent failures or let invalid states pass undetected.,PRESCRIPTION,,The agent must raise errors as early as possible and never hide or suppress failures.,2026-06-10 13:22:22.008728
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,116,116,Never try to debug just to get tests to pass - Get at the root of the issue and prioritize fixing underlying logic rather than getting rid of errors.,PROHIBITION,,The agent must not patch tests superficially but must fix the actual underlying logic.,2026-06-10 13:22:22.041605
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,119,119,Reuse existing functions before creating new ones. Only extend when clearly justified.,PRESCRIPTION,,The agent is required to reuse existing functions rather than creating new ones without clear justification.,2026-06-10 13:22:22.077450
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,122,122,Functions should either do something (command) or return something (query)—never both.,PRESCRIPTION,,"The agent must keep functions as either commands or queries, never combining both roles.",2026-06-10 13:22:22.109536
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,125,125,"Design logic as reusable, isolated components. No duplication. Think in shareable patterns.",PRESCRIPTION,,"The agent is required to design reusable, isolated components with no duplicated logic.",2026-06-10 13:22:22.141164
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,127,137,"## Problem-Solving Strategy
+
+### High-Level Approach
+1. Understand the problem deeply - carefully read the issue and think critically about what is required
+2. Investigate the codebase - explore relevant files, search for key functions, and gather context
+3. Develop a clear, step-by-step plan - break down the fix into manageable, incremental steps
+4. Implement the fix incrementally - make small, testable code changes
+5. Debug as needed - use debugging techniques to isolate and resolve issues
+6. Test frequently - run tests after each change to verify correctness
+7. Iterate until the root cause is fixed and all tests pass
+8. Reflect and validate comprehensively",PREFERENCE,,,2026-06-10 13:31:09.335592
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,139,145,"### When Uncertain
+- **When stuck:** Stop. The simple solution is usually correct.
+- **When uncertain about architecture:** ""Let me ultrathink about this architecture.""
+- **When choosing approaches:** ""I see approach A (simple) vs B (flexible). Which do you prefer?""
+- Explain architectural decisions and trade-offs
+- Provide alternative implementation approaches when they offer clear benefits
+- Focus mostly on implementation while following best practices",PREFERENCE,,,2026-06-10 13:31:19.742830
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,147,150,"### Efficiency Maximization
+- **Parallel operations:** Run multiple searches, reads, and greps in single messages
+- **Batch similar work:** Group related file edits together
+- **Complete solutions:** Provide production-ready code rather than placeholders",PREFERENCE,,,2026-06-10 13:31:24.979020
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,155,155,"Production-ready code only - no placeholders, no 'maybe this works'",PRESCRIPTION,,"The agent must only produce finished, production-ready code with no placeholders.",2026-06-10 13:22:22.177803
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,156,156,Complete file delivery over partial snippets,PREFERENCE,,The agent is encouraged to deliver complete files rather than partial code snippets.,2026-06-10 13:22:22.210476
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,157,158,"- Modular, maintainable, secure design",PREFERENCE,,,2026-06-10 13:31:31.558854
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,158,158,"Always validate inputs, use secure randomness, prepared statements",PRESCRIPTION,,The agent must always validate inputs and use secure practices like secure randomness and prepared statements.,2026-06-10 13:22:22.243072
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,159,160,- Match testing approach to code complexity,PREFERENCE,,,2026-06-10 13:31:34.955516
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,160,160,Measure before optimizing - no guessing,PRESCRIPTION,,The agent is required to measure performance before applying optimizations rather than guessing.,2026-06-10 13:22:22.277016
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,162,168,"### Collaboration Protocol
+- **Iterative Process**:
+- Proactively ask for outputs, file contents, or context rather than making assumptions
+- Once sufficient information is gathered, provide complete solutions
+- Don't assume structure or contents of files, code, or script outputs
+- ALWAYS stop and ask for input when code depends on previous section outputs
+- NEVER make assumptions about whether code worked before being provided proof",PREFERENCE,"entire process feels super connected, detailing iterative process",,2026-06-10 13:32:04.062327
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,172,173,"Give the best, most efficient solution. Prioritize what's proven to work. If an approach is flawed or suboptimal, state it directly and explain why. Skip theoretical detours—focus on clean, realistic execution.",PREFERENCE,,,2026-06-10 13:32:20.036512
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,174,174,Your thinking should be thorough and so it's fine if it's very long.,PERMISSION,,"The agent is allowed to think at length, including very long reasoning chains.",2026-06-10 13:22:22.477216
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,174,174,"You can think step by step before and after each action you decide to take. Take your time and think through every step - remember to check your solution rigorously and watch out for boundary/edge cases, especially with the changes you made. Your final solution must be perfect.",PREFERENCE,,,2026-06-10 13:32:37.174071
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,176,176,"NEVER try to take the ""easy"" path or skip to an alternative solution the moment you encounter a bug; instead, remain determined to dig deep at the root of the issue and debug the current problem, maintaining the plan and implementation that has been established.",PROHIBITION,,The agent must not abandon the current approach for an easier alternative when a bug is encountered.,2026-06-10 13:22:22.509986
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,hand,jenny,178,179,"Take your time and think through every step systematically. Check solutions rigorously and watch out for boundary cases. You can take multiple conversation turns to solve the problem, but when you are finished, your final code solution must be perfect and production-ready.",PREFERENCE,,,2026-06-10 13:32:59.400072
+jenny,https://github.com/Zaki-1052/GPTPortal/blob/36f4cfd128a025b76f0224b5814f99bff5e49c8c/RULES.md,llm,anthropic/claude-sonnet-4-6,180,180,"You MUST iterate and keep going until the problem is solved, planning extensively before taking action, thinking deeply, thoroughly, and carefully step-by-step in a systematic manner.",PRESCRIPTION,,"The agent is required to keep iterating until the problem is fully solved, with extensive planning and systematic thinking.",2026-06-10 13:22:22.542412

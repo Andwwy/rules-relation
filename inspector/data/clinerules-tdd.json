@@ -1,0 +1,1918 @@
+{
+ "project": "clinerules-tdd",
+ "nodes": {
+  "R01": {
+   "id": "R01",
+   "file": "clinerules-tdd/Rules/R01 No silent downgrades.md",
+   "kind": "rule",
+   "title": "No silent downgrades",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PROHIBITION",
+   "llm_tag": "—",
+   "agreement": "hand-only",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "No silent downgrades / no janky workarounds (highest priority)",
+   "judgment": "Anchor rule of the whole file, explicitly marked highest priority. As written it is a slogan, not an operational rule: 'silent', 'downgrade' and 'janky' are all undefined. It only becomes enforceable through its refinements (R02, R06, R26). Annotator's own comment ('Prohibition or preference?') flags that without an operational definition the deontic force is ambiguous."
+  },
+  "R02": {
+   "id": "R02",
+   "file": "clinerules-tdd/Rules/R02 Never disable core features to fix errors.md",
+   "kind": "rule",
+   "title": "Never disable core features to fix errors",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PROHIBITION",
+   "llm_tag": "PROHIBITION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "NEVER \"fix\" errors by disabling, downgrading, or bypassing core features (e.g., turning off GPU/CUDA, reducing quality, changing defaults, switching to CPU).",
+   "judgment": "Clear deontic force, good examples, hand and LLM agree. Residual vagueness: 'core feature' has no concrete definition (annotator flagged this) — the examples gesture at GPU/quality but the boundary is open."
+  },
+  "R03": {
+   "id": "R03",
+   "file": "clinerules-tdd/Rules/R03 Attempt a real fix first.md",
+   "kind": "rule",
+   "title": "Attempt a real fix first",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "—",
+   "agreement": "hand-only",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Attempt a real fix - correct package, version, PATH, provider, config",
+   "judgment": "Gives direction but is vague ('real fix' is defined only by contrast with R01's banned workarounds). Functions as step 1 of the error-handling procedure that R04 continues."
+  },
+  "R04": {
+   "id": "R04",
+   "file": "clinerules-tdd/Rules/R04 STOP and report when fix needs system installs.md",
+   "kind": "rule",
+   "title": "STOP and report when fix needs system installs",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "If the fix requires system installs or user action, STOP and report: what is missing, why, how to install/verify, commands to diagnose.",
+   "judgment": "One of the best-formed rules in the file: concrete trigger (system installs / user action), explicit halt, and a 4-item report checklist. Fully checkable. Member of the recurring STOP-and-ask family."
+  },
+  "R05": {
+   "id": "R05",
+   "file": "clinerules-tdd/Rules/R05 Fallbacks only if requested or opt-in.md",
+   "kind": "rule",
+   "title": "Fallbacks only if requested or opt-in",
+   "emoji": "",
+   "type": "PERMISSION",
+   "context_type": "",
+   "hand_tag": "PERMISSION",
+   "llm_tag": "PERMISSION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Fallbacks (CPU, reduced mode, mocks) are allowed ONLY if explicitly requested by the user, OR already defined as an opt-in mode.",
+   "judgment": "Textbook permission-as-exception: it carves a precise, gated escape hatch out of R01/R02. The two conditions are objectively checkable. Annotator correctly noted it is 'a permission inside a prohibition'."
+  },
+  "R06": {
+   "id": "R06",
+   "file": "clinerules-tdd/Rules/R06 Defaults stay on best-supported path.md",
+   "kind": "rule",
+   "title": "Defaults stay on best-supported path",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PROHIBITION",
+   "llm_tag": "PROHIBITION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Defaults must remain on the best-supported path. Never silently degrade behavior to \"make it work.\"",
+   "judgment": "Restates R01 with a defaults focus — partially redundant. 'Best-supported path' is undefined; hand annotation split this into a prescription + prohibition while the LLM merged them, showing segmentation disagreement, not semantic disagreement."
+  },
+  "R07": {
+   "id": "R07",
+   "file": "clinerules-tdd/Rules/R07 Search repo before writing new patterns.md",
+   "kind": "rule",
+   "title": "Search repo before writing new patterns",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Before writing new code which establishes a new pattern, dev practice, minor architecture solution, algorithm, or UI technique, proactively search the repo for existing patterns.",
+   "judgment": "Clear action, but annotator rightly flags the trigger as vague: 'new code which establishes a new pattern' is judgment-dependent, and the search term is unspecified. Enforceable only via R12/R20's reporting duties."
+  },
+  "R08": {
+   "id": "R08",
+   "file": "clinerules-tdd/Rules/R08 Align with established approaches.md",
+   "kind": "rule",
+   "title": "Align with established approaches",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "disagree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Align with the established approach for: state management, data fetching, HTTP layer, forms, styling, error handling, file structure, testing.",
+   "judgment": "Hand says PREFERENCE, LLM says PRESCRIPTION — a genuine tag disagreement. The imperative 'align' reads prescriptive; I side with the LLM. Requires codebase knowledge to apply (what IS the established approach?), so it is only as enforceable as R11's scan."
+  },
+  "R09": {
+   "id": "R09",
+   "file": "clinerules-tdd/Rules/R09 No parallel patterns or dual sources of truth.md",
+   "kind": "rule",
+   "title": "No parallel patterns or dual sources of truth",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PROHIBITION",
+   "llm_tag": "PROHIBITION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Do not introduce parallel patterns, dual sources of truth, or divergent frameworks without explicit instruction.",
+   "judgment": "Clear prohibition with an explicit-instruction escape hatch. 'Parallel pattern' is vague at the margin (annotator agrees), but R50/R52 make it concrete for the config domain. R10 provides the legal route around it."
+  },
+  "R10": {
+   "id": "R10",
+   "file": "clinerules-tdd/Rules/R10 Propose new patterns via ADR first.md",
+   "kind": "rule",
+   "title": "Propose new patterns via ADR first",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "disagree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "If a new pattern seems necessary, propose it first with a short ADR draft in docs/adr (context, options, decision, consequences).",
+   "judgment": "Another hand/LLM tag split. The ADR content list makes it concretely checkable, which pushes it toward PRESCRIPTION. Acts as the sanctioned escape route from R09."
+  },
+  "R11": {
+   "id": "R11",
+   "file": "clinerules-tdd/Rules/R11 Scan codebase to infer patterns.md",
+   "kind": "rule",
+   "title": "Scan codebase to infer patterns",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Scan the codebase (components, hooks, services/api, utils, lib) and package.json to infer patterns.",
+   "judgment": "Concrete locations make this actionable. It is the evidence-gathering step that R07/R08 silently depend on."
+  },
+  "R12": {
+   "id": "R12",
+   "file": "clinerules-tdd/Rules/R12 Summarize chosen pattern before coding.md",
+   "kind": "rule",
+   "title": "Summarize chosen pattern before coding",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "(untagged)",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "untagged",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Summarize the chosen existing pattern before coding",
+   "judgment": "Hand annotator left this untagged and asked for an 'enforcement axis' — it is really an enforcement mechanism for R07/R08 rather than a standalone norm. PRESCRIPTION fits."
+  },
+  "R13": {
+   "id": "R13",
+   "file": "clinerules-tdd/Rules/R13 Refactor toward the dominant repo pattern.md",
+   "kind": "rule",
+   "title": "Refactor toward the dominant repo pattern",
+   "emoji": "",
+   "type": "PREFERENCE",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PREFERENCE",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "If conflicts are found, prefer refactoring toward the dominant repo pattern",
+   "judgment": "Correctly tagged PREFERENCE ('prefer'). Gives the tie-breaking policy when R08 finds multiple competing conventions."
+  },
+  "R14": {
+   "id": "R14",
+   "file": "clinerules-tdd/Rules/R14 Comment necessity threshold (score at least 8 of 10).md",
+   "kind": "rule",
+   "title": "Comment necessity threshold (score at least 8 of 10)",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PROHIBITION",
+   "agreement": "disagree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Before adding any comment, rate 1-10 how necessary it is; if less than 8, do not add the comment.",
+   "judgment": "Three-way framing: hand tagged the rating ritual PREFERENCE and the cutoff PRESCRIPTION; the LLM collapsed both into a PROHIBITION. The pseudo-quantitative threshold is clever prompt engineering but unfalsifiable — the score is self-assigned, so the rule is really 'default to no comment'."
+  },
+  "R15": {
+   "id": "R15",
+   "file": "clinerules-tdd/Rules/R15 Prefer self-explanatory code.md",
+   "kind": "rule",
+   "title": "Prefer self-explanatory code",
+   "emoji": "",
+   "type": "PREFERENCE",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PREFERENCE",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Prefer self-explanatory code: descriptive names, small functions, strong TypeScript types, and tests over comments.",
+   "judgment": "Clean, uncontroversial preference; both annotators agree. Provides the positive alternative that makes R14 satisfiable."
+  },
+  "R16": {
+   "id": "R16",
+   "file": "clinerules-tdd/Rules/R16 Acceptable-comments whitelist.md",
+   "kind": "rule",
+   "title": "Acceptable-comments whitelist",
+   "emoji": "",
+   "type": "PERMISSION",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "—",
+   "agreement": "hand-only",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Acceptable comments (when necessity ≥ 8): non-obvious invariants, footguns, links to ADRs, public API TSDoc.",
+   "judgment": "Hand tagged PREFERENCE but functionally this is a PERMISSION — it enumerates what MAY be commented once R14's bar is met. Doubles as context that partially operationalizes R14's fuzzy score."
+  },
+  "R17": {
+   "id": "R17",
+   "file": "clinerules-tdd/Rules/R17 TODOs - don't create, don't remove.md",
+   "kind": "rule",
+   "title": "TODOs - don't create, don't remove",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PROHIBITION",
+   "agreement": "disagree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "TODO statements should not be created but also should not be removed without explicit instruction.",
+   "judgment": "Buried inside the whitelist bullet list but is actually a bidirectional prohibition (LLM got the tag right). Unusual and well-defined: both actions are objectively detectable in a diff."
+  },
+  "R18": {
+   "id": "R18",
+   "file": "clinerules-tdd/Rules/R18 Never leave commented-out code.md",
+   "kind": "rule",
+   "title": "Never leave commented-out code",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PROHIBITION",
+   "llm_tag": "PROHIBITION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Never leave commented-out code. Remove it or gate it behind feature flags if essential.",
+   "judgment": "Crisp and diff-checkable. Hand annotator split the remedy ('remove or feature-flag') into a separate PREFERENCE — a reasonable two-norm segmentation the LLM merged."
+  },
+  "R19": {
+   "id": "R19",
+   "file": "clinerules-tdd/Rules/R19 Confirm rules and list patterns at task start.md",
+   "kind": "rule",
+   "title": "Confirm rules and list patterns at task start",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "At task start: confirm you will follow these rules. Explicitly list detected patterns relevant to the task.",
+   "judgment": "Pure compliance ritual. Annotator's 'What rules??' flags a real referential ambiguity — 'these rules' assumes the whole file is in context. The pattern-listing half operationalizes R11."
+  },
+  "R20": {
+   "id": "R20",
+   "file": "clinerules-tdd/Rules/R20 State aligned pattern before new modules.md",
+   "kind": "rule",
+   "title": "State aligned pattern before new modules",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "(untagged)",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "untagged",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Before writing a new module/component: show which existing pattern or module you will align with and where it lives.",
+   "judgment": "Hand left untagged with 'gives obligation but vague'. The 'where it lives' requirement actually makes it more checkable than R12, which it otherwise duplicates."
+  },
+  "R21": {
+   "id": "R21",
+   "file": "clinerules-tdd/Rules/R21 Verify with the repo's existing toolchain.md",
+   "kind": "rule",
+   "title": "Verify with the repo's existing toolchain",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "After implementing: ensure formatting, linting, and tests run with the repo's existing toolchain. Use the existing package manager (detect via lockfile).",
+   "judgment": "Concrete and checkable; 'detect via lockfile' even supplies the detection method. Bridges the task protocol to S5's toolchain rules."
+  },
+  "R22": {
+   "id": "R22",
+   "file": "clinerules-tdd/Rules/R22 Ask for clarification when uncertain.md",
+   "kind": "rule",
+   "title": "Ask for clarification when uncertain",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "disagree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "If uncertainty remains: ask for clarification before proceeding",
+   "judgment": "Hand/LLM tag split again. 'Before proceeding' makes it a blocking obligation, so PRESCRIPTION is the better reading. Trigger ('uncertainty remains') is self-assessed and thus weak. Member of the STOP-and-ask family."
+  },
+  "R23": {
+   "id": "R23",
+   "file": "clinerules-tdd/Rules/R23 Respect existing toolchain and scripts.md",
+   "kind": "rule",
+   "title": "Respect existing toolchain and scripts",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "disagree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Respect existing toolchain and scripts from package.json (package manager, lint/test commands)",
+   "judgment": "Tag split (hand PREF / llm PRESC). 'Respect' is imperative; I side with PRESCRIPTION. Largely redundant with R21."
+  },
+  "R24": {
+   "id": "R24",
+   "file": "clinerules-tdd/Rules/R24 No new libraries without approval.md",
+   "kind": "rule",
+   "title": "No new libraries without approval",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PROHIBITION",
+   "agreement": "disagree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Keep dependencies consistent. Avoid adding new libs unless required and approved",
+   "judgment": "'Avoid... unless approved' is a soft-worded prohibition with an approval gate — the LLM's PROHIBITION tag captures the deontic structure better than hand's PREFERENCE. 'Required' is vague; 'approved' is checkable."
+  },
+  "R25": {
+   "id": "R25",
+   "file": "clinerules-tdd/Rules/R25 Colocate tests with modules.md",
+   "kind": "rule",
+   "title": "Colocate tests with modules",
+   "emoji": "",
+   "type": "PREFERENCE",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PREFERENCE",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Prefer colocated tests alongside modules, matching the repo's current convention",
+   "judgment": "Clean preference, agreed by both annotators. The 'matching current convention' clause subordinates it to R08."
+  },
+  "R26": {
+   "id": "R26",
+   "file": "clinerules-tdd/Rules/R26 NEVER disable linting, compilation, or type errors.md",
+   "kind": "rule",
+   "title": "NEVER disable linting, compilation, or type errors",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PROHIBITION",
+   "llm_tag": "PROHIBITION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "🚨 NEVER DISABLE LINTING, COMPILATION, OR TYPE ERRORS 🚨",
+   "judgment": "The loudest rule in the file (emoji sirens, all caps). Perfectly clear scope, full annotator agreement. It is R01's most concrete instantiation: suppressing checks is the canonical 'silent downgrade'."
+  },
+  "R27": {
+   "id": "R27",
+   "file": "clinerules-tdd/Rules/R27 No suppression pragmas.md",
+   "kind": "rule",
+   "title": "No suppression pragmas",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PROHIBITION",
+   "llm_tag": "PROHIBITION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Do not use eslint-disable, @ts-ignore, @ts-expect-error, or similar pragmas to bypass linting or type errors.",
+   "judgment": "Maximally enforceable — these are literal grep-able strings. The best-specified prohibition in the corpus."
+  },
+  "R28": {
+   "id": "R28",
+   "file": "clinerules-tdd/Rules/R28 Fix the root cause (escalation ladder).md",
+   "kind": "rule",
+   "title": "Fix the root cause (escalation ladder)",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "When encountering lint/type errors: 1. FIX THE ROOT CAUSE  2. RESTRUCTURE  3. CONFIGURE (config-file change with justification).",
+   "judgment": "A well-ordered escalation procedure. Hand interestingly tagged step 3 (CONFIGURE) as PERMISSION — defensible, since it licenses an otherwise-suspect action under conditions. The ladder gives R26 its positive counterpart."
+  },
+  "R29": {
+   "id": "R29",
+   "file": "clinerules-tdd/Rules/R29 Exception for generated and third-party code.md",
+   "kind": "rule",
+   "title": "Exception for generated and third-party code",
+   "emoji": "",
+   "type": "PERMISSION",
+   "context_type": "",
+   "hand_tag": "PERMISSION",
+   "llm_tag": "PERMISSION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Only exception: generated code or third-party dependencies that cannot be modified. Even then, isolate with targeted config changes, not inline disables.",
+   "judgment": "Well-bounded permission with a nested prescription (config-only isolation). Mirrors the R05 pattern: exception narrowly carved out of a hard prohibition."
+  },
+  "R30": {
+   "id": "R30",
+   "file": "clinerules-tdd/Rules/R30 Prefer the simplest solution.md",
+   "kind": "rule",
+   "title": "Prefer the simplest solution",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "disagree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "ALWAYS prefer the simplest solution that meets the specification. Actively reduce complexity rather than add it. Lower complexity is a primary goal, second only to meeting the spec.",
+   "judgment": "'ALWAYS prefer' is an oxymoronic construction — preference verb, prescription quantifier — which explains the hand/LLM tag split. Crucially, this sentence states an explicit priority ordering (spec > simplicity > everything else), one of only two places the file ranks its own rules."
+  },
+  "R31": {
+   "id": "R31",
+   "file": "clinerules-tdd/Rules/R31 Simplicity tactics.md",
+   "kind": "rule",
+   "title": "Simplicity tactics",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Choose the solution with fewest moving parts. Eliminate redundant code, duplicate patterns, or parallel implementations. Refactor complex solutions into simpler ones when discovered.",
+   "judgment": "Three concrete tactics consolidated from separate annotations (with minor hand/LLM tag splits on individual bullets). 'When discovered' gives the refactor clause an event trigger, which is good rule design."
+  },
+  "R32": {
+   "id": "R32",
+   "file": "clinerules-tdd/Rules/R32 Question every abstraction.md",
+   "kind": "rule",
+   "title": "Question every abstraction",
+   "emoji": "",
+   "type": "PREFERENCE",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "—",
+   "agreement": "hand-only",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Question every abstraction: \"Does this actually reduce complexity, or just hide it?\"",
+   "judgment": "A reflective heuristic rather than an enforceable norm. Its real value in the graph: it is the counterweight to R40's pro-abstraction advice — the file's most direct internal tension."
+  },
+  "R34": {
+   "id": "R34",
+   "file": "clinerules-tdd/Rules/R34 Never independently implement backward compatibility.md",
+   "kind": "rule",
+   "title": "Never independently implement backward compatibility",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PROHIBITION",
+   "llm_tag": "PROHIBITION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "NEVER independently implement backward compatibility, multi-version support, or dual implementations without explicit approval.",
+   "judgment": "Clear prohibition with an approval gate; full annotator agreement. 'Dual implementations' links it conceptually to R09's parallel-pattern ban."
+  },
+  "R35": {
+   "id": "R35",
+   "file": "clinerules-tdd/Rules/R35 STOP-ASK-WAIT protocol.md",
+   "kind": "rule",
+   "title": "STOP-ASK-WAIT protocol",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "If you believe backward compatibility is necessary: 1. STOP immediately 2. ASK with a clear proposal (what, why, complexity cost, migration alternative) 3. WAIT for explicit instruction.",
+   "judgment": "Well-structured halt protocol with a concrete proposal checklist; annotator notes the trigger ('if you believe...') is self-assessed and vague. Duplicated almost verbatim by R56 in the meta-trigger section."
+  },
+  "R36": {
+   "id": "R36",
+   "file": "clinerules-tdd/Rules/R36 Migrate forward, delete the old pattern.md",
+   "kind": "rule",
+   "title": "Migrate forward, delete the old pattern",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Default approach: Migrate/refactor to the new pattern. Delete the old one. Move forward as a cohesive unit.",
+   "judgment": "The positive default that makes R34 livable. 'Move forward as a cohesive unit' is rhetorical filler; the first two sentences are the operative content."
+  },
+  "R37": {
+   "id": "R37",
+   "file": "clinerules-tdd/Rules/R37 Backward-compat exception.md",
+   "kind": "rule",
+   "title": "Backward-compat exception",
+   "emoji": "",
+   "type": "PERMISSION",
+   "context_type": "",
+   "hand_tag": "PERMISSION",
+   "llm_tag": "PERMISSION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Exception: Only implement backward compatibility when explicitly instructed after review.",
+   "judgment": "Symmetric to R05/R29: a narrowly gated permission closing the loop on its prohibition. The three exception rules share an identical logical shape — strong evidence of a deliberate authoring pattern."
+  },
+  "R38": {
+   "id": "R38",
+   "file": "clinerules-tdd/Rules/R38 Never over-architect or plan too far ahead.md",
+   "kind": "rule",
+   "title": "Never over-architect or plan too far ahead",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PROHIBITION",
+   "llm_tag": "PROHIBITION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "NEVER over-architect or plan too far ahead. Build incrementally, validate constantly, maintain the ability to pivot.",
+   "judgment": "Agreed prohibition, but 'over-architect' is self-referentially vague — the file later supplies red-flag examples (designing for hypothetical extensibility, premature config systems) that do the real definitional work. This is 'Rule 6', the one R46 declares the winner of all conflicts."
+  },
+  "R39": {
+   "id": "R39",
+   "file": "clinerules-tdd/Rules/R39 Build iteratively, validate early.md",
+   "kind": "rule",
+   "title": "Build iteratively, validate early",
+   "emoji": "",
+   "type": "PREFERENCE",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "disagree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Build iteratively: implement the minimum viable solution first, then evolve. Validate early: test assumptions with working code as quickly as possible. Question assumptions. Defer irreversible decisions until you have maximum information.",
+   "judgment": "Consolidates four philosophy bullets. Annotator flags 'defer until maximum information' as potentially infinite regress — you never provably have maximum information. Philosophy, not enforceable norms."
+  },
+  "R40": {
+   "id": "R40",
+   "file": "clinerules-tdd/Rules/R40 Loose coupling and abstraction layers.md",
+   "kind": "rule",
+   "title": "Loose coupling and abstraction layers",
+   "emoji": "",
+   "type": "PREFERENCE",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PREFERENCE",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Avoid tight coupling. Use abstraction layers (interfaces, adapters) for external dependencies. Prefer dependency injection over direct imports. Keep business logic separate from framework code.",
+   "judgment": "Consolidates four pro-abstraction preferences. This cluster is the file's biggest internal tension: R30/R31 say fewest layers and R32 says distrust abstractions, while this says add interfaces, adapters and DI. No priority rule arbitrates this specific conflict — the genuine gap in the rule system."
+  },
+  "R41": {
+   "id": "R41",
+   "file": "clinerules-tdd/Rules/R41 Defer irreversible decisions.md",
+   "kind": "rule",
+   "title": "Defer irreversible decisions",
+   "emoji": "",
+   "type": "PREFERENCE",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PREFERENCE",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Defer irreversible decisions: make decisions as late as possible when you have maximum information",
+   "judgment": "Annotator: vague, and 'maximum information' could be forever. Pairs with R44, which carves out when planning IS appropriate."
+  },
+  "R42": {
+   "id": "R42",
+   "file": "clinerules-tdd/Rules/R42 Plan one or two steps ahead, not ten.md",
+   "kind": "rule",
+   "title": "Plan one or two steps ahead, not ten",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Focus on the immediate task and the next logical step, not distant future scenarios.",
+   "judgment": "The quantified planning horizon (1-2 steps) makes R38 almost operational. Duplicated by meta-trigger R57."
+  },
+  "R43": {
+   "id": "R43",
+   "file": "clinerules-tdd/Rules/R43 Over-planning recovery protocol.md",
+   "kind": "rule",
+   "title": "Over-planning recovery protocol",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "When you catch yourself over-planning: 1. STOP 2. SIMPLIFY to the minimum 3. DOCUMENT assumptions (comment ≥8 necessity, or ADR) 4. BUILD what's needed now.",
+   "judgment": "Another STOP-family protocol. Notably cross-references R14's comment threshold and R10's ADR mechanism — the densest interlinking point in the file."
+  },
+  "R44": {
+   "id": "R44",
+   "file": "clinerules-tdd/Rules/R44 Exception: truly irreversible decisions.md",
+   "kind": "rule",
+   "title": "Exception: truly irreversible decisions",
+   "emoji": "",
+   "type": "PERMISSION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "—",
+   "agreement": "hand-only",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "If a decision is truly irreversible (database choice, foundational architecture), invest appropriate planning time. But these are rarer than they seem.",
+   "judgment": "Hand tagged PRESCRIPTION but the logical role is a PERMISSION carved out of R38 (it licenses otherwise-banned up-front planning). Annotator rightly flags both 'truly irreversible' and 'appropriate planning time' as vague."
+  },
+  "R45": {
+   "id": "R45",
+   "file": "clinerules-tdd/Rules/R45 Centralize behavioral primitives in config.md",
+   "kind": "rule",
+   "title": "Centralize behavioral primitives in config",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "disagree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Primitive values that control UX or system behavior should live in a centralized configuration layer, not scattered as magic numbers.",
+   "judgment": "Tag split again on 'should'. The accompanying qualifies/does-not-qualify lists (annotator: 'context for the following rules') are what make it usable — without them 'behavioral primitive' would be hopelessly vague. Inherently in tension with R38/R30, which R46 explicitly resolves."
+  },
+  "R46": {
+   "id": "R46",
+   "file": "clinerules-tdd/Rules/R46 Rule hierarchy - Rule 6 wins.md",
+   "kind": "rule",
+   "title": "Rule hierarchy - Rule 6 wins",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "(untagged)",
+   "llm_tag": "PROHIBITION",
+   "agreement": "untagged",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "If there's any tension between this rule and the Evolving Architecture Mandate (Rule 6), Rule 6 wins. Do not build elaborate configuration systems prematurely.",
+   "judgment": "The only explicit meta-rule / priority declaration in the file (annotator: 'rule hierarchy' — left untagged because it isn't a first-order norm). Resolves the R45-vs-R38 conflict but conspicuously does NOT resolve the R40-vs-R30 abstraction tension."
+  },
+  "R47": {
+   "id": "R47",
+   "file": "clinerules-tdd/Rules/R47 Centralize incrementally.md",
+   "kind": "rule",
+   "title": "Centralize incrementally",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "disagree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Move a primitive to config only when you're actively working with it or it clearly affects user-facing behavior.",
+   "judgment": "The 'only when' gate gives this a clear conditional structure. It is R45 throttled by R38's incrementalism."
+  },
+  "R48": {
+   "id": "R48",
+   "file": "clinerules-tdd/Rules/R48 Use existing config patterns.md",
+   "kind": "rule",
+   "title": "Use existing config patterns",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Scan for config.py, config.yaml, environment variables, or settings modules already in the repo. Align with what exists.",
+   "judgment": "Config-domain instance of R07/R08 — same search-then-align structure, fully concrete file targets."
+  },
+  "R49": {
+   "id": "R49",
+   "file": "clinerules-tdd/Rules/R49 Descriptive keys with sensible defaults.md",
+   "kind": "rule",
+   "title": "Descriptive keys with sensible defaults",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Config keys should be self-documenting (max_retry_attempts, llm_response_timeout_seconds). Always include sensible defaults so the system works out-of-the-box.",
+   "judgment": "Two merged micro-rules (naming + defaults). Good examples; 'sensible' is the only soft spot. The defaults clause feeds directly into R52's single-definition constraint."
+  },
+  "R50": {
+   "id": "R50",
+   "file": "clinerules-tdd/Rules/R50 No duplicate or parallel config sources.md",
+   "kind": "rule",
+   "title": "No duplicate or parallel config sources",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PROHIBITION",
+   "llm_tag": "PROHIBITION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Don't create duplicates: if a value is already configurable somewhere, use that mechanism. Don't create parallel config sources.",
+   "judgment": "Config-domain instance of R09's dual-source-of-truth ban. Clear and checkable."
+  },
+  "R51": {
+   "id": "R51",
+   "file": "clinerules-tdd/Rules/R51 Over-configuring checklist.md",
+   "kind": "rule",
+   "title": "Over-configuring checklist",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "When you catch yourself over-configuring: ASK is this a real behavioral dial? CHECK are we using it now or within 1-2 steps? If NO to both → well-named constant. If YES → existing config layer.",
+   "judgment": "Mirror image of R43 (over-planning recovery) for the config domain — same catch-yourself trigger, same decision-tree remedy. Inherits R42's 1-2-step horizon. Well-formed."
+  },
+  "R52": {
+   "id": "R52",
+   "file": "clinerules-tdd/Rules/R52 Exactly ONE default definition.md",
+   "kind": "rule",
+   "title": "Exactly ONE default definition",
+   "emoji": "",
+   "type": "PROHIBITION",
+   "context_type": "",
+   "hand_tag": "PROHIBITION",
+   "llm_tag": "PROHIBITION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Configuration values must have exactly ONE default definition. Never duplicate defaults across config models, factories, or provider constructors. (✅ Pydantic Field(default=...) as single source ❌ config.get('model', 'gpt-4o-mini') fallbacks)",
+   "judgment": "Exceptionally well-specified: the correct-pattern/violation examples make it mechanically checkable. The strongest concrete instance of the anti-duplication theme."
+  },
+  "R53": {
+   "id": "R53",
+   "file": "clinerules-tdd/Rules/R53 Provider-level defaults exception.md",
+   "kind": "rule",
+   "title": "Provider-level defaults exception",
+   "emoji": "",
+   "type": "PERMISSION",
+   "context_type": "",
+   "hand_tag": "PERMISSION",
+   "llm_tag": "—",
+   "agreement": "hand-only",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Internal implementation details (retry counts, backoff delays) not exposed in config.yaml can have provider-level defaults.",
+   "judgment": "Fourth instance of the gated-exception pattern (after R05, R29, R37). Boundary is clear: exposed-in-config.yaml vs internal."
+  },
+  "R54": {
+   "id": "R54",
+   "file": "clinerules-tdd/Rules/R54 Stop on duplicate or conflicting patterns.md",
+   "kind": "rule",
+   "title": "Stop on duplicate or conflicting patterns",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "If a proposed change creates a duplicate or conflicting pattern, stop and propose consolidation or a refactor plan instead.",
+   "judgment": "Runtime tripwire enforcing R09. Same halt-and-propose shape as R35."
+  },
+  "R55": {
+   "id": "R55",
+   "file": "clinerules-tdd/Rules/R55 Stop when complexity grows without necessity.md",
+   "kind": "rule",
+   "title": "Stop when complexity grows without necessity",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "If complexity is increasing without clear necessity, stop and simplify.",
+   "judgment": "Runtime tripwire for R30/R38. 'Without clear necessity' is self-assessed — same weakness as every catch-yourself trigger in the file."
+  },
+  "R56": {
+   "id": "R56",
+   "file": "clinerules-tdd/Rules/R56 Stop when considering backward compatibility.md",
+   "kind": "rule",
+   "title": "Stop when considering backward compatibility",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "If you're considering backward compatibility, STOP and ask for approval first.",
+   "judgment": "Pure duplicate of R35 (compressed). Redundancy is likely intentional reinforcement, but in a rule-consistency audit it counts as a duplicate norm."
+  },
+  "R57": {
+   "id": "R57",
+   "file": "clinerules-tdd/Rules/R57 Stop when planning beyond 1-2 steps.md",
+   "kind": "rule",
+   "title": "Stop when planning beyond 1-2 steps",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "If you're planning more than 1-2 steps ahead or building for hypothetical future needs, STOP and simplify to current requirements.",
+   "judgment": "Duplicate of R42 + R43 compressed into a tripwire. Same reinforcement-by-repetition authoring style."
+  },
+  "R58": {
+   "id": "R58",
+   "file": "clinerules-tdd/Rules/R58 Keep the repo clean.md",
+   "kind": "rule",
+   "title": "Keep the repo clean",
+   "emoji": "",
+   "type": "PREFERENCE",
+   "context_type": "",
+   "hand_tag": "PREFERENCE",
+   "llm_tag": "—",
+   "agreement": "hand-only",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "keep repo clean",
+   "judgment": "Slogan-level preference; only meaningful through R59/R60. Same anchor-plus-refinements structure as R01."
+  },
+  "R59": {
+   "id": "R59",
+   "file": "clinerules-tdd/Rules/R59 Debug artifacts go in tests _temp_ dir.md",
+   "kind": "rule",
+   "title": "Debug artifacts go in tests _temp_ dir",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Ad-hoc debug scripts, reproduction tests, or diagnostic files created during debugging must go in tests/_temp_/ for easy cleanup. Use descriptive names (debug_tts_state.py, repro_audio_hang.py).",
+   "judgment": "Concrete path, concrete examples — fully checkable. One of the most enforceable rules in the file."
+  },
+  "R60": {
+   "id": "R60",
+   "file": "clinerules-tdd/Rules/R60 Clean up and verify before finishing.md",
+   "kind": "rule",
+   "title": "Clean up and verify before finishing",
+   "emoji": "",
+   "type": "PRESCRIPTION",
+   "context_type": "",
+   "hand_tag": "PRESCRIPTION",
+   "llm_tag": "PRESCRIPTION",
+   "agreement": "agree",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Clean up after investigation completes. Enforcement: before completing a debug task, verify all temporary files are deleted or in tests/_temp_/.",
+   "judgment": "Rare case where the rule names its own enforcement step ('Enforcement: ... verify'). The annotator asked elsewhere for an enforcement axis — this rule shows the file's author occasionally provided one."
+  },
+  "C01": {
+   "id": "C01",
+   "file": "clinerules-tdd/Context/C01 Always-on guidance binding every agent in the repo.md",
+   "kind": "context",
+   "title": "Always-on guidance binding every agent in the repo",
+   "emoji": "",
+   "type": "CONTEXT",
+   "context_type": "scope",
+   "hand_tag": "",
+   "llm_tag": "",
+   "agreement": "",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Applies to: all Roo agents and tasks in this repository. Purpose: always-on, repo-wide guidance for consistency, minimal comments, and coherent architecture.",
+   "judgment": "Preamble. Declares the binding scope (all agents, always) and names the three master goals — each goal seeds one anchor-rule cluster, so it fans out to those anchors."
+  },
+  "C02": {
+   "id": "C02",
+   "file": "clinerules-tdd/Context/C02 The phrase 'backward compatibility' is a warning sign.md",
+   "kind": "context",
+   "title": "The phrase 'backward compatibility' is a warning sign",
+   "emoji": "",
+   "type": "CONTEXT",
+   "context_type": "warning",
+   "hand_tag": "",
+   "llm_tag": "",
+   "agreement": "",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "🚨 BACKWARD COMPATIBILITY RED FLAG 🚨 — the phrase \"backward compatibility\" is a CRITICAL WARNING SIGN.",
+   "judgment": "Reclassified from rule R33: no deontic force, nothing to violate, so not a rule. An attention trigger that primes the whole S07 prohibition family. Its earlier 'idle rule' status was the tell."
+  },
+  "C03": {
+   "id": "C03",
+   "file": "clinerules-tdd/Context/C03 Backward compat breeds dual sources of truth and compounding complexity.md",
+   "kind": "context",
+   "title": "Backward compat breeds dual sources of truth and compounding complexity",
+   "emoji": "",
+   "type": "CONTEXT",
+   "context_type": "rationale",
+   "hand_tag": "",
+   "llm_tag": "",
+   "agreement": "",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Backward compatibility creates dual sources of truth that evolve independently, multiplies maintenance burden and bug surface, fragments the codebase into parallel implementations, prevents clean evolution, and adds permanent compounding complexity.",
+   "judgment": "Skipped by both CSV annotators, yet it is the justification for the entire S07 cluster and the explicit bridge from backward-compat to the dual-sources theme (R09). Justifies the prohibition and its forward-migration default; never determines compliance."
+  },
+  "C04": {
+   "id": "C04",
+   "file": "clinerules-tdd/Context/C04 Systems evolve through iteration, not perfect up-front planning.md",
+   "kind": "context",
+   "title": "Systems evolve through iteration, not perfect up-front planning",
+   "emoji": "",
+   "type": "CONTEXT",
+   "context_type": "rationale",
+   "hand_tag": "",
+   "llm_tag": "",
+   "agreement": "",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Complex systems evolve successfully through iteration, not through perfect up-front planning. Requirements change, assumptions fail, Murphy's Law applies — stay adaptable.",
+   "judgment": "The worldview behind Rule 6. It underlies the ENTIRE Rule-6 family, not just its headline rule — every incrementalism/modularity rule inherits its justification from here."
+  },
+  "C05": {
+   "id": "C05",
+   "file": "clinerules-tdd/Context/C05 Signs of over-planning: future-proofing, premature config, deep hierarchies.md",
+   "kind": "context",
+   "title": "Signs of over-planning: future-proofing, premature config, deep hierarchies",
+   "emoji": "",
+   "type": "CONTEXT",
+   "context_type": "definition",
+   "hand_tag": "",
+   "llm_tag": "",
+   "agreement": "",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Over-planning red flags: abstractions for \"future extensibility\" not needed now; config systems before knowing what needs configuring; complex class hierarchies; features \"because we'll need them eventually\"; architectures for hypothetical scale.",
+   "judgment": "Annotator: 'not a rule but useful context'. It supplies the observable detection criteria that R43's self-assessed 'catch yourself over-planning' trigger lacks — this context is what rescues R43 (and the R57 tripwire) from unfalsifiability. The 'config before needed' flag also reaches into the config rules."
+  },
+  "C06": {
+   "id": "C06",
+   "file": "clinerules-tdd/Context/C06 Signs of over-configuring: making constants configurable just-in-case.md",
+   "kind": "context",
+   "title": "Signs of over-configuring: making constants configurable just-in-case",
+   "emoji": "",
+   "type": "CONTEXT",
+   "context_type": "definition",
+   "hand_tag": "",
+   "llm_tag": "",
+   "agreement": "",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Over-configuring red flags: making every constant configurable \"just in case\"; multi-layer config systems before needed; config schemas validating hypothetical settings; extracting details with zero user impact.",
+   "judgment": "Config-domain mirror of C05 — the detection criteria for R51's self-catch trigger, and a reminder of R46's 'don't build elaborate config prematurely'."
+  },
+  "C07": {
+   "id": "C07",
+   "file": "clinerules-tdd/Context/C07 Behavioral dials qualify as config; constants and protocol values don't.md",
+   "kind": "context",
+   "title": "Behavioral dials qualify as config; constants and protocol values don't",
+   "emoji": "",
+   "type": "CONTEXT",
+   "context_type": "definition",
+   "hand_tag": "",
+   "llm_tag": "",
+   "agreement": "",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "Qualifies: UX params (timeouts, retries, debounce), system behavior (log levels, TTLs, batch sizes), AI/ML settings (model, temperature), thresholds. Does NOT qualify: math constants, protocol-defined values, non-observable details, one-off values.",
+   "judgment": "Annotator: 'context for the following set of rules'. This definition makes the vague predicate 'behavioral primitive' decidable across the whole config cluster — without it those rules are unapplicable."
+  },
+  "C08": {
+   "id": "C08",
+   "file": "clinerules-tdd/Context/C08 Examples: a minimal solution beats a premature HTTP client, Redux, or plugin system.md",
+   "kind": "context",
+   "title": "Examples: a minimal solution beats a premature HTTP client, Redux, or plugin system",
+   "emoji": "",
+   "type": "CONTEXT",
+   "context_type": "example",
+   "hand_tag": "",
+   "llm_tag": "",
+   "agreement": "",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "✅ simple fetch wrapper ❌ complex HTTP client with retry/caching/queuing up front · ✅ hard-code API endpoint ❌ multi-env config for a single-env app · ✅ useState ❌ Redux \"because we might need global state\" · ✅ write the feature ❌ design a plugin system first.",
+   "judgment": "Paired ✅/❌ cases that operationalize Rule 6 — the cheapest form of checkability. The HTTP-client and plugin cases also illustrate the coupling/abstraction rule."
+  },
+  "C09": {
+   "id": "C09",
+   "file": "clinerules-tdd/Context/C09 Examples: config dials beat hard-coded magic numbers.md",
+   "kind": "context",
+   "title": "Examples: config dials beat hard-coded magic numbers",
+   "emoji": "",
+   "type": "CONTEXT",
+   "context_type": "example",
+   "hand_tag": "",
+   "llm_tag": "",
+   "agreement": "",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "✅ llm_temperature: 0.7 in config ❌ hard-coded 0.7 in every call · ✅ wake_word_sensitivity in config ❌ magic number in detector · ❌ BYTES_PER_SAMPLE=2 in config when it's part of the audio format ✅ leave as a module constant.",
+   "judgment": "Operationalizes the centralize-config rules. Its last case illustrates the NEGATIVE boundary of definition C07 — an example clarifying a definition clarifying a rule (context can chain)."
+  },
+  "C10": {
+   "id": "C10",
+   "file": "clinerules-tdd/Context/C10 Examples: root-cause lint fixes beat inline disables.md",
+   "kind": "context",
+   "title": "Examples: root-cause lint fixes beat inline disables",
+   "emoji": "",
+   "type": "CONTEXT",
+   "context_type": "example",
+   "hand_tag": "",
+   "llm_tag": "",
+   "agreement": "",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "❌ // eslint-disable-next-line ... · ✅ move test utilities to a separate config · ✅ replace export * with named exports · ✅ capture ref values in effect scope to satisfy exhaustive-deps.",
+   "judgment": "Hand-tagged PREFERENCE in the CSV, but it prescribes nothing — it illustrates the escalation ladder and the pragma ban with concrete cases. Examples-misread-as-preferences was a recurring annotation issue (see also C11)."
+  },
+  "C11": {
+   "id": "C11",
+   "file": "clinerules-tdd/Context/C11 Examples: one Pydantic default beats defaults duplicated across factories.md",
+   "kind": "context",
+   "title": "Examples: one Pydantic default beats defaults duplicated across factories",
+   "emoji": "",
+   "type": "CONTEXT",
+   "context_type": "example",
+   "hand_tag": "",
+   "llm_tag": "",
+   "agreement": "",
+   "source": "adamglang/sovereign-core .clinerules",
+   "text": "✅ Pydantic Field(default=value) as the single source · ✅ factories use config[\"key\"] with no fallbacks · ❌ config.get(\"model\", \"gpt-4o-mini\") in a factory · ❌ def __init__(self, temperature=0.7) in a provider.",
+   "judgment": "Also hand-tagged PREFERENCE; same misclassification as C10. These ✅/❌ cases are what make the single-default rule mechanically checkable, and they reinforce the no-parallel-config-sources rule."
+  }
+ },
+ "edges": [
+  {
+   "id": "R02--refinement--R01",
+   "source": "R02",
+   "target": "R01",
+   "type": "refinement",
+   "rationale": "R01's slogan 'no silent downgrades / no janky workarounds' leaves 'downgrade' undefined; R02 makes it concrete by banning specific acts — 'disabling, downgrading, or bypassing core features (e.g., turning off GPU/CUDA, reducing quality, changing defaults, switching to CPU)'. R02 is the operational restatement that gives the anchor prohibition enforceable content."
+  },
+  {
+   "id": "R02--duplication--R06",
+   "source": "R02",
+   "target": "R06",
+   "type": "duplication",
+   "rationale": "R02's ban on 'fixing errors by disabling, downgrading... changing defaults' and R06's 'Never silently degrade behavior to make it work' state the same anti-degradation norm twice; R06 merely re-angles it toward defaults ('defaults must remain on the best-supported path'), which R02 already covers via its 'changing defaults' example. The overlap is near-total, so this reads as the same norm written twice rather than a refinement."
+  },
+  {
+   "id": "R03--support--R01",
+   "source": "R03",
+   "target": "R01",
+   "type": "support",
+   "rationale": "R03's 'attempt a real fix - correct package, version, PATH, provider, config' supplies the positive alternative that makes R01's ban on 'janky workarounds' followable: instead of merely forbidding shortcuts, it tells the agent what to do first. Note the dependency is partly circular — 'real fix' is itself defined only by contrast with R01's banned workarounds."
+  },
+  {
+   "id": "R04--support--R01",
+   "source": "R04",
+   "target": "R01",
+   "type": "support",
+   "rationale": "R04's 'STOP and report: what is missing, why, how to install/verify' gives the agent a legitimate exit when a real fix is blocked, which removes the main temptation to violate R01's 'no silent downgrades': halting and reporting is the sanctioned alternative to silently degrading when the environment can't be fixed."
+  },
+  {
+   "id": "R05--exception--R01",
+   "source": "R05",
+   "target": "R01",
+   "type": "exception",
+   "rationale": "R05 explicitly permits the very things R01 brands as downgrades — 'Fallbacks (CPU, reduced mode, mocks) are allowed ONLY if explicitly requested by the user, OR already defined as an opt-in mode'. The two gates (user request, opt-in mode) make the fallback non-silent, punching a precise, conditioned hole in the blanket prohibition."
+  },
+  {
+   "id": "R05--exception--R02",
+   "source": "R05",
+   "target": "R02",
+   "type": "exception",
+   "rationale": "R02 forbids 'switching to CPU' and 'reducing quality' as error fixes; R05 licenses exactly those fallbacks ('CPU, reduced mode, mocks') when 'explicitly requested by the user, OR already defined as an opt-in mode'. It is the classic permission-as-exception: same actions, but gated on explicit consent so they are no longer violations."
+  },
+  {
+   "id": "R06--refinement--R01",
+   "source": "R06",
+   "target": "R01",
+   "type": "refinement",
+   "rationale": "R06 narrows R01's generic 'no silent downgrades' to the specific domain of defaults: 'Defaults must remain on the best-supported path. Never silently degrade behavior to make it work.' The 'silently degrade' phrasing directly echoes R01's 'silent downgrades', restating the anchor for the default-configuration case — though the overlap is large enough that it borders on duplication (as its parallel duplication edge with R02 shows)."
+  },
+  {
+   "id": "R07--support--R08",
+   "source": "R07",
+   "target": "R08",
+   "type": "support",
+   "rationale": "R08 commands 'align with the established approach' but gives no way to discover what that approach is; R07's duty to 'proactively search the repo for existing patterns' before writing new code is the procedure that produces the knowledge R08 needs. Without the search, alignment is impossible, so R07 makes R08 followable."
+  },
+  {
+   "id": "R09--support--R08",
+   "source": "R09",
+   "target": "R08",
+   "type": "support",
+   "rationale": "R09's prohibition on 'parallel patterns, dual sources of truth, or divergent frameworks' is the negative face of R08's positive 'align with the established approach': banning divergence forces the agent back onto the established pattern. Each rule motivates and reinforces the other — failing to align (R08) is precisely how a parallel pattern (R09) gets introduced."
+  },
+  {
+   "id": "R10--exception--R09",
+   "source": "R10",
+   "target": "R09",
+   "type": "exception",
+   "rationale": "R09 bans new parallel patterns 'without explicit instruction'; R10 opens the sanctioned route through that gate: 'If a new pattern seems necessary, propose it first with a short ADR draft in docs/adr'. The ADR proposal is the mechanism by which the otherwise-forbidden new pattern can become explicitly authorized, so R10 functions as the gated exception to R09's ban."
+  },
+  {
+   "id": "R10--support--R43",
+   "source": "R10",
+   "target": "R43",
+   "type": "support",
+   "rationale": "R43's over-planning recovery step 3 says 'DOCUMENT assumptions (comment ≥8 necessity, or ADR)' — the ADR option it points to is exactly the mechanism R10 establishes ('a short ADR draft in docs/adr: context, options, decision, consequences'). R10 supplies the documented procedure that makes R43's DOCUMENT step executable."
+  },
+  {
+   "id": "R11--support--R07",
+   "source": "R11",
+   "target": "R07",
+   "type": "support",
+   "rationale": "R07 requires 'proactively search the repo for existing patterns' but leaves the search unspecified; R11 supplies the concrete method — 'Scan the codebase (components, hooks, services/api, utils, lib) and package.json to infer patterns'. The enumerated locations turn R07's vague search duty into an actionable checklist."
+  },
+  {
+   "id": "R11--support--R08",
+   "source": "R11",
+   "target": "R08",
+   "type": "support",
+   "rationale": "R08's 'align with the established approach for state management, data fetching, HTTP layer...' presupposes knowing what is established; R11's scan of 'components, hooks, services/api, utils, lib and package.json to infer patterns' is the evidence-gathering step that determines the established approach. R08 is only as enforceable as R11's scan, as the judgment notes."
+  },
+  {
+   "id": "R12--checkpoint--R07",
+   "source": "R12",
+   "target": "R07",
+   "type": "checkpoint",
+   "rationale": "R12's duty to 'summarize the chosen existing pattern before coding' adds no new norm about which pattern to use — it forces the agent to produce visible proof that R07's repo search actually happened and yielded a pattern. A summary that names an 'existing pattern' is the audit artifact of the search, making R12 a verification step for R07."
+  },
+  {
+   "id": "R12--checkpoint--R08",
+   "source": "R12",
+   "target": "R08",
+   "type": "checkpoint",
+   "rationale": "By requiring the agent to 'summarize the chosen existing pattern before coding', R12 makes R08's 'align with the established approach' checkable: the stated pattern can be compared against what the code actually does. It enforces alignment through mandatory disclosure rather than adding a new substantive obligation."
+  },
+  {
+   "id": "R13--support--R08",
+   "source": "R13",
+   "target": "R08",
+   "type": "support",
+   "rationale": "R08 assumes a single 'established approach', but repos often contain competing conventions; R13's 'if conflicts are found, prefer refactoring toward the dominant repo pattern' supplies the tie-breaking policy that keeps R08 applicable in that messy case. It makes the alignment duty followable when 'established' is ambiguous."
+  },
+  {
+   "id": "R13--support--R09",
+   "source": "R13",
+   "target": "R09",
+   "type": "support",
+   "rationale": "R13's instruction to 'refactor toward the dominant repo pattern' when conflicts are found actively reduces the number of coexisting patterns, which is exactly the state R09 prohibits ('do not introduce parallel patterns, dual sources of truth'). It is the remediation policy that moves the codebase toward R09 compliance."
+  },
+  {
+   "id": "R14--support--R43",
+   "source": "R14",
+   "target": "R43",
+   "type": "support",
+   "rationale": "R43's step 3 explicitly imports R14's mechanism: 'DOCUMENT assumptions (comment ≥8 necessity, or ADR)'. The '≥8 necessity' clause is R14's 'rate 1-10 how necessary it is; if less than 8, do not add the comment' threshold, so R14 defines the gate that R43's documentation step must pass through. (Direction note: the edge has R14 supporting R43, i.e., R14's threshold is what makes R43's step well-defined.)"
+  },
+  {
+   "id": "R15--support--R14",
+   "source": "R15",
+   "target": "R14",
+   "type": "support",
+   "rationale": "R14 says 'if less than 8, do not add the comment', which would leave code unexplained; R15's 'prefer self-explanatory code: descriptive names, small functions, strong TypeScript types, and tests over comments' provides the substitute channel for conveying meaning, making the near-total comment ban livable rather than information-destroying."
+  },
+  {
+   "id": "R16--exception--R14",
+   "source": "R16",
+   "target": "R14",
+   "type": "exception",
+   "rationale": "R14 is effectively 'default to no comment' (score <8 → forbidden); R16 carves out the whitelist of what MAY still be written once the bar is met: 'Acceptable comments (when necessity ≥ 8): non-obvious invariants, footguns, links to ADRs, public API TSDoc'. It is a gated permission inside R14's prohibition — the gate being R14's own ≥8 threshold."
+  },
+  {
+   "id": "R17--refinement--R14",
+   "source": "R17",
+   "target": "R14",
+   "type": "refinement",
+   "rationale": "R17 narrows the general comment policy to the specific TODO case with a concrete bidirectional rule: 'TODO statements should not be created but also should not be removed without explicit instruction'. Where R14's self-scored threshold is unfalsifiable, R17 makes the TODO subdomain diff-checkable. The fit is slightly loose — the 'don't remove' half goes beyond anything R14 says — so this refinement covers only the 'don't create' direction cleanly."
+  },
+  {
+   "id": "R19--checkpoint--R11",
+   "source": "R19",
+   "target": "R11",
+   "type": "checkpoint",
+   "rationale": "R19's task-start duty to 'explicitly list detected patterns relevant to the task' produces no new pattern obligations — it forces visible output proving that R11's codebase scan ('scan components, hooks, services/api, utils, lib... to infer patterns') was actually performed. The listed patterns are the audit trail of the scan."
+  },
+  {
+   "id": "R20--refinement--R12",
+   "source": "R20",
+   "target": "R12",
+   "type": "refinement",
+   "rationale": "R20 restates R12's 'summarize the chosen existing pattern before coding' for the narrower trigger 'before writing a new module/component', and adds a concretizing demand: 'show which existing pattern or module you will align with and where it lives'. The 'where it lives' locator requirement makes R20 strictly more checkable than the broader rule it refines — though the overlap is large enough that the judgment calls it a near-duplicate."
+  },
+  {
+   "id": "R20--checkpoint--R07",
+   "source": "R20",
+   "target": "R07",
+   "type": "checkpoint",
+   "rationale": "Requiring the agent to 'show which existing pattern or module you will align with and where it lives' before each new module verifies that R07's mandated repo search happened: you cannot name a concrete location for an existing pattern without having searched. R20 adds disclosure, not a new substantive norm, so it enforces R07 rather than extending it."
+  },
+  {
+   "id": "R21--support--R23",
+   "source": "R21",
+   "target": "R23",
+   "type": "support",
+   "rationale": "R21's post-implementation step 'ensure formatting, linting, and tests run with the repo's existing toolchain. Use the existing package manager (detect via lockfile)' operationalizes R23's standing duty to 'respect existing toolchain and scripts from package.json' — it even supplies the detection method ('via lockfile') that makes respect verifiable."
+  },
+  {
+   "id": "R21--support--R26",
+   "source": "R21",
+   "target": "R26",
+   "type": "support",
+   "rationale": "R21's requirement that 'formatting, linting, and tests run with the repo's existing toolchain' after implementing means lint and type checks must actually execute and pass — which is precisely what R26's 'NEVER DISABLE LINTING, COMPILATION, OR TYPE ERRORS' protects. Running the checks is the practice that both detects and deters disabling them."
+  },
+  {
+   "id": "R21--duplication--R23",
+   "source": "R21",
+   "target": "R23",
+   "type": "duplication",
+   "rationale": "Both rules state the same use-the-existing-toolchain norm: R21 says 'use the existing package manager... the repo's existing toolchain' and R23 says 'respect existing toolchain and scripts from package.json (package manager, lint/test commands)'. The judgment on R23 calls it 'largely redundant with R21' — the only difference is R21's after-implementing framing, which doesn't change the underlying obligation."
+  },
+  {
+   "id": "R24--support--R23",
+   "source": "R24",
+   "target": "R23",
+   "type": "support",
+   "rationale": "R24's 'keep dependencies consistent. Avoid adding new libs unless required and approved' protects the package.json that R23 tells the agent to respect: blocking unapproved libraries prevents the dependency set (and hence the toolchain/scripts R23 anchors to) from drifting. The connection is real but indirect — R24 is more sibling than enabler, so this support edge is on the weaker side."
+  },
+  {
+   "id": "R25--refinement--R08",
+   "source": "R25",
+   "target": "R08",
+   "type": "refinement",
+   "rationale": "R08's generic 'align with the established approach for: ... testing' is restated concretely by R25 for test placement: 'prefer colocated tests alongside modules, matching the repo's current convention'. The explicit 'matching the repo's current convention' clause subordinates R25 to R08's alignment principle while pinning down one specific domain."
+  },
+  {
+   "id": "R26--refinement--R01",
+   "source": "R26",
+   "target": "R01",
+   "type": "refinement",
+   "rationale": "Suppressing lint/compile/type checks is the canonical 'silent downgrade': the build appears green while quality enforcement has been quietly removed. R26's '🚨 NEVER DISABLE LINTING, COMPILATION, OR TYPE ERRORS 🚨' is R01's most concrete instantiation — it converts the undefined 'silent downgrade' into three named, checkable categories of forbidden disabling."
+  },
+  {
+   "id": "R27--refinement--R26",
+   "source": "R27",
+   "target": "R26",
+   "type": "refinement",
+   "rationale": "R26 bans disabling checks in general; R27 enumerates the exact mechanisms: 'do not use eslint-disable, @ts-ignore, @ts-expect-error, or similar pragmas'. These literal, grep-able strings turn R26's category-level prohibition into a mechanically detectable rule — the textbook broad-to-concrete refinement."
+  },
+  {
+   "id": "R28--exception--R27",
+   "source": "R28",
+   "target": "R27",
+   "type": "exception",
+   "rationale": "R28's step 3 'CONFIGURE (config-file change with justification)' licenses an action that lives in R27's shadow: changing lint/type behavior via configuration after root-cause fixes and restructuring have been tried. Where R27 bans inline pragmas outright, R28 grants a conditioned, justified config-level route to relax a check — a gated hole in the suppression ban. This is the file's weakest exception edge: one can also read CONFIGURE as never touching what R27 forbids (inline pragmas specifically), making the edge debatable."
+  },
+  {
+   "id": "R28--support--R26",
+   "source": "R28",
+   "target": "R26",
+   "type": "support",
+   "rationale": "R26 forbids disabling checks but offers no alternative when errors appear; R28's escalation ladder '1. FIX THE ROOT CAUSE 2. RESTRUCTURE 3. CONFIGURE' is the positive procedure that makes obeying the ban feasible — it tells the agent exactly what to do with a lint/type error instead of suppressing it."
+  },
+  {
+   "id": "R29--exception--R26",
+   "source": "R29",
+   "target": "R26",
+   "type": "exception",
+   "rationale": "R29 opens the 'only exception' to the disabling ban: 'generated code or third-party dependencies that cannot be modified' may be exempted from checks, but 'even then, isolate with targeted config changes, not inline disables'. The cannot-be-modified condition and config-only remedy make it a narrowly gated hole in R26's blanket prohibition."
+  },
+  {
+   "id": "R29--exception--R27",
+   "source": "R29",
+   "target": "R27",
+   "type": "exception",
+   "rationale": "R27 bans suppression pragmas categorically; R29 permits suppression-like isolation for the one case where root-cause fixing is impossible — 'generated code or third-party dependencies that cannot be modified' — while still honoring R27's spirit by demanding 'targeted config changes, not inline disables'. It punches a hole in the pragma ban but keeps the inline mechanisms forbidden."
+  },
+  {
+   "id": "R30--conflict--R40",
+   "source": "R30",
+   "target": "R40",
+   "type": "conflict",
+   "rationale": "R30 demands 'ALWAYS prefer the simplest solution... actively reduce complexity rather than add it', while R40 instructs 'use abstraction layers (interfaces, adapters)... prefer dependency injection over direct imports'. Interfaces, adapters, and DI are added moving parts — exactly the complexity R30 says to reduce. The judgment flags this as the file's biggest internal tension, with no priority rule arbitrating it."
+  },
+  {
+   "id": "R30--conflict--R45",
+   "source": "R30",
+   "target": "R45",
+   "type": "conflict",
+   "rationale": "R30 says 'lower complexity is a primary goal, second only to meeting the spec', but R45 requires behavioral primitives to 'live in a centralized configuration layer' — extra indirection and infrastructure compared with an inline constant. Every config extraction adds the kind of machinery R30 tells the agent to actively avoid; R46 exists precisely to arbitrate this tension."
+  },
+  {
+   "id": "R31--support--R09",
+   "source": "R31",
+   "target": "R09",
+   "type": "support",
+   "rationale": "R31's tactic 'eliminate redundant code, duplicate patterns, or parallel implementations' actively removes the states R09 prohibits ('parallel patterns, dual sources of truth'). It is the cleanup behavior that keeps the codebase compliant with the no-parallel-patterns ban."
+  },
+  {
+   "id": "R31--support--R30",
+   "source": "R31",
+   "target": "R30",
+   "type": "support",
+   "rationale": "R30 states the goal ('prefer the simplest solution... reduce complexity'); R31 supplies the tactics that achieve it: 'choose the solution with fewest moving parts. Eliminate redundant code... Refactor complex solutions into simpler ones when discovered.' R31 is how-to support for R30's what."
+  },
+  {
+   "id": "R32--support--R30",
+   "source": "R32",
+   "target": "R30",
+   "type": "support",
+   "rationale": "R32's challenge question — 'Does this actually reduce complexity, or just hide it?' — is a decision heuristic in service of R30's mandate that 'lower complexity is a primary goal'. It guards against abstractions that defeat R30 by merely relocating complexity instead of reducing it."
+  },
+  {
+   "id": "R32--conflict--R40",
+   "source": "R32",
+   "target": "R40",
+   "type": "conflict",
+   "rationale": "R32 says to distrust abstractions ('question every abstraction: does this actually reduce complexity, or just hide it?'), while R40 affirmatively recommends them ('use abstraction layers (interfaces, adapters)... prefer dependency injection'). One rule's default is skepticism toward the very constructs the other rule prescribes — the judgments on both nodes call this the file's most direct internal tension."
+  },
+  {
+   "id": "R35--refinement--R56",
+   "source": "R35",
+   "target": "R56",
+   "type": "refinement",
+   "rationale": "R56 is the compressed tripwire ('if you're considering backward compatibility, STOP and ask for approval first'); R35 expands it into the full procedure: '1. STOP immediately 2. ASK with a clear proposal (what, why, complexity cost, migration alternative) 3. WAIT for explicit instruction.' Same trigger and same halt, but R35 adds the four-part proposal checklist and the explicit WAIT — the concrete elaboration of R56's one-liner. (Arguably the duplication runs the other way too, since R56 came later in the file as reinforcement.)"
+  },
+  {
+   "id": "R35--checkpoint--R34",
+   "source": "R35",
+   "target": "R34",
+   "type": "checkpoint",
+   "rationale": "R34 prohibits independently implementing backward compatibility 'without explicit approval'; R35 is the procedural enforcement of that gate: 'STOP immediately... ASK with a clear proposal... WAIT for explicit instruction.' It adds no new substantive ban — it specifies the halt-and-approval workflow that guarantees R34's 'explicit approval' condition is actually obtained before any compat code is written."
+  },
+  {
+   "id": "R36--support--R09",
+   "source": "R36",
+   "target": "R09",
+   "type": "support",
+   "rationale": "R36's default — 'migrate/refactor to the new pattern. Delete the old one' — guarantees that at any moment only one pattern survives, which is exactly the single-source-of-truth state R09 demands ('do not introduce parallel patterns, dual sources of truth'). Deleting the old pattern is what prevents parallelism from arising during transitions."
+  },
+  {
+   "id": "R36--support--R34",
+   "source": "R36",
+   "target": "R34",
+   "type": "support",
+   "rationale": "R34 bans implementing backward compatibility, which raises the question of what to do instead when patterns change; R36 answers it: 'Migrate/refactor to the new pattern. Delete the old one.' Forward migration is the positive default that makes the compat prohibition livable — the agent always has a sanctioned path."
+  },
+  {
+   "id": "R37--exception--R34",
+   "source": "R37",
+   "target": "R34",
+   "type": "exception",
+   "rationale": "R34 says 'NEVER independently implement backward compatibility... without explicit approval'; R37 states the matching gate from the permission side: 'Only implement backward compatibility when explicitly instructed after review.' It is the narrowly carved escape hatch — the same action becomes permitted exactly when the instruction-after-review condition is met, closing the loop on the prohibition."
+  },
+  {
+   "id": "R38--conflict--R40",
+   "source": "R38",
+   "target": "R40",
+   "type": "conflict",
+   "rationale": "R38 commands 'NEVER over-architect... build incrementally', while R40 advises building 'abstraction layers (interfaces, adapters) for external dependencies' and dependency injection — speculative architecture installed before a concrete need proves it. C08's '❌ complex HTTP client with retry/caching up front' shows the same artifact failing R38 that R40's adapter advice would endorse; no priority rule arbitrates this specific clash."
+  },
+  {
+   "id": "R38--conflict--R45",
+   "source": "R38",
+   "target": "R45",
+   "type": "conflict",
+   "rationale": "R38 forbids planning ahead and over-architecting, but R45 says behavioral primitives 'should live in a centralized configuration layer' — building config infrastructure is a forward-looking architectural investment. The file itself acknowledges this tension: R46 exists solely to declare that 'Rule 6 [R38] wins' when the two collide."
+  },
+  {
+   "id": "R39--support--R38",
+   "source": "R39",
+   "target": "R38",
+   "type": "support",
+   "rationale": "R39's positive program — 'implement the minimum viable solution first, then evolve. Validate early... with working code as quickly as possible' — is the constructive counterpart of R38's 'NEVER over-architect or plan too far ahead. Build incrementally'. It tells the agent what to do instead of over-planning, making the prohibition followable."
+  },
+  {
+   "id": "R41--support--R38",
+   "source": "R41",
+   "target": "R38",
+   "type": "support",
+   "rationale": "R41's 'make decisions as late as possible when you have maximum information' directly serves R38's ban on planning 'too far ahead': deferring decisions is the mechanism by which one avoids committing to speculative architecture. Late decisions and incremental building are two faces of the same anti-over-planning stance."
+  },
+  {
+   "id": "R41--conflict--R44",
+   "source": "R41",
+   "target": "R44",
+   "type": "conflict",
+   "rationale": "R41 says to defer decisions 'as late as possible', but R44 says that for 'truly irreversible' decisions (database choice, foundational architecture) one should 'invest appropriate planning time' — i.e., decide deliberately and early. For any decision judged irreversible, the two rules pull opposite ways; since 'truly irreversible' is vague (per R44's own judgment), the boundary between them is undecidable, which is what makes this a live conflict rather than a clean exception."
+  },
+  {
+   "id": "R42--refinement--R38",
+   "source": "R42",
+   "target": "R38",
+   "type": "refinement",
+   "rationale": "R38's 'never plan too far ahead' is vague about how far is too far; R42 quantifies it: 'focus on the immediate task and the next logical step' — a 1-2 step horizon. The numeric planning bound is what makes R38 'almost operational', per the judgment, so R42 is the concrete restatement of the broad ban."
+  },
+  {
+   "id": "R42--support--R38",
+   "source": "R42",
+   "target": "R38",
+   "type": "support",
+   "rationale": "Beyond refining R38's scope, R42's positive instruction to 'focus on the immediate task and the next logical step, not distant future scenarios' gives the agent an actionable attention policy that makes complying with 'NEVER over-architect or plan too far ahead' practical. (This edge overlaps heavily with the parallel refinement edge — having both is arguably redundant.)"
+  },
+  {
+   "id": "R42--support--R51",
+   "source": "R42",
+   "target": "R51",
+   "type": "support",
+   "rationale": "R51's CHECK step asks 'are we using it now or within 1-2 steps?' — that 1-2-step horizon is inherited directly from R42's focus on 'the immediate task and the next logical step'. R42 supplies the planning yardstick that R51's over-configuring checklist measures against."
+  },
+  {
+   "id": "R43--refinement--R57",
+   "source": "R43",
+   "target": "R57",
+   "type": "refinement",
+   "rationale": "R57 is the compressed tripwire ('if you're planning more than 1-2 steps ahead..., STOP and simplify to current requirements'); R43 unfolds the same trigger into a four-step protocol: '1. STOP 2. SIMPLIFY to the minimum 3. DOCUMENT assumptions (comment ≥8 necessity, or ADR) 4. BUILD what's needed now.' Same catch-yourself event, but R43 adds the DOCUMENT and BUILD steps — the elaborated version of R57's one-liner. (The direction is debatable since R57 appears later as a duplicate reinforcement of R42/R43.)"
+  },
+  {
+   "id": "R43--checkpoint--R38",
+   "source": "R43",
+   "target": "R38",
+   "type": "checkpoint",
+   "rationale": "R43 is the self-monitoring routine that enforces R38: 'when you catch yourself over-planning: STOP, SIMPLIFY to the minimum...' It imposes no new architectural norm — it is the in-flight detection-and-recovery procedure for violations of 'NEVER over-architect or plan too far ahead', returning the agent to compliance."
+  },
+  {
+   "id": "R43--duplication--R51",
+   "source": "R43",
+   "target": "R51",
+   "type": "duplication",
+   "rationale": "R43 and R51 are the same catch-yourself protocol instantiated in two domains: R43 says 'when you catch yourself over-planning: STOP, SIMPLIFY, DOCUMENT, BUILD what's needed now', and R51 says 'when you catch yourself over-configuring: ASK..., CHECK..., constant or config layer'. Identical trigger shape and decision-tree remedy; R51's judgment calls it the 'mirror image of R43'. Strictly they target different behaviors (planning vs configuring), so 'duplication' here means duplicated norm-template more than duplicated norm — a defensible but arguable label."
+  },
+  {
+   "id": "R44--exception--R38",
+   "source": "R44",
+   "target": "R38",
+   "type": "exception",
+   "rationale": "R38 bans planning 'too far ahead', but R44 licenses exactly that for a gated class of cases: 'if a decision is truly irreversible (database choice, foundational architecture), invest appropriate planning time'. The 'truly irreversible' condition (softened by 'these are rarer than they seem') is the gate that punches a narrow hole in the over-planning prohibition."
+  },
+  {
+   "id": "R44--exception--R39",
+   "source": "R44",
+   "target": "R39",
+   "type": "exception",
+   "rationale": "R39 says to 'implement the minimum viable solution first' and 'defer irreversible decisions until you have maximum information'; R44 carves out the case where deferral and MVP-first don't apply — 'truly irreversible' decisions like 'database choice, foundational architecture' warrant up-front 'appropriate planning time'. It permits the deliberate early planning that R39's iterate-first default otherwise discourages."
+  },
+  {
+   "id": "R45--conflict--R46",
+   "source": "R45",
+   "target": "R46",
+   "type": "conflict",
+   "rationale": "R45 pushes toward config infrastructure ('primitive values... should live in a centralized configuration layer, not scattered as magic numbers'), while R46 pushes back: 'do not build elaborate configuration systems prematurely' and declares Rule 6 the winner of 'any tension between this rule and the Evolving Architecture Mandate'. R46 both names and resolves the conflict — the edge records the acknowledged tension that R46's priority clause exists to arbitrate."
+  },
+  {
+   "id": "R46--refinement--R38",
+   "source": "R46",
+   "target": "R38",
+   "type": "refinement",
+   "rationale": "R46 makes R38 concrete for the configuration domain: 'do not build elaborate configuration systems prematurely' is the config-specific instance of 'NEVER over-architect or plan too far ahead', and its priority clause ('Rule 6 wins') explicitly subordinates the config rules to R38. It restates the broad anti-over-architecture ban as a narrow, domain-bound prohibition."
+  },
+  {
+   "id": "R47--support--R45",
+   "source": "R47",
+   "target": "R45",
+   "type": "support",
+   "rationale": "R45's 'behavioral primitives should live in a centralized configuration layer' has no timing rule; R47 supplies it: 'move a primitive to config only when you're actively working with it or it clearly affects user-facing behavior'. The 'only when' gate tells the agent when R45's centralization duty actually fires, making it applicable without inviting over-configuration."
+  },
+  {
+   "id": "R47--support--R46",
+   "source": "R47",
+   "target": "R46",
+   "type": "support",
+   "rationale": "R46 warns 'do not build elaborate configuration systems prematurely'; R47's gate — centralize 'only when you're actively working with it or it clearly affects user-facing behavior' — is the incremental policy that operationalizes that warning. It throttles config growth to actual need, which is exactly how one avoids premature elaborate config."
+  },
+  {
+   "id": "R48--refinement--R07",
+   "source": "R48",
+   "target": "R07",
+   "type": "refinement",
+   "rationale": "R48 is R07's search duty restated for the config domain with concrete targets: where R07 generically says 'proactively search the repo for existing patterns', R48 specifies 'scan for config.py, config.yaml, environment variables, or settings modules already in the repo'. The named file targets make the vague search obligation mechanically actionable in this one domain."
+  },
+  {
+   "id": "R48--refinement--R08",
+   "source": "R48",
+   "target": "R08",
+   "type": "refinement",
+   "rationale": "R48's second sentence, 'Align with what exists', is R08's 'align with the established approach' narrowed to configuration mechanisms. Same search-then-align structure, but bound to a concrete domain (config files and settings modules) — a domain-specific restatement of the general alignment rule."
+  },
+  {
+   "id": "R48--support--R45",
+   "source": "R48",
+   "target": "R45",
+   "type": "support",
+   "rationale": "R45 requires primitives to live in 'a centralized configuration layer'; R48 ensures that layer is the existing one — 'scan for config.py, config.yaml, environment variables, or settings modules already in the repo. Align with what exists.' It makes R45 satisfiable without spawning a new parallel config system, channeling centralization into the established mechanism."
+  },
+  {
+   "id": "R49--support--R45",
+   "source": "R49",
+   "target": "R45",
+   "type": "support",
+   "rationale": "R45 says behavioral primitives belong in config; R49 specifies how to put them there well: 'config keys should be self-documenting (max_retry_attempts, llm_response_timeout_seconds). Always include sensible defaults so the system works out-of-the-box.' Good naming and defaults are quality criteria that make R45's centralized layer usable rather than a new source of obscurity."
+  },
+  {
+   "id": "R50--refinement--R09",
+   "source": "R50",
+   "target": "R09",
+   "type": "refinement",
+   "rationale": "R50 instantiates R09's general ban on 'parallel patterns, dual sources of truth' for the configuration domain: 'if a value is already configurable somewhere, use that mechanism. Don't create parallel config sources.' A parallel config source IS a dual source of truth — R50 names the concrete, checkable case of the abstract prohibition."
+  },
+  {
+   "id": "R51--checkpoint--R45",
+   "source": "R51",
+   "target": "R45",
+   "type": "checkpoint",
+   "rationale": "R51's checklist — 'ASK is this a real behavioral dial? CHECK are we using it now or within 1-2 steps? If NO to both → well-named constant. If YES → existing config layer' — is the verification procedure for R45's centralization rule: it tests whether a candidate value genuinely qualifies before it enters config. It enforces R45's boundary (and guards against its over-application) without adding a new substantive norm."
+  },
+  {
+   "id": "R52--refinement--R09",
+   "source": "R52",
+   "target": "R09",
+   "type": "refinement",
+   "rationale": "R52 turns R09's abstract 'dual sources of truth' ban into a mechanically checkable rule for defaults: 'configuration values must have exactly ONE default definition. Never duplicate defaults across config models, factories, or provider constructors', complete with ✅ Pydantic Field(default=...) / ❌ config.get('model', 'gpt-4o-mini') examples. A duplicated default is literally two sources of truth for one value."
+  },
+  {
+   "id": "R52--refinement--R50",
+   "source": "R52",
+   "target": "R50",
+   "type": "refinement",
+   "rationale": "R50 generally forbids duplicate/parallel config sources; R52 sharpens that to the specific case of default values with a countable criterion ('exactly ONE default definition') and concrete violation patterns ('config.get(...) fallbacks', duplicated constructor defaults). It is the most specific layer of the anti-duplication stack: R09 → R50 → R52."
+  },
+  {
+   "id": "R53--exception--R52",
+   "source": "R53",
+   "target": "R52",
+   "type": "exception",
+   "rationale": "R52 demands 'exactly ONE default definition' for configuration values; R53 carves out the values that escape this regime: 'internal implementation details (retry counts, backoff delays) not exposed in config.yaml can have provider-level defaults'. The exposed-vs-internal boundary is the gate — for internal-only values, a provider-level default is permitted even though it would look like a duplicate under R52."
+  },
+  {
+   "id": "R54--checkpoint--R09",
+   "source": "R54",
+   "target": "R09",
+   "type": "checkpoint",
+   "rationale": "R54 is the runtime tripwire for R09: 'if a proposed change creates a duplicate or conflicting pattern, stop and propose consolidation or a refactor plan instead.' It adds no new ban — it specifies the detect-halt-propose procedure that catches imminent violations of 'do not introduce parallel patterns, dual sources of truth' before they land."
+  },
+  {
+   "id": "R55--checkpoint--R30",
+   "source": "R55",
+   "target": "R30",
+   "type": "checkpoint",
+   "rationale": "R55's 'if complexity is increasing without clear necessity, stop and simplify' is the in-flight monitor for R30's 'actively reduce complexity rather than add it'. The trigger (complexity growth) is exactly the condition under which R30 is being violated, and the remedy (stop, simplify) restores compliance — enforcement, not a new obligation. Its weakness is the self-assessed 'without clear necessity' trigger, which the judgment flags."
+  },
+  {
+   "id": "R55--checkpoint--R38",
+   "source": "R55",
+   "target": "R38",
+   "type": "checkpoint",
+   "rationale": "R55 also polices R38: unnecessary complexity growth is the observable symptom of over-architecting, so 'if complexity is increasing without clear necessity, stop and simplify' acts as a tripwire for 'NEVER over-architect'. Like all the catch-yourself rules, it verifies an existing prohibition rather than adding a norm of its own."
+  },
+  {
+   "id": "R56--checkpoint--R34",
+   "source": "R56",
+   "target": "R34",
+   "type": "checkpoint",
+   "rationale": "R56 enforces R34's approval gate at the moment of temptation: 'if you're considering backward compatibility, STOP and ask for approval first.' Since R34 bans implementing backward compatibility 'without explicit approval', halting to ask at the consideration stage is precisely the procedure that guarantees the prohibition is never crossed unapproved — a tripwire, not a new duty."
+  },
+  {
+   "id": "R57--checkpoint--R38",
+   "source": "R57",
+   "target": "R38",
+   "type": "checkpoint",
+   "rationale": "R57 is the tripwire form of the over-planning ban: 'if you're planning more than 1-2 steps ahead or building for hypothetical future needs, STOP and simplify to current requirements.' Its trigger ('hypothetical future needs') matches R38's prohibition on planning 'too far ahead', and its remedy enforces a return to compliance without introducing any new architectural norm."
+  },
+  {
+   "id": "R57--checkpoint--R42",
+   "source": "R57",
+   "target": "R42",
+   "type": "checkpoint",
+   "rationale": "R57's trigger 'planning more than 1-2 steps ahead' is the exact negation of R42's 'focus on the immediate task and the next logical step', and its STOP-and-simplify response polices that boundary at runtime. The judgment calls R57 'a duplicate of R42 + R43 compressed into a tripwire' — as an edge it functions as the enforcement hook for R42's quantified horizon."
+  },
+  {
+   "id": "R59--refinement--R58",
+   "source": "R59",
+   "target": "R58",
+   "type": "refinement",
+   "rationale": "R58 is the slogan 'keep repo clean' with no operational content; R59 makes it concrete for debug artifacts: 'ad-hoc debug scripts, reproduction tests, or diagnostic files... must go in tests/_temp_/ for easy cleanup. Use descriptive names (debug_tts_state.py...).' Concrete path plus naming examples turn the vague cleanliness preference into a checkable rule."
+  },
+  {
+   "id": "R60--refinement--R58",
+   "source": "R60",
+   "target": "R58",
+   "type": "refinement",
+   "rationale": "R60 refines 'keep repo clean' into a timed, verifiable duty: 'clean up after investigation completes... before completing a debug task, verify all temporary files are deleted or in tests/_temp_/.' It supplies the when (task completion) and the criterion (deleted or quarantined) that the slogan-level R58 lacks."
+  },
+  {
+   "id": "R60--checkpoint--R45",
+   "source": "R60",
+   "target": "R45",
+   "type": "checkpoint",
+   "rationale": "This edge is weak and likely a stretch: R60's verification step ('before completing a debug task, verify all temporary files are deleted or in tests/_temp_/') concerns debug artifacts, not configuration. The only connection to R45's 'primitives should live in a centralized configuration layer' is the shared end-of-task hygiene/verification spirit — nothing in R60's text checks anything about config centralization. I would flag this edge for review rather than defend it."
+  },
+  {
+   "id": "R60--checkpoint--R59",
+   "source": "R60",
+   "target": "R59",
+   "type": "checkpoint",
+   "rationale": "R60 explicitly names its enforcement role: 'Enforcement: before completing a debug task, verify all temporary files are deleted or in tests/_temp_/.' That verification is exactly the check that R59's placement rule ('debug scripts... must go in tests/_temp_/') was followed — a pure audit step layered on the existing obligation, with no new substantive norm."
+  },
+  {
+   "id": "C01--support_(motivates)--R01",
+   "source": "C01",
+   "target": "R01",
+   "type": "support (motivates)",
+   "rationale": "C01's preamble names 'always-on, repo-wide guidance for consistency, minimal comments, and coherent architecture' as the file's purpose; the integrity/no-shortcuts concern embodied in R01's 'no silent downgrades' is the first anchor that this binding scope statement legitimizes — C01 establishes that R01 applies to 'all Roo agents and tasks', always. The motivational fit to R01 specifically is looser than for the three named goals, so this is the weakest of C01's four edges."
+  },
+  {
+   "id": "C01--support_(motivates)--R08",
+   "source": "C01",
+   "target": "R08",
+   "type": "support (motivates)",
+   "rationale": "C01 declares 'consistency' as one of the file's three master purposes; R08's 'align with the established approach for state management, data fetching... testing' is the anchor rule of exactly that consistency cluster. The preamble supplies the why (repo-wide consistency) behind R08's alignment duty."
+  },
+  {
+   "id": "C01--support_(motivates)--R14",
+   "source": "C01",
+   "target": "R14",
+   "type": "support (motivates)",
+   "rationale": "C01's stated purpose includes 'minimal comments' verbatim; R14's 'rate 1-10 how necessary [the comment] is; if less than 8, do not add' is the operative rule implementing that goal. The preamble motivates the comment-threshold regime by declaring comment minimalism a repo-wide objective."
+  },
+  {
+   "id": "C01--support_(motivates)--R38",
+   "source": "C01",
+   "target": "R38",
+   "type": "support (motivates)",
+   "rationale": "C01's third named goal, 'coherent architecture', is what R38's 'NEVER over-architect or plan too far ahead. Build incrementally' pursues — incremental, validated growth is the file's recipe for keeping architecture coherent. The preamble seeds the Rule-6 cluster that R38 heads."
+  },
+  {
+   "id": "C02--support_(motivates)--R34",
+   "source": "C02",
+   "target": "R34",
+   "type": "support (motivates)",
+   "rationale": "C02 primes the agent that 'the phrase backward compatibility is a CRITICAL WARNING SIGN'; R34 is the prohibition that the warning prepares — 'NEVER independently implement backward compatibility... without explicit approval'. The red-flag framing supplies the heightened-alert motivation for treating compat as forbidden-by-default rather than routine engineering."
+  },
+  {
+   "id": "C02--support_(motivates)--R35",
+   "source": "C02",
+   "target": "R35",
+   "type": "support (motivates)",
+   "rationale": "By branding 'backward compatibility' a 'CRITICAL WARNING SIGN', C02 explains why merely thinking the phrase should trigger R35's drastic response: 'STOP immediately, ASK with a clear proposal, WAIT for explicit instruction.' The alarm framing is what justifies a full halt at the consideration stage rather than at implementation."
+  },
+  {
+   "id": "C02--support_(motivates)--R56",
+   "source": "C02",
+   "target": "R56",
+   "type": "support (motivates)",
+   "rationale": "C02's siren ('🚨 BACKWARD COMPATIBILITY RED FLAG 🚨') motivates R56's tripwire 'if you're considering backward compatibility, STOP and ask for approval first' — the rule converts the warning sign into a mandatory halt. C02 supplies the urgency; R56 supplies the procedure."
+  },
+  {
+   "id": "C03--support_(motivates)--R09",
+   "source": "C03",
+   "target": "R09",
+   "type": "support (motivates)",
+   "rationale": "C03 states that backward compatibility 'creates dual sources of truth that evolve independently' and 'fragments the codebase into parallel implementations' — exactly the harms R09 prohibits ('do not introduce parallel patterns, dual sources of truth'). It is the explicit causal bridge that motivates the parallel-pattern ban from the backward-compat side."
+  },
+  {
+   "id": "C03--support_(motivates)--R34",
+   "source": "C03",
+   "target": "R34",
+   "type": "support (motivates)",
+   "rationale": "C03 is the cost ledger behind R34's ban: backward compatibility 'multiplies maintenance burden and bug surface... prevents clean evolution, and adds permanent compounding complexity'. These enumerated harms are the justification for 'NEVER independently implement backward compatibility' — the judgment calls C03 'the justification for the entire S07 cluster'."
+  },
+  {
+   "id": "C03--support_(motivates)--R36",
+   "source": "C03",
+   "target": "R36",
+   "type": "support (motivates)",
+   "rationale": "Because backward compatibility 'prevents clean evolution' and 'fragments the codebase into parallel implementations' (C03), the sane default is R36's 'migrate/refactor to the new pattern. Delete the old one.' C03's harms are precisely what forward migration with deletion avoids, so it motivates the migrate-forward default."
+  },
+  {
+   "id": "C03--support_(motivates)--R37",
+   "source": "C03",
+   "target": "R37",
+   "type": "support (motivates)",
+   "rationale": "C03's catalogue of compounding costs ('permanent compounding complexity', 'multiplies maintenance burden') explains why R37 keeps backward compatibility behind the tightest possible gate — 'only... when explicitly instructed after review'. The severity of the harms motivates requiring human review before the exception opens. As motivation for a permission's restrictiveness rather than for a duty, this edge is slightly indirect but coherent."
+  },
+  {
+   "id": "C04--support_(motivates)--R38",
+   "source": "C04",
+   "target": "R38",
+   "type": "support (motivates)",
+   "rationale": "C04's worldview — 'complex systems evolve successfully through iteration, not through perfect up-front planning. Requirements change, assumptions fail' — is the direct rationale for R38's 'NEVER over-architect or plan too far ahead. Build incrementally... maintain the ability to pivot.' If up-front planning predictably fails, prohibiting it follows."
+  },
+  {
+   "id": "C04--support_(motivates)--R39",
+   "source": "C04",
+   "target": "R39",
+   "type": "support (motivates)",
+   "rationale": "R39's program ('implement the minimum viable solution first, then evolve. Validate early... Question assumptions') is C04's claim turned into practice: since systems 'evolve successfully through iteration' and 'assumptions fail', validating assumptions early with working code is the rational response. C04 supplies the empirical premise R39 acts on."
+  },
+  {
+   "id": "C04--support_(motivates)--R40",
+   "source": "C04",
+   "target": "R40",
+   "type": "support (motivates)",
+   "rationale": "C04's 'requirements change... stay adaptable' motivates R40's loose-coupling advice: 'use abstraction layers (interfaces, adapters) for external dependencies... keep business logic separate from framework code' is how a codebase stays cheap to change when assumptions fail. Notably, C04 thereby motivates both sides of the file's R30/R40 tension — adaptability arguments cut toward abstraction here and toward simplicity elsewhere."
+  },
+  {
+   "id": "C04--support_(motivates)--R41",
+   "source": "C04",
+   "target": "R41",
+   "type": "support (motivates)",
+   "rationale": "If 'requirements change, assumptions fail, Murphy's Law applies' (C04), then committing early is committing on bad information — which is exactly why R41 says to 'make decisions as late as possible when you have maximum information'. C04 provides the uncertainty premise that makes deferral rational."
+  },
+  {
+   "id": "C04--support_(motivates)--R42",
+   "source": "C04",
+   "target": "R42",
+   "type": "support (motivates)",
+   "rationale": "C04's claim that perfect up-front planning fails motivates R42's short horizon: 'focus on the immediate task and the next logical step, not distant future scenarios.' Plans beyond 1-2 steps are built on assumptions that, per C04, will fail — so limiting the horizon limits the waste."
+  },
+  {
+   "id": "C04--support_(motivates)--R43",
+   "source": "C04",
+   "target": "R43",
+   "type": "support (motivates)",
+   "rationale": "C04 explains why R43's recovery protocol ('when you catch yourself over-planning: STOP, SIMPLIFY to the minimum... BUILD what's needed now') is the right corrective: since iteration beats up-front planning, over-planning detected mid-flight should be abandoned and converted into the minimum buildable step rather than completed."
+  },
+  {
+   "id": "C05--support_(defines)--R38",
+   "source": "C05",
+   "target": "R38",
+   "type": "support (defines)",
+   "rationale": "R38's key predicate 'over-architect' is self-referentially vague; C05 supplies the observable criteria: 'abstractions for future extensibility not needed now; config systems before knowing what needs configuring; complex class hierarchies; features because we'll need them eventually; architectures for hypothetical scale.' These red flags are the de facto definition that makes R38 applicable."
+  },
+  {
+   "id": "C05--support_(defines)--R43",
+   "source": "C05",
+   "target": "R43",
+   "type": "support (defines)",
+   "rationale": "R43's trigger 'when you catch yourself over-planning' is self-assessed and otherwise unfalsifiable; C05's red-flag list (future-proofing abstractions, premature config systems, deep hierarchies, hypothetical-scale architecture) gives the concrete detection criteria for when the catch should fire. Per the judgment, this context 'is what rescues R43 from unfalsifiability'."
+  },
+  {
+   "id": "C05--support_(defines)--R45",
+   "source": "C05",
+   "target": "R45",
+   "type": "support (defines)",
+   "rationale": "C05's flag 'config systems before knowing what needs configuring' marks the negative boundary of R45's centralization mandate: it defines when moving values to config crosses from R45-compliant centralization into over-planning. The definitional contribution is partial — C05 bounds R45 rather than defining its core term — so this edge is real but secondary to C07's."
+  },
+  {
+   "id": "C05--support_(defines)--R57",
+   "source": "C05",
+   "target": "R57",
+   "type": "support (defines)",
+   "rationale": "R57 halts on 'building for hypothetical future needs', and C05 defines what those look like: 'features because we'll need them eventually; architectures for hypothetical scale; abstractions for future extensibility not needed now'. The red-flag list is the operational test behind R57's tripwire condition."
+  },
+  {
+   "id": "C06--support_(defines)--R46",
+   "source": "C06",
+   "target": "R46",
+   "type": "support (defines)",
+   "rationale": "R46 forbids building 'elaborate configuration systems prematurely' without saying what counts; C06 enumerates the signs: 'making every constant configurable just in case; multi-layer config systems before needed; config schemas validating hypothetical settings; extracting details with zero user impact.' These criteria define 'premature/elaborate' for R46's prohibition."
+  },
+  {
+   "id": "C06--support_(defines)--R47",
+   "source": "C06",
+   "target": "R47",
+   "type": "support (defines)",
+   "rationale": "R47 gates config moves on 'actively working with it or it clearly affects user-facing behavior'; C06 defines the failure side of that gate — 'extracting details with zero user impact' and configurability 'just in case' are precisely what fails R47's conditions. The red flags give R47's gate its negative test cases."
+  },
+  {
+   "id": "C06--support_(defines)--R51",
+   "source": "C06",
+   "target": "R51",
+   "type": "support (defines)",
+   "rationale": "R51's trigger 'when you catch yourself over-configuring' needs detection criteria to be falsifiable, and C06 provides them: every-constant-configurable 'just in case', multi-layer config 'before needed', schemas for 'hypothetical settings'. The judgment calls C06 'the detection criteria for R51's self-catch trigger' — the config mirror of C05/R43."
+  },
+  {
+   "id": "C07--support_(defines)--R45",
+   "source": "C07",
+   "target": "R45",
+   "type": "support (defines)",
+   "rationale": "R45 hinges on the vague predicate 'primitive values that control UX or system behavior'; C07 makes it decidable by enumeration: qualifies — 'UX params (timeouts, retries, debounce), system behavior (log levels, TTLs, batch sizes), AI/ML settings (model, temperature), thresholds'; does not qualify — 'math constants, protocol-defined values, non-observable details, one-off values'. Without this definition R45 is unapplicable, per the judgment."
+  },
+  {
+   "id": "C07--support_(defines)--R47",
+   "source": "C07",
+   "target": "R47",
+   "type": "support (defines)",
+   "rationale": "R47's first condition is whether the value 'clearly affects user-facing behavior'; C07's qualifies/does-not-qualify lists (UX params and thresholds in; math constants and non-observable details out) are the membership test for that condition. C07 defines the class of values R47's gate is asking about."
+  },
+  {
+   "id": "C07--support_(defines)--R49",
+   "source": "C07",
+   "target": "R49",
+   "type": "support (defines)",
+   "rationale": "R49 prescribes self-documenting keys and sensible defaults for config values, presupposing one knows which values belong in config at all; C07 supplies that scope definition (behavioral dials like 'timeouts, retries... model, temperature' yes; 'math constants, protocol-defined values' no). The definitional link to R49 is weaker than to R45/R47, since R49 governs how to write keys rather than what qualifies — it inherits C07's scoping only indirectly."
+  },
+  {
+   "id": "C07--support_(defines)--R51",
+   "source": "C07",
+   "target": "R51",
+   "type": "support (defines)",
+   "rationale": "R51's ASK step — 'is this a real behavioral dial?' — is answerable only via C07, which defines behavioral dials by example: 'UX params..., system behavior..., AI/ML settings..., thresholds' versus the non-qualifying 'math constants, protocol-defined values, non-observable details, one-off values'. C07 is the lookup table behind R51's first checklist question."
+  },
+  {
+   "id": "C08--support_(exemplifies)--R38",
+   "source": "C08",
+   "target": "R38",
+   "type": "support (exemplifies)",
+   "rationale": "C08's paired cases — '✅ simple fetch wrapper ❌ complex HTTP client with retry/caching/queuing up front', '✅ write the feature ❌ design a plugin system first' — are concrete instances of the over-architecting R38 forbids. They show what 'NEVER over-architect' rules out in practice, turning the vague ban into pattern-matchable examples."
+  },
+  {
+   "id": "C08--support_(exemplifies)--R40",
+   "source": "C08",
+   "target": "R40",
+   "type": "support (exemplifies)",
+   "rationale": "C08's HTTP-client and plugin-system cases illustrate the boundary of R40's abstraction advice: a 'simple fetch wrapper' is the right-sized abstraction layer for an external dependency, while the up-front 'complex HTTP client' and 'plugin system first' show abstraction overdone. Note the example arguably constrains R40 (showing where its advice must stop) as much as it exemplifies it — the judgment says these cases 'illustrate the coupling/abstraction rule'."
+  },
+  {
+   "id": "C08--support_(exemplifies)--R42",
+   "source": "C08",
+   "target": "R42",
+   "type": "support (exemplifies)",
+   "rationale": "Each ✅ in C08 is the 1-2-step choice and each ❌ is the ten-step plan: '✅ useState ❌ Redux because we might need global state', '✅ hard-code API endpoint ❌ multi-env config for a single-env app'. They exemplify R42's 'focus on the immediate task and the next logical step, not distant future scenarios' with concrete technology decisions."
+  },
+  {
+   "id": "C09--support_(exemplifies)--R45",
+   "source": "C09",
+   "target": "R45",
+   "type": "support (exemplifies)",
+   "rationale": "C09's '✅ llm_temperature: 0.7 in config ❌ hard-coded 0.7 in every call' and '✅ wake_word_sensitivity in config ❌ magic number in detector' are direct instances of R45's rule that behavioral primitives 'live in a centralized configuration layer, not scattered as magic numbers' — the examples even reuse the magic-number framing."
+  },
+  {
+   "id": "C09--support_(exemplifies)--R47",
+   "source": "C09",
+   "target": "R47",
+   "type": "support (exemplifies)",
+   "rationale": "C09's negative case — '❌ BYTES_PER_SAMPLE=2 in config when it's part of the audio format ✅ leave as a module constant' — exemplifies R47's gate from the refusal side: a protocol-fixed value neither gets actively dialed nor 'clearly affects user-facing behavior', so it stays out of config. The positive temperature/sensitivity cases show values that pass the gate."
+  },
+  {
+   "id": "C09--support_(exemplifies)--R49",
+   "source": "C09",
+   "target": "R49",
+   "type": "support (exemplifies)",
+   "rationale": "C09's named keys ('llm_temperature', 'wake_word_sensitivity') instantiate R49's demand for self-documenting config keys in the style of 'max_retry_attempts, llm_response_timeout_seconds'. The link is genuine but thinner than C09's other edges — the examples showcase key naming incidentally while primarily targeting the centralize-vs-hardcode decision."
+  },
+  {
+   "id": "C10--support_(exemplifies)--R26",
+   "source": "C10",
+   "target": "R26",
+   "type": "support (exemplifies)",
+   "rationale": "C10's '❌ // eslint-disable-next-line' against three ✅ root-cause remedies ('move test utilities to a separate config', 'replace export * with named exports', 'capture ref values in effect scope') shows concretely what R26's 'NEVER DISABLE LINTING, COMPILATION, OR TYPE ERRORS' rules out and what compliant fixes look like instead."
+  },
+  {
+   "id": "C10--support_(exemplifies)--R27",
+   "source": "C10",
+   "target": "R27",
+   "type": "support (exemplifies)",
+   "rationale": "C10's crossed-out '❌ // eslint-disable-next-line ...' is a literal instance of the pragmas R27 bans ('do not use eslint-disable, @ts-ignore, @ts-expect-error'). The example renders the prohibition in the exact syntax a violation would take, making it visually pattern-matchable."
+  },
+  {
+   "id": "C10--support_(exemplifies)--R28",
+   "source": "C10",
+   "target": "R28",
+   "type": "support (exemplifies)",
+   "rationale": "C10's ✅ cases walk R28's escalation ladder: 'replace export * with named exports' and 'capture ref values in effect scope' are FIX-THE-ROOT-CAUSE/RESTRUCTURE moves, and 'move test utilities to a separate config' instantiates step 3, CONFIGURE. The examples show each rung of the ladder applied to real lint errors."
+  },
+  {
+   "id": "C10--support_(exemplifies)--R29",
+   "source": "C10",
+   "target": "R29",
+   "type": "support (exemplifies)",
+   "rationale": "C10's '✅ move test utilities to a separate config' exemplifies R29's prescribed remedy — 'isolate with targeted config changes, not inline disables' — for code that legitimately needs different lint treatment. This is the weakest C10 edge: the example concerns test utilities rather than R29's literal scope of 'generated code or third-party dependencies', so it illustrates the config-isolation technique more than the exception's gating condition."
+  },
+  {
+   "id": "C11--support_(exemplifies)--R49",
+   "source": "C11",
+   "target": "R49",
+   "type": "support (exemplifies)",
+   "rationale": "C11's '✅ Pydantic Field(default=value) as the single source' exemplifies R49's 'always include sensible defaults' clause by showing the approved place to declare them, and the ❌ cases (fallback in config.get, default in __init__) show defaults declared in the wrong place. The edge leans on R49's defaults half only — the key-naming half of R49 is untouched by C11."
+  },
+  {
+   "id": "C11--support_(exemplifies)--R50",
+   "source": "C11",
+   "target": "R50",
+   "type": "support (exemplifies)",
+   "rationale": "C11's '❌ config.get(\"model\", \"gpt-4o-mini\") in a factory' and '❌ def __init__(self, temperature=0.7) in a provider' depict a second configuration mechanism springing up beside the official one — exactly the 'parallel config sources' R50 forbids — while '✅ factories use config[\"key\"] with no fallbacks' shows the single-mechanism alternative ('if a value is already configurable somewhere, use that mechanism')."
+  },
+  {
+   "id": "C11--support_(exemplifies)--R52",
+   "source": "C11",
+   "target": "R52",
+   "type": "support (exemplifies)",
+   "rationale": "C11 is R52's rule rendered as code: '✅ Pydantic Field(default=value) as the single source' versus '❌ config.get(\"model\", \"gpt-4o-mini\")' and '❌ def __init__(self, temperature=0.7)' map one-to-one onto R52's 'exactly ONE default definition... never duplicate defaults across config models, factories, or provider constructors'. These ✅/❌ cases are what make R52 mechanically checkable, per the judgment."
+  }
+ ]
+}

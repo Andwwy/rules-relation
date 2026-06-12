@@ -1,0 +1,58 @@
+{
+  "collapse-filter": false,
+  "search": "path:\"clinerules-tdd/Rules\" OR path:\"clinerules-tdd/Context\"",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "tag:#prohibition",
+      "color": {
+        "a": 1,
+        "rgb": 14048348
+      }
+    },
+    {
+      "query": "tag:#preference",
+      "color": {
+        "a": 1,
+        "rgb": 14069084
+      }
+    },
+    {
+      "query": "tag:#prescription",
+      "color": {
+        "a": 1,
+        "rgb": 11392604
+      }
+    },
+    {
+      "query": "tag:#permission",
+      "color": {
+        "a": 1,
+        "rgb": 6074838
+      }
+    },
+    {
+      "query": "tag:#context",
+      "color": {
+        "a": 1,
+        "rgb": 12436160
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": -1,
+  "nodeSizeMultiplier": 1.56213107638889,
+  "lineSizeMultiplier": 1.24375868055556,
+  "collapse-forces": false,
+  "centerStrength": 0.457248263888889,
+  "repelStrength": 9.65885416666667,
+  "linkStrength": 0.810112847222222,
+  "linkDistance": 180,
+  "scale": 0.7565294349318655,
+  "close": false
+}

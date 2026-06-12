@@ -1,0 +1,61 @@
+---
+tags: [index, moc]
+---
+# 📑 GPTPortal — Rule & Context Index
+
+All 45 rules + 4 context nodes.
+
+**Legend:** 🚫 Prohibition · ✅ Prescription · 💡 Preference · 🔓 Permission · 🗒 Context
+
+## Rules
+- ✅ [[GPTPortal/Rules/R01 Deliver production-ready, modular, working code|R01 Deliver production-ready, modular, working code]]
+- ✅ [[GPTPortal/Rules/R02 Always follow best practices|R02 Always follow best practices]]
+- ✅ [[GPTPortal/Rules/R03 Think deeply and describe a detailed plan before building|R03 Think deeply and describe a detailed plan before building]]
+- ✅ [[GPTPortal/Rules/R04 Core Workflow - Research to Validate|R04 Core Workflow - Research to Validate]]
+- ✅ [[GPTPortal/Rules/R05 Start every feature by researching the codebase and planning|R05 Start every feature by researching the codebase and planning]]
+- ✅ [[GPTPortal/Rules/R06 Research via systematic file exploration|R06 Research via systematic file exploration]]
+- ✅ [[GPTPortal/Rules/R07 Plan - propose approach with reasoning, verify if uncertain|R07 Plan - propose approach with reasoning, verify if uncertain]]
+- ✅ [[GPTPortal/Rules/R08 Implement complete, production-ready solutions with tests|R08 Implement complete, production-ready solutions with tests]]
+- ✅ [[GPTPortal/Rules/R09 Validate - ALWAYS run formatters, linters, and tests after implementing|R09 Validate - ALWAYS run formatters, linters, and tests after implementing]]
+- ✅ [[GPTPortal/Rules/R10 3-Try Rule - stop and reflect after three failed attempts|R10 3-Try Rule - stop and reflect after three failed attempts]]
+- ✅ [[GPTPortal/Rules/R11 Gather information intelligently rather than guessing|R11 Gather information intelligently rather than guessing]]
+- ✅ [[GPTPortal/Rules/R12 Attempt one logical fix per error before asking|R12 Attempt one logical fix per error before asking]]
+- ✅ [[GPTPortal/Rules/R13 Add and verify logs to validate assumptions|R13 Add and verify logs to validate assumptions]]
+- ✅ [[GPTPortal/Rules/R14 When stuck - weigh 5-7 sources, distill to 1-2, log before fixing|R14 When stuck - weigh 5-7 sources, distill to 1-2, log before fixing]]
+- ✅ [[GPTPortal/Rules/R15 If the first try fails, show and explain error outputs|R15 If the first try fails, show and explain error outputs]]
+- 💡 [[GPTPortal/Rules/R16 Step-by-step planning - pseudocode, root-cause over quick fixes|R16 Step-by-step planning - pseudocode, root-cause over quick fixes]]
+- 💡 [[GPTPortal/Rules/R17 Professional, direct, content-first tone|R17 Professional, direct, content-first tone]]
+- 💡 [[GPTPortal/Rules/R18 Structured responses with clear formatting|R18 Structured responses with clear formatting]]
+- 💡 [[GPTPortal/Rules/R19 Treat mistakes as growth opportunities|R19 Treat mistakes as growth opportunities]]
+- ✅ [[GPTPortal/Rules/R20 Point out mistakes directly rather than softening|R20 Point out mistakes directly rather than softening]]
+- 🚫 [[GPTPortal/Rules/R21 No opt-in follow-up suggestions unless relevant|R21 No opt-in follow-up suggestions unless relevant]]
+- ✅ [[GPTPortal/Rules/R22 Start responses with the Language>Specialist template|R22 Start responses with the Language>Specialist template]]
+- 💡 [[GPTPortal/Rules/R23 End responses with the History-Source Tree-Next Task template|R23 End responses with the History-Source Tree-Next Task template]]
+- ✅ [[GPTPortal/Rules/R24 Code starts with a path-filename comment|R24 Code starts with a path-filename comment]]
+- ✅ [[GPTPortal/Rules/R25 Comments describe purpose, not effect|R25 Comments describe purpose, not effect]]
+- ✅ [[GPTPortal/Rules/R26 Prioritize modularity, DRY, performance, and security|R26 Prioritize modularity, DRY, performance, and security]]
+- ✅ [[GPTPortal/Rules/R27 Keep functions small; split rather than section-comment|R27 Keep functions small; split rather than section-comment]]
+- 💡 [[GPTPortal/Rules/R28 Prefer explicit over implicit naming|R28 Prefer explicit over implicit naming]]
+- 💡 [[GPTPortal/Rules/R29 Use early returns to reduce nesting|R29 Use early returns to reduce nesting]]
+- 💡 [[GPTPortal/Rules/R30 Auto-scale verbosity to task complexity|R30 Auto-scale verbosity to task complexity]]
+- ✅ [[GPTPortal/Rules/R31 Refactor repetitive logic into reusable functions|R31 Refactor repetitive logic into reusable functions]]
+- ✅ [[GPTPortal/Rules/R32 Write clear, minimal code; avoid clever hacks|R32 Write clear, minimal code; avoid clever hacks]]
+- ✅ [[GPTPortal/Rules/R33 Each function-module does one thing well|R33 Each function-module does one thing well]]
+- ✅ [[GPTPortal/Rules/R34 Separate UI, state, and backend layers|R34 Separate UI, state, and backend layers]]
+- ✅ [[GPTPortal/Rules/R35 Raise errors early; never suppress silent failures|R35 Raise errors early; never suppress silent failures]]
+- 🚫 [[GPTPortal/Rules/R36 Never debug just to pass tests — fix the root cause|R36 Never debug just to pass tests — fix the root cause]]
+- ✅ [[GPTPortal/Rules/R37 Reuse existing functions before creating new ones|R37 Reuse existing functions before creating new ones]]
+- ✅ [[GPTPortal/Rules/R38 Command-query separation|R38 Command-query separation]]
+- ✅ [[GPTPortal/Rules/R39 Design reusable, isolated components; no duplication|R39 Design reusable, isolated components; no duplication]]
+- ✅ [[GPTPortal/Rules/R40 Production-ready code only — no placeholders|R40 Production-ready code only — no placeholders]]
+- ✅ [[GPTPortal/Rules/R41 Validate inputs; use secure randomness and prepared statements|R41 Validate inputs; use secure randomness and prepared statements]]
+- ✅ [[GPTPortal/Rules/R42 Measure before optimizing|R42 Measure before optimizing]]
+- 🔓 [[GPTPortal/Rules/R43 Thorough, long thinking is allowed|R43 Thorough, long thinking is allowed]]
+- 🚫 [[GPTPortal/Rules/R44 Never take the easy path when you hit a bug|R44 Never take the easy path when you hit a bug]]
+- ✅ [[GPTPortal/Rules/R45 Iterate until the problem is fully solved|R45 Iterate until the problem is fully solved]]
+
+## Context
+- 🗒 [[GPTPortal/Context/C01 Start-response template (Language>Specialist - Plan)|C01 Start-response template (Language>Specialist - Plan)]]
+- 🗒 [[GPTPortal/Context/C02 End-response template (History - Source Tree - Next Task)|C02 End-response template (History - Source Tree - Next Task)]]
+- 🗒 [[GPTPortal/Context/C03 Collaboration protocol — never assume file contents|C03 Collaboration protocol — never assume file contents]]
+- 🗒 [[GPTPortal/Context/C04 Final solution must be perfect and production-ready|C04 Final solution must be perfect and production-ready]]

@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rule Relation Inspector</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg: #fafafa; --panel: #fff; --border: #e2e2e2; --text: #2e2e2e; --muted: #8a8a8a;
+    --prohibition: #d9534f; --prescription: #7cb854; --preference: #e0a23f;
+    --permission: #4aa3d8; --context: #9e9e9e;
+    --agree: #5a9e4b; --unsure: #d8a13a; --reject: #cf4f44;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: var(--text); background: var(--bg); height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+  /* ---------- header ---------- */
+  header { display: flex; align-items: center; gap: 16px; padding: 10px 20px; background: var(--panel); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; }
+  .tabs { display: flex; gap: 6px; }
+  .tab { padding: 5px 14px; border-radius: 6px; border: 1px solid var(--border); background: none; cursor: pointer; font-size: 13px; color: var(--muted); }
+  .tab.active { background: #6c5ce7; border-color: #6c5ce7; color: #fff; }
+  .progress { margin-left: auto; font-size: 12px; color: var(--muted); display: flex; gap: 14px; align-items: center; }
+  .progress b { color: var(--text); }
+  .pbar { width: 140px; height: 6px; background: #ececec; border-radius: 3px; overflow: hidden; }
+  .pbar > div { height: 100%; background: var(--agree); transition: width .25s; }
+
+  main { flex: 1; display: flex; min-height: 0; }
+
+  /* ---------- center: edge inspector ---------- */
+  #inspector { flex: 1; overflow-y: auto; padding: 28px 36px; min-width: 0; }
+  .edge-stage { display: grid; grid-template-columns: 1fr 200px 1fr; gap: 0; align-items: stretch; margin-bottom: 4px; }
+  .node-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
+  .node-card .dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; margin-right: 7px; vertical-align: -2px; border: 2px solid rgba(0,0,0,.18); }
+  .node-card .nid { font-weight: 700; font-size: 13px; }
+  .node-card .ntype { font-size: 10.5px; letter-spacing: .06em; color: var(--muted); margin-left: 7px; }
+  .node-card h3 { margin: 6px 0 8px; font-size: 15px; line-height: 1.35; }
+  .node-card blockquote { margin: 0; padding: 8px 12px; background: #f6f6f4; border-left: 3px solid var(--border); font-size: 12.5px; color: #555; border-radius: 0 6px 6px 0; max-height: 130px; overflow-y: auto; }
+  .node-card .role { font-size: 10.5px; color: var(--muted); margin-top: 8px; text-transform: uppercase; letter-spacing: .05em; }
+  details.judg { margin-top: 8px; font-size: 12px; color: #666; }
+  details.judg summary { cursor: pointer; color: var(--muted); font-size: 11.5px; user-select: none; }
+  details.judg p { margin: 6px 0 0; }
+
+  .arrow-zone { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 6px; }
+  .arrow-line { width: 100%; display: flex; align-items: center; }
+  .arrow-line .shaft { flex: 1; height: 2px; background: #777; }
+  .arrow-line .head { width: 0; height: 0; border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 9px solid #777; }
+  .rel-chip { margin-top: 10px; padding: 4px 14px; border-radius: 14px; font-size: 12.5px; font-weight: 600; border: 1px solid; white-space: nowrap; }
+  .user-flag { margin-top: 6px; font-size: 10.5px; color: #6c5ce7; font-weight: 600; }
+
+  .rationale { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin-top: 18px; }
+  .rationale .label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+  .rationale .label::before { content: "✦"; color: #6c5ce7; }
+  .rationale p { margin: 0; font-size: 13.5px; color: #444; }
+  .rationale p.empty { color: var(--muted); font-style: italic; }
+
+  .annotate { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin-top: 14px; }
+  .annotate .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .annotate .label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .mark-btn { padding: 6px 16px; border-radius: 7px; border: 1.5px solid var(--border); background: #fff; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--muted); }
+  .mark-btn[data-m="agree"].on  { border-color: var(--agree);  color: var(--agree);  background: #f0f7ee; }
+  .mark-btn[data-m="unsure"].on { border-color: var(--unsure); color: var(--unsure); background: #fbf4e6; }
+  .mark-btn[data-m="reject"].on { border-color: var(--reject); color: var(--reject); background: #fbeeec; }
+  textarea#comment { width: 100%; margin-top: 10px; min-height: 64px; border: 1px solid var(--border); border-radius: 7px; padding: 8px 10px; font: 13px/1.5 inherit; resize: vertical; }
+  textarea#comment:focus { outline: none; border-color: #6c5ce7; }
+  .savestate { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+  .nav { display: flex; gap: 8px; margin-top: 16px; align-items: center; }
+  .nav button { padding: 6px 14px; border-radius: 7px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-size: 13px; }
+  .nav button:hover { border-color: #aaa; }
+  .nav .pos { font-size: 12px; color: var(--muted); }
+  .nav .hint { margin-left: auto; font-size: 11px; color: #bbb; }
+  .del-btn { color: var(--reject); border-color: #eccfcc !important; }
+
+  /* ---------- right: relation list ---------- */
+  #sidebar { width: 380px; flex-shrink: 0; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; min-height: 0; }
+  #sidebar .sb-head { padding: 12px 14px 8px; border-bottom: 1px solid var(--border); }
+  #sidebar .sb-head .title { font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
+  .filters { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+  .fchip { font-size: 11px; padding: 2px 9px; border-radius: 10px; border: 1px solid var(--border); background: #fff; cursor: pointer; color: var(--muted); }
+  .fchip.on { color: #fff; border-color: transparent; }
+  select.fsel { font-size: 11px; border: 1px solid var(--border); border-radius: 10px; padding: 2px 6px; color: var(--muted); background: #fff; }
+  #edge-list { flex: 1; overflow-y: auto; }
+  .edge-item { padding: 9px 14px; border-bottom: 1px solid #f0f0f0; cursor: pointer; display: flex; gap: 9px; align-items: flex-start; }
+  .edge-item:hover { background: #f7f7fb; }
+  .edge-item.sel { background: #efedfb; box-shadow: inset 3px 0 0 #6c5ce7; }
+  .edge-item .mini { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-top: 3px; }
+  .edge-item .mdot { width: 9px; height: 9px; border-radius: 50%; }
+  .edge-item .marrow { font-size: 10px; color: #999; }
+  .edge-item .etext { font-size: 12px; min-width: 0; }
+  .edge-item .etype { font-weight: 700; font-size: 11px; }
+  .edge-item .epair { color: #555; }
+  .edge-item .status { margin-left: auto; flex-shrink: 0; font-size: 13px; margin-top: 1px; }
+  .edge-item .has-comment { font-size: 10px; color: var(--muted); }
+  .add-bar { padding: 10px 14px; border-top: 1px solid var(--border); }
+  .add-bar button { width: 100%; padding: 8px; border-radius: 7px; border: 1px dashed #b9b1ec; background: #f6f5fd; color: #6c5ce7; font-weight: 600; cursor: pointer; font-size: 13px; }
+
+  /* ---------- add-edge modal ---------- */
+  #modal { position: fixed; inset: 0; background: rgba(0,0,0,.35); display: none; align-items: center; justify-content: center; z-index: 50; }
+  #modal.open { display: flex; }
+  .modal-box { background: #fff; border-radius: 12px; padding: 22px 24px; width: 560px; max-width: 92vw; }
+  .modal-box h2 { margin: 0 0 14px; font-size: 16px; }
+  .modal-box label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 12px 0 4px; }
+  .modal-box select, .modal-box textarea { width: 100%; border: 1px solid var(--border); border-radius: 7px; padding: 7px 9px; font: 13px inherit; }
+  .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 18px; }
+  .modal-actions button { padding: 7px 16px; border-radius: 7px; border: 1px solid var(--border); background: #fff; cursor: pointer; font-size: 13px; }
+  .modal-actions .primary { background: #6c5ce7; color: #fff; border-color: #6c5ce7; font-weight: 600; }
+  .empty-state { color: var(--muted); text-align: center; margin-top: 80px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>⇄ Rule Relation Inspector</h1>
+  <div class="tabs" id="tabs"></div>
+  <div class="progress">
+    <span><b id="p-done">0</b>/<span id="p-total">0</span> reviewed</span>
+    <div class="pbar"><div id="p-fill" style="width:0%"></div></div>
+  </div>
+</header>
+
+<main>
+  <aside id="sidebar">
+    <div class="sb-head">
+      <div class="title"><span id="sb-title">Relations</span><span id="sb-count"></span></div>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div id="edge-list"></div>
+    <div class="add-bar"><button onclick="openModal()">＋ Add relation</button></div>
+  </aside>
+
+  <section id="inspector"><div class="empty-state">Loading…</div></section>
+</main>
+
+<div id="modal">
+  <div class="modal-box">
+    <h2>Add a relation</h2>
+    <label>Source node</label><select id="m-source"></select>
+    <label>Relation type</label>
+    <select id="m-type">
+      <option>refinement</option><option>exception</option><option>support</option>
+      <option>support (defines)</option><option>support (exemplifies)</option><option>support (motivates)</option>
+      <option>checkpoint</option><option>conflict</option><option>duplication</option>
+    </select>
+    <label>Target node</label><select id="m-target"></select>
+    <label>Your rationale (optional)</label><textarea id="m-rationale" rows="3"></textarea>
+    <div class="modal-actions">
+      <button onclick="closeModal()">Cancel</button>
+      <button class="primary" onclick="submitEdge()">Add relation</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const TYPE_COLOR = {
+  PROHIBITION: 'var(--prohibition)', PRESCRIPTION: 'var(--prescription)',
+  PREFERENCE: 'var(--preference)', PERMISSION: 'var(--permission)',
+  CONTEXT: 'var(--context)', UNKNOWN: '#ccc',
+};
+const TYPE_ICON = { PROHIBITION: '🚫', PRESCRIPTION: '✅', PREFERENCE: '💡', PERMISSION: '🔓', CONTEXT: '🗒' };
+const REL_COLOR = {
+  refinement: '#7d6bd9', exception: '#cf4f44', support: '#5a9e4b',
+  'support (defines)': '#5a9e4b', 'support (exemplifies)': '#5a9e4b', 'support (motivates)': '#5a9e4b',
+  checkpoint: '#4aa3d8', conflict: '#e0762f', duplication: '#888',
+};
+const MARK_ICON = { agree: '✓', unsure: '?', reject: '✗' };
+const MARK_COLOR = { agree: 'var(--agree)', unsure: 'var(--unsure)', reject: 'var(--reject)' };
+
+let projects = [], project = null, data = null, ann = {edges:{}, added:[]};
+let edges = [], idx = 0, typeFilter = 'all', markFilter = 'all';
+let saveTimer = null;
+
+const $ = s => document.querySelector(s);
+
+async function init() {
+  projects = await (await fetch('/api/projects')).json();
+  const saved = localStorage.getItem('rri-project');
+  renderTabs();
+  await loadProject(projects.includes(saved) ? saved : projects[0]);
+}
+
+function renderTabs() {
+  $('#tabs').innerHTML = projects.map(p =>
+    `<button class="tab ${p===project?'active':''}" onclick="loadProject('${p}')">${p}</button>`).join('');
+}
+
+async function loadProject(p) {
+  project = p;
+  localStorage.setItem('rri-project', p);
+  [data, ann] = await Promise.all([
+    (await fetch('/api/data/'+p)).json(),
+    (await fetch('/api/annotations/'+p)).json(),
+  ]);
+  rebuildEdges();
+  idx = Math.min(parseInt(localStorage.getItem('rri-idx-'+p) || '0'), Math.max(edges.length-1, 0));
+  typeFilter = 'all'; markFilter = 'all';
+  renderTabs(); renderAll();
+}
+
+function rebuildEdges() {
+  edges = [...data.edges, ...(ann.added||[])];
+}
+
+function relBase(t) { return t.startsWith('support') ? 'support' : t; }
+
+function filteredEdges() {
+  return edges.filter(e => {
+    if (typeFilter !== 'all' && relBase(e.type) !== typeFilter) return false;
+    const m = (ann.edges[e.id]||{}).mark;
+    if (markFilter === 'unreviewed' && m) return false;
+    if (['agree','unsure','reject'].includes(markFilter) && m !== markFilter) return false;
+    return true;
+  });
+}
+
+function renderAll() { renderInspector(); renderSidebar(); renderProgress(); }
+
+function nodeCard(n, role) {
+  if (!n) return '<div class="node-card">missing node</div>';
+  const c = TYPE_COLOR[n.type] || '#ccc';
+  const judg = n.judgment ? `<details class="judg"><summary>analyst judgment</summary><p>${esc(n.judgment)}</p></details>` : '';
+  return `<div class="node-card" style="border-top:3px solid ${c}">
+    <div><span class="dot" style="background:${c}"></span><span class="nid">${n.id}</span>
+      <span class="ntype">${TYPE_ICON[n.type]||''} ${n.type}</span></div>
+    <h3>${esc(n.title)}</h3>
+    <blockquote>${esc(n.text) || '<i>no rule text</i>'}</blockquote>
+    ${judg}
+    <div class="role">${role}</div>
+  </div>`;
+}
+
+function renderInspector() {
+  const list = filteredEdges();
+  if (!list.length) { $('#inspector').innerHTML = '<div class="empty-state">No relations match the current filter.</div>'; return; }
+  if (idx >= list.length) idx = list.length - 1;
+  const e = list[idx];
+  const a = ann.edges[e.id] || {};
+  const src = data.nodes[e.source], tgt = data.nodes[e.target];
+  const rc = REL_COLOR[e.type] || '#777';
+  const rationale = e.rationale
+    ? `<p>${esc(e.rationale)}</p>`
+    : `<p class="empty">${e.user_added ? 'User-added relation — rationale is whatever you wrote below.' : 'No LLM rationale generated for this edge yet.'}</p>`;
+
+  $('#inspector').innerHTML = `
+    <div class="edge-stage">
+      ${nodeCard(src, 'source')}
+      <div class="arrow-zone">
+        <div class="arrow-line"><div class="shaft" style="background:${rc}"></div><div class="head" style="border-left-color:${rc}"></div></div>
+        <div class="rel-chip" style="color:${rc};border-color:${rc};background:${rc}18">${esc(e.type)}</div>
+        ${e.user_added ? '<div class="user-flag">user-added</div>' : ''}
+      </div>
+      ${nodeCard(tgt, 'target')}
+    </div>
+
+    <div class="rationale">
+      <div class="label">LLM rationale</div>
+      ${rationale}
+    </div>
+
+    <div class="annotate">
+      <div class="label">Your review</div>
+      <div class="row">
+        ${['agree','unsure','reject'].map(m =>
+          `<button class="mark-btn ${a.mark===m?'on':''}" data-m="${m}" onclick="setMark('${e.id}','${m}')">${MARK_ICON[m]} ${m}</button>`).join('')}
+        <span class="savestate" id="savestate">${a.updated_at ? 'saved ' + a.updated_at.slice(0,16).replace('T',' ') : ''}</span>
+      </div>
+      <textarea id="comment" placeholder="Comment on this relation… (auto-saves)"
+        oninput="queueComment('${e.id}')">${esc(a.comment||'')}</textarea>
+    </div>
+
+    <div class="nav">
+      <button onclick="step(-1)">← Prev</button>
+      <button onclick="step(1)">Next →</button>
+      <span class="pos">${idx+1} / ${list.length}</span>
+      ${e.user_added ? `<button class="del-btn" onclick="removeAdded('${e.id}')">Delete this relation</button>` : ''}
+      <span class="hint">←/→ navigate · 1 agree · 2 unsure · 3 reject</span>
+    </div>`;
+}
+
+function renderSidebar() {
+  const list = filteredEdges();
+  $('#sb-title').textContent = project;
+  $('#sb-count').textContent = list.length + ' edges';
+
+  const baseTypes = ['all', ...new Set(edges.map(e => relBase(e.type)))];
+  $('#filters').innerHTML = baseTypes.map(t => {
+    const c = t==='all' ? '#666' : (REL_COLOR[t] || '#777');
+    const on = typeFilter === t;
+    return `<button class="fchip ${on?'on':''}" style="${on?`background:${c}`:''}" onclick="setTypeFilter('${t}')">${t}</button>`;
+  }).join('') + `
+    <select class="fsel" onchange="setMarkFilter(this.value)">
+      <option value="all" ${markFilter==='all'?'selected':''}>any status</option>
+      <option value="unreviewed" ${markFilter==='unreviewed'?'selected':''}>unreviewed</option>
+      <option value="agree" ${markFilter==='agree'?'selected':''}>✓ agreed</option>
+      <option value="unsure" ${markFilter==='unsure'?'selected':''}>? unsure</option>
+      <option value="reject" ${markFilter==='reject'?'selected':''}>✗ rejected</option>
+    </select>`;
+
+  $('#edge-list').innerHTML = list.map((e, i) => {
+    const a = ann.edges[e.id] || {};
+    const s = data.nodes[e.source], t = data.nodes[e.target];
+    const rc = REL_COLOR[e.type] || '#777';
+    const st = a.mark ? `<span style="color:${MARK_COLOR[a.mark]}">${MARK_ICON[a.mark]}</span>` : '';
+    return `<div class="edge-item ${i===idx?'sel':''}" onclick="goTo(${i})">
+      <div class="mini">
+        <span class="mdot" style="background:${TYPE_COLOR[s?.type]||'#ccc'}"></span>
+        <span class="marrow">→</span>
+        <span class="mdot" style="background:${TYPE_COLOR[t?.type]||'#ccc'}"></span>
+      </div>
+      <div class="etext">
+        <span class="etype" style="color:${rc}">${esc(e.type)}</span>${e.user_added?' <span class="user-flag">user</span>':''}<br>
+        <span class="epair">${e.source} ${esc(shorten(s?.title))} → ${e.target} ${esc(shorten(t?.title))}</span>
+        ${a.comment ? '<div class="has-comment">💬 ' + esc(shorten(a.comment, 46)) + '</div>' : ''}
+      </div>
+      <div class="status">${st}</div>
+    </div>`;
+  }).join('');
+  const sel = $('.edge-item.sel');
+  if (sel) sel.scrollIntoView({ block: 'nearest' });
+}
+
+function renderProgress() {
+  const total = edges.length;
+  const done = edges.filter(e => (ann.edges[e.id]||{}).mark).length;
+  $('#p-done').textContent = done;
+  $('#p-total').textContent = total;
+  $('#p-fill').style.width = total ? (100*done/total)+'%' : '0%';
+}
+
+function shorten(s, n=28) { s = s || ''; return s.length > n ? s.slice(0, n-1) + '…' : s; }
+function esc(s) { return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function goTo(i) { flushComment(); idx = i; localStorage.setItem('rri-idx-'+project, idx); renderAll(); }
+function step(d) {
+  const n = filteredEdges().length;
+  if (n) goTo((idx + d + n) % n);
+}
+function setTypeFilter(t) { flushComment(); typeFilter = t; idx = 0; renderAll(); }
+function setMarkFilter(m) { flushComment(); markFilter = m; idx = 0; renderAll(); }
+
+async function post(body) {
+  try {
+    const res = await fetch('/api/annotations/'+project, {
+      method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body),
+    });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    ann = await res.json();
+    rebuildEdges();
+    return true;
+  } catch (err) {
+    const el = $('#savestate');
+    if (el) el.textContent = '⚠ not saved — is the server running?';
+    console.error('save failed', err);
+    return false;
+  }
+}
+
+async function setMark(eid, m) {
+  const cur = (ann.edges[eid]||{}).mark;
+  const next = cur === m ? null : m;
+  // optimistic local update so the UI responds instantly and survives save errors
+  const e = ann.edges[eid] || (ann.edges[eid] = {});
+  e.mark = next;
+  if (!e.mark && !e.comment) delete ann.edges[eid];
+  renderAll();
+  await post({action:'annotate', edge_id: eid, mark: next});
+  renderAll();
+}
+
+function queueComment(eid) {
+  clearTimeout(saveTimer);
+  $('#savestate').textContent = 'typing…';
+  saveTimer = setTimeout(async () => {
+    await post({action:'annotate', edge_id: eid, comment: $('#comment').value});
+    const el = $('#savestate'); if (el) el.textContent = 'saved ✓';
+    renderSidebar(); renderProgress();
+  }, 600);
+}
+function flushComment() { clearTimeout(saveTimer); saveTimer = null; }
+
+/* ----- add edge modal ----- */
+function openModal() {
+  const opts = Object.values(data.nodes)
+    .sort((a,b) => a.id.localeCompare(b.id, undefined, {numeric:true}))
+    .map(n => `<option value="${n.id}">${n.id} — ${esc(n.title)}</option>`).join('');
+  $('#m-source').innerHTML = opts; $('#m-target').innerHTML = opts;
+  const cur = filteredEdges()[idx];
+  if (cur) { $('#m-source').value = cur.source; $('#m-target').value = cur.target; }
+  $('#m-rationale').value = '';
+  $('#modal').classList.add('open');
+}
+function closeModal() { $('#modal').classList.remove('open'); }
+async function submitEdge() {
+  const e = { source: $('#m-source').value, target: $('#m-target').value,
+              type: $('#m-type').value, rationale: $('#m-rationale').value.trim() };
+  if (e.source === e.target) { alert('Source and target are the same node.'); return; }
+  await post({action:'add_edge', edge: e});
+  closeModal();
+  typeFilter = 'all'; markFilter = 'all';
+  idx = filteredEdges().length - 1;
+  renderAll();
+}
+async function removeAdded(eid) {
+  if (!confirm('Delete this user-added relation?')) return;
+  await post({action:'remove_added', edge_id: eid});
+  if (idx >= filteredEdges().length) idx = Math.max(0, filteredEdges().length - 1);
+  renderAll();
+}
+
+document.addEventListener('keydown', ev => {
+  if (ev.target.tagName === 'TEXTAREA' || ev.target.tagName === 'SELECT' || $('#modal').classList.contains('open')) {
+    if (ev.key === 'Escape') closeModal();
+    return;
+  }
+  const e = filteredEdges()[idx];
+  if (ev.key === 'ArrowRight' || ev.key === 'j') step(1);
+  else if (ev.key === 'ArrowLeft' || ev.key === 'k') step(-1);
+  else if (e && ev.key === '1') setMark(e.id, 'agree');
+  else if (e && ev.key === '2') setMark(e.id, 'unsure');
+  else if (e && ev.key === '3') setMark(e.id, 'reject');
+});
+
+init();
+</script>
+</body>
+</html>
