@@ -304,18 +304,22 @@ def _is_hand(row):
     return row.get("extracted_by") in ("hand", row.get("annotator"))
 
 
-def build_project_from_csv(proj_dir):
-    """Build a project straight from its rules_*.csv (no vault notes).
+def select_csv_rows(rows):
+    """Pick the canonical set of (span, row) node items from CSV rows.
 
-    Nodes = the human annotator's spans (authoritative) plus any LLM span that
-    doesn't overlap a hand span. Relations come from <proj>/relations.json
-    (produced by the LLM relation-detection pass), if present.
+    Two CSV shapes occur:
+      • Human-annotated (some rows extracted_by == annotator): the hand spans are
+        authoritative; one node per hand span, plus LLM spans that don't overlap
+        any hand span. Merges hand/LLM duplicates of the same rule.
+      • LLM-only (no hand rows): each row is a distinct rule (the model may place
+        several rules on one line), so every row becomes its own node.
     """
-    project = proj_dir.name
-    rows = list(csv.DictReader((list(proj_dir.glob("rules_*.csv"))[0]).open(encoding="utf-8")))
-
     def span(r):
         return (int(r["line_start"]), int(r["line_end"]))
+
+    has_hand = any(_is_hand(r) for r in rows)
+    if not has_hand:
+        return [(span(r), r) for r in rows]   # row-per-node, in file (line) order
 
     hand = {}
     for r in rows:
@@ -330,18 +334,23 @@ def build_project_from_csv(proj_dir):
     for r in rows:                       # add LLM-only spans (e.g. contexts the human didn't tag)
         if not _is_hand(r) and span(r) not in canonical and not overlaps(span(r)):
             canonical[span(r)] = r
-    # an LLM row per span, for its rationale (stored as judgment; unused in UI)
-    llm_by_span = {}
-    for r in rows:
-        if not _is_hand(r):
-            llm_by_span.setdefault(span(r), r)
+    return sorted(canonical.items())
+
+
+def build_project_from_csv(proj_dir):
+    """Build a project straight from its rules_*.csv (no vault notes).
+
+    Relations come from <proj>/relations.json (the LLM relation-detection pass).
+    """
+    project = proj_dir.name
+    rows = list(csv.DictReader((list(proj_dir.glob("rules_*.csv"))[0]).open(encoding="utf-8")))
 
     source_text = (SRC / f"{project}.txt").read_text(encoding="utf-8") if (SRC / f"{project}.txt").exists() else ""
     source_lines = source_text.split("\n") if source_text else []
 
-    items = sorted(canonical.items())     # by (line_start, line_end)
+    items = select_csv_rows(rows)
     rc = cc = 0
-    nodes, by_key = {}, {}
+    nodes = {}
     for key, row in items:
         is_ctx = (row.get("kind") == "context")
         if is_ctx:
@@ -353,7 +362,7 @@ def build_project_from_csv(proj_dir):
             "id": nid, "kind": "context" if is_ctx else "rule",
             "title": clean_title(text), "emoji": "", "type": ntype,
             "text": text, "paraphrase": text,
-            "judgment": (llm_by_span.get(key, {}) or {}).get("llm_rationale", ""),
+            "judgment": row.get("llm_rationale", ""),
             "source": row.get("source_url", ""),
             "verbatim": True, "source_lines": "", "line_start": None, "line_end": None,
         }
@@ -362,7 +371,6 @@ def build_project_from_csv(proj_dir):
         node["line_start"], node["line_end"] = s, e
         node["source_lines"] = f"{s}" if s == e else f"{s}–{e}"
         nodes[nid] = node
-        by_key[key] = nid
 
     # relations (from the LLM detection pass)
     edges = []
