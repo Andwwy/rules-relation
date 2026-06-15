@@ -17,9 +17,9 @@
    "judgment": "The umbrella quality mandate; every coding-standards rule ultimately refines this. Very broad as written.",
    "paraphrase": "Review, refactor as needed, and ensure all code is working, fully-functional, well-designed, modular, responsive, and ready for production.",
    "verbatim": true,
-   "source_lines": "10",
    "line_start": 10,
-   "line_end": 10
+   "line_end": 10,
+   "source_lines": "10"
   },
   "R02": {
    "id": "R02",
@@ -37,9 +37,9 @@
    "judgment": "Annotator: 'what are best practices? looks like a parent rule.' Exactly — an unfalsifiable slogan whose meaning is entirely delegated to the concrete rules below.",
    "paraphrase": "You always follow best practices.",
    "verbatim": true,
-   "source_lines": "14",
    "line_start": 14,
-   "line_end": 14
+   "line_end": 14,
+   "source_lines": "14"
   },
   "R03": {
    "id": "R03",
@@ -57,9 +57,9 @@
    "judgment": "Plan-before-build duty. Annotator wants examples; vague but clearly prescriptive. Supports the Plan phase of the workflow.",
    "paraphrase": "First think very deeply and thoroughly step-by-step - describe your careful and systematic plan for what to build in great detail.",
    "verbatim": true,
-   "source_lines": "15",
    "line_start": 15,
-   "line_end": 15
+   "line_end": 15,
+   "source_lines": "15"
   },
   "R04": {
    "id": "R04",
@@ -77,9 +77,9 @@
    "judgment": "The parent process. Hand tagged PREFERENCE, but it is the spine the four phase-rules hang off; the phases support it.",
    "paraphrase": "Core Workflow: Research -> Plan -> Implement -> Validate.",
    "verbatim": true,
-   "source_lines": "17–18",
    "line_start": 17,
-   "line_end": 18
+   "line_end": 17,
+   "source_lines": "17"
   },
   "R05": {
    "id": "R05",
@@ -97,9 +97,9 @@
    "judgment": "Entry trigger for the workflow; in chat becomes asking clarifying questions first.",
    "paraphrase": "Start every feature with: 'Let me research the codebase and create a plan before implementing.'",
    "verbatim": true,
-   "source_lines": "19",
    "line_start": 19,
-   "line_end": 19
+   "line_end": 19,
+   "source_lines": "19"
   },
   "R06": {
    "id": "R06",
@@ -117,9 +117,9 @@
    "judgment": "Phase 1 rule; enables the workflow.",
    "paraphrase": "Research - understand existing patterns and architecture through systematic file exploration.",
    "verbatim": true,
-   "source_lines": "20",
-   "line_start": 20,
-   "line_end": 20
+   "line_start": 21,
+   "line_end": 21,
+   "source_lines": "21"
   },
   "R07": {
    "id": "R07",
@@ -137,9 +137,9 @@
    "judgment": "Phase 2 rule; the 'verify if uncertain' clause links it to the collaboration/uncertainty rules.",
    "paraphrase": "Plan - propose approach with architectural reasoning and verify with me if uncertain.",
    "verbatim": true,
-   "source_lines": "21",
-   "line_start": 21,
-   "line_end": 21
+   "line_start": 22,
+   "line_end": 22,
+   "source_lines": "22"
   },
   "R08": {
    "id": "R08",
@@ -157,9 +157,9 @@
    "judgment": "Phase 3 rule; a domain instance of R01's production-ready mandate.",
    "paraphrase": "Implement - build complete, production-ready solutions with tests and error handling.",
    "verbatim": true,
-   "source_lines": "22",
-   "line_start": 22,
-   "line_end": 22
+   "line_start": 23,
+   "line_end": 23,
+   "source_lines": "23"
   },
   "R09": {
    "id": "R09",
@@ -177,9 +177,9 @@
    "judgment": "Phase 4 rule and a checkpoint on the implement phase — a mandated verify-moment with no new build obligation.",
    "paraphrase": "Validate - ALWAYS run formatters, linters, and tests after implementation.",
    "verbatim": true,
-   "source_lines": "23",
-   "line_start": 23,
-   "line_end": 23
+   "line_start": 24,
+   "line_end": 24,
+   "source_lines": "24"
   },
   "R10": {
    "id": "R10",
@@ -197,9 +197,9 @@
    "judgment": "A bounded STOP-and-ask rule — the rare concrete trigger (three tries) in an otherwise self-assessed file.",
    "paraphrase": "If we fail to achieve our goal within three tries, stop, step back, and reflect on precisely what information you need from me.",
    "verbatim": true,
-   "source_lines": "29",
    "line_start": 29,
-   "line_end": 29
+   "line_end": 29,
+   "source_lines": "29"
   },
   "R11": {
    "id": "R11",
@@ -217,9 +217,9 @@
    "judgment": "The positive method behind R10 — how you spend the stop.",
    "paraphrase": "Rather than blindly reaching for solutions, intelligently gather information - ask for code output, files, context, or whatever else is necessary.",
    "verbatim": true,
-   "source_lines": "29",
    "line_start": 29,
-   "line_end": 29
+   "line_end": 29,
+   "source_lines": "29"
   },
   "R12": {
    "id": "R12",
@@ -237,9 +237,9 @@
    "judgment": "Concrete debugging cadence; bounds the trial-and-error loop.",
    "paraphrase": "Attempt one logical fix per error before asking for guidance.",
    "verbatim": true,
-   "source_lines": "33",
    "line_start": 33,
-   "line_end": 33
+   "line_end": 33,
+   "source_lines": "33"
   },
   "R13": {
    "id": "R13",
@@ -257,9 +257,9 @@
    "judgment": "Evidence rule; refined by the 5-7-sources procedure R14.",
    "paraphrase": "Add and verify logs to validate assumptions.",
    "verbatim": true,
-   "source_lines": "34",
    "line_start": 34,
-   "line_end": 34
+   "line_end": 34,
+   "source_lines": "34"
   },
   "R14": {
    "id": "R14",
@@ -277,9 +277,9 @@
    "judgment": "A concrete procedure operationalizing R13's 'validate assumptions'.",
    "paraphrase": "When stuck: reflect on 5-7 possible sources, distill to 1-2 most likely, then add logs to validate before implementing the fix.",
    "verbatim": true,
-   "source_lines": "34",
-   "line_start": 34,
-   "line_end": 34
+   "line_start": 36,
+   "line_end": 36,
+   "source_lines": "36"
   },
   "R15": {
    "id": "R15",
@@ -297,9 +297,9 @@
    "judgment": "Transparency duty inside the debugging loop.",
    "paraphrase": "If first try fails, show and explain error outputs.",
    "verbatim": true,
-   "source_lines": "35",
    "line_start": 35,
-   "line_end": 35
+   "line_end": 35,
+   "source_lines": "35"
   },
   "R16": {
    "id": "R16",
@@ -317,9 +317,9 @@
    "judgment": "Hand-tagged PREFERENCE ('feels softer, super vague'). Restates the plan-first and root-cause themes; overlaps R03 and R36.",
    "paraphrase": "Detailed pseudocode before implementation; root cause analysis over quick fixes; extensive planning with systematic methodology.",
    "verbatim": true,
-   "source_lines": "38–42",
    "line_start": 38,
-   "line_end": 42
+   "line_end": 41,
+   "source_lines": "38–41"
   },
   "R17": {
    "id": "R17",
@@ -337,9 +337,9 @@
    "judgment": "Style preference; parent for the directness rules.",
    "paraphrase": "Professional yet direct tone, content-first with minimal fluff.",
    "verbatim": true,
-   "source_lines": "46–47",
    "line_start": 46,
-   "line_end": 47
+   "line_end": 46,
+   "source_lines": "46"
   },
   "R18": {
    "id": "R18",
@@ -357,9 +357,9 @@
    "judgment": "Style preference; loosely related to the response-format templates.",
    "paraphrase": "Structured responses with clear formatting.",
    "verbatim": true,
-   "source_lines": "47–48",
    "line_start": 47,
-   "line_end": 48
+   "line_end": 47,
+   "source_lines": "47"
   },
   "R19": {
    "id": "R19",
@@ -377,9 +377,9 @@
    "judgment": "Soft, near-unenforceable values statement.",
    "paraphrase": "Support learning process and treat mistakes as growth opportunities.",
    "verbatim": true,
-   "source_lines": "48–49",
    "line_start": 48,
-   "line_end": 49
+   "line_end": 48,
+   "source_lines": "48"
   },
   "R20": {
    "id": "R20",
@@ -397,9 +397,9 @@
    "judgment": "Concretizes the 'direct tone' preference into an actionable duty.",
    "paraphrase": "Directly point out mistakes in reasoning rather than softening corrections.",
    "verbatim": true,
-   "source_lines": "49",
    "line_start": 49,
-   "line_end": 49
+   "line_end": 49,
+   "source_lines": "49"
   },
   "R21": {
    "id": "R21",
@@ -417,9 +417,9 @@
    "judgment": "Clear prohibition; conflicts with the end-template R23, which mandates a 'Next Task' suggestions block.",
    "paraphrase": "Don't end with opt-in follow-up suggestions unless specifically relevant.",
    "verbatim": true,
-   "source_lines": "50",
    "line_start": 50,
-   "line_end": 50
+   "line_end": 50,
+   "source_lines": "50"
   },
   "R22": {
    "id": "R22",
@@ -477,9 +477,9 @@
    "judgment": "Mechanically checkable formatting rule.",
    "paraphrase": "Code must start with path/filename as a one-line comment.",
    "verbatim": true,
-   "source_lines": "85",
    "line_start": 85,
-   "line_end": 85
+   "line_end": 85,
+   "source_lines": "85"
   },
   "R25": {
    "id": "R25",
@@ -497,9 +497,9 @@
    "judgment": "Clear comment-quality rule; pairs with the small-functions rule R27.",
    "paraphrase": "Comments MUST describe purpose, not effect.",
    "verbatim": true,
-   "source_lines": "86",
    "line_start": 86,
-   "line_end": 86
+   "line_end": 86,
+   "source_lines": "86"
   },
   "R26": {
    "id": "R26",
@@ -517,9 +517,9 @@
    "judgment": "The architecture anchor — the most-refined node in this file; many concrete rules below operationalize one of its four pillars.",
    "paraphrase": "Prioritize modularity, DRY, performance, and security.",
    "verbatim": true,
-   "source_lines": "87",
    "line_start": 87,
-   "line_end": 87
+   "line_end": 87,
+   "source_lines": "87"
   },
   "R27": {
    "id": "R27",
@@ -537,9 +537,9 @@
    "judgment": "Concretizes R26's modularity and connects to the comment policy R25.",
    "paraphrase": "Keep functions small and focused - if you need comments to explain sections, split into functions.",
    "verbatim": true,
-   "source_lines": "88",
    "line_start": 88,
-   "line_end": 88
+   "line_end": 88,
+   "source_lines": "88"
   },
   "R28": {
    "id": "R28",
@@ -557,9 +557,9 @@
    "judgment": "Readability preference.",
    "paraphrase": "Prefer explicit over implicit: clear function names over clever abstractions.",
    "verbatim": true,
-   "source_lines": "89",
    "line_start": 89,
-   "line_end": 89
+   "line_end": 89,
+   "source_lines": "89"
   },
   "R29": {
    "id": "R29",
@@ -577,9 +577,9 @@
    "judgment": "Concrete readability preference.",
    "paraphrase": "Early returns to reduce nesting - flat code is readable code.",
    "verbatim": true,
-   "source_lines": "90",
    "line_start": 90,
-   "line_end": 90
+   "line_end": 90,
+   "source_lines": "90"
   },
   "R30": {
    "id": "R30",
@@ -597,9 +597,9 @@
    "judgment": "Adaptive style preference.",
    "paraphrase": "Automatically scale verbosity: simple tasks concise; medium moderate; complex verbose with reasoning and alternatives.",
    "verbatim": true,
-   "source_lines": "92–96",
    "line_start": 92,
-   "line_end": 96
+   "line_end": 96,
+   "source_lines": "92–96"
   },
   "R31": {
    "id": "R31",
@@ -617,9 +617,9 @@
    "judgment": "Concretizes R26's DRY pillar.",
    "paraphrase": "Refactor repetitive logic into reusable functions or shared modules.",
    "verbatim": true,
-   "source_lines": "101",
    "line_start": 101,
-   "line_end": 101
+   "line_end": 101,
+   "source_lines": "101"
   },
   "R32": {
    "id": "R32",
@@ -637,9 +637,9 @@
    "judgment": "Simplicity rule; overlaps the explicit-naming preference.",
    "paraphrase": "Code must be clear, minimal, and easy to reason about. Clever hacks or obscure optimizations are discouraged.",
    "verbatim": true,
-   "source_lines": "104",
    "line_start": 104,
-   "line_end": 104
+   "line_end": 104,
+   "source_lines": "104"
   },
   "R33": {
    "id": "R33",
@@ -657,9 +657,9 @@
    "judgment": "Single-responsibility — a concrete facet of R26 modularity.",
    "paraphrase": "Each function or module must do one thing well.",
    "verbatim": true,
-   "source_lines": "107",
    "line_start": 107,
-   "line_end": 107
+   "line_end": 107,
+   "source_lines": "107"
   },
   "R34": {
    "id": "R34",
@@ -677,9 +677,9 @@
    "judgment": "Layer-separation rule refining R26.",
    "paraphrase": "UI logic, state management, and backend comms should be modular and decoupled. Avoid mixing layers.",
    "verbatim": true,
-   "source_lines": "110",
    "line_start": 110,
-   "line_end": 110
+   "line_end": 110,
+   "source_lines": "110"
   },
   "R35": {
    "id": "R35",
@@ -697,9 +697,9 @@
    "judgment": "Fail-fast rule combining a prescription and an embedded prohibition.",
    "paraphrase": "Always raise errors early. Never suppress silent failures or let invalid states pass undetected.",
    "verbatim": true,
-   "source_lines": "113",
    "line_start": 113,
-   "line_end": 113
+   "line_end": 113,
+   "source_lines": "113"
   },
   "R36": {
    "id": "R36",
@@ -717,9 +717,9 @@
    "judgment": "Root-cause prohibition; near-identical in intent to R44 (never take the easy path).",
    "paraphrase": "Never debug just to get tests to pass - get at the root of the issue and fix underlying logic.",
    "verbatim": true,
-   "source_lines": "116",
    "line_start": 116,
-   "line_end": 116
+   "line_end": 116,
+   "source_lines": "116"
   },
   "R37": {
    "id": "R37",
@@ -737,9 +737,9 @@
    "judgment": "DRY-driven reuse rule refining R26.",
    "paraphrase": "Reuse existing functions before creating new ones. Only extend when clearly justified.",
    "verbatim": true,
-   "source_lines": "119",
    "line_start": 119,
-   "line_end": 119
+   "line_end": 119,
+   "source_lines": "119"
   },
   "R38": {
    "id": "R38",
@@ -757,9 +757,9 @@
    "judgment": "Precise, checkable design rule.",
    "paraphrase": "Functions should either do something (command) or return something (query) - never both.",
    "verbatim": true,
-   "source_lines": "122",
    "line_start": 122,
-   "line_end": 122
+   "line_end": 122,
+   "source_lines": "122"
   },
   "R39": {
    "id": "R39",
@@ -777,9 +777,9 @@
    "judgment": "Restates R26's modularity+DRY; close to R31/R37.",
    "paraphrase": "Design logic as reusable, isolated components. No duplication. Think in shareable patterns.",
    "verbatim": true,
-   "source_lines": "125",
    "line_start": 125,
-   "line_end": 125
+   "line_end": 125,
+   "source_lines": "125"
   },
   "R40": {
    "id": "R40",
@@ -797,9 +797,9 @@
    "judgment": "Concrete instance of R01's production-ready mandate.",
    "paraphrase": "Production-ready code only - no placeholders, no 'maybe this works'.",
    "verbatim": true,
-   "source_lines": "155",
    "line_start": 155,
-   "line_end": 155
+   "line_end": 155,
+   "source_lines": "155"
   },
   "R41": {
    "id": "R41",
@@ -817,9 +817,9 @@
    "judgment": "Concretizes R26's security pillar; mechanically checkable.",
    "paraphrase": "Always validate inputs, use secure randomness, prepared statements.",
    "verbatim": true,
-   "source_lines": "158",
    "line_start": 158,
-   "line_end": 158
+   "line_end": 158,
+   "source_lines": "158"
   },
   "R42": {
    "id": "R42",
@@ -837,9 +837,9 @@
    "judgment": "Evidence-before-action rule for performance.",
    "paraphrase": "Measure before optimizing - no guessing.",
    "verbatim": true,
-   "source_lines": "160",
    "line_start": 160,
-   "line_end": 160
+   "line_end": 160,
+   "source_lines": "160"
   },
   "R43": {
    "id": "R43",
@@ -857,9 +857,9 @@
    "judgment": "A genuine permission — it licenses long reasoning chains, lifting any implicit brevity constraint.",
    "paraphrase": "Your thinking should be thorough and so it's fine if it's very long.",
    "verbatim": true,
-   "source_lines": "174",
    "line_start": 174,
-   "line_end": 174
+   "line_end": 174,
+   "source_lines": "174"
   },
   "R44": {
    "id": "R44",
@@ -877,9 +877,9 @@
    "judgment": "Persistence prohibition; same norm as R36 from the determination angle.",
    "paraphrase": "NEVER take the 'easy' path or skip to an alternative the moment you encounter a bug; dig deep at the root and keep the established plan.",
    "verbatim": true,
-   "source_lines": "176",
    "line_start": 176,
-   "line_end": 176
+   "line_end": 176,
+   "source_lines": "176"
   },
   "R45": {
    "id": "R45",
@@ -897,9 +897,9 @@
    "judgment": "The persistence mandate; pairs with R44 and R10's stop condition (tension: keep going vs stop after three tries).",
    "paraphrase": "You MUST iterate and keep going until the problem is solved, planning extensively and thinking systematically.",
    "verbatim": true,
-   "source_lines": "180",
    "line_start": 180,
-   "line_end": 180
+   "line_end": 180,
+   "source_lines": "180"
   },
   "C01": {
    "id": "C01",
@@ -977,9 +977,9 @@
    "judgment": "The quality bar motivating the persistence mandate; justifies but cannot itself be 'violated'.",
    "paraphrase": "Take your time; check rigorously; watch boundary/edge cases; you may take multiple turns, but the final code must be perfect and production-ready.",
    "verbatim": true,
-   "source_lines": "178–179",
    "line_start": 178,
-   "line_end": 179
+   "line_end": 178,
+   "source_lines": "178"
   }
  },
  "edges": [

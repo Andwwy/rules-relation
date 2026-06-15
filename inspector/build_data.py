@@ -58,6 +58,36 @@ def load_csv_spans(proj_dir):
     return spans
 
 
+def locate_in_source(text, lines, hint=None):
+    """Find the contiguous line range in the source file that best matches `text`.
+
+    The CSV's LLM-extracted line_start/line_end are unreliable (off-by-one drift),
+    so for confidently-matched nodes we re-derive the true line range from the
+    actual source. `hint` (the CSV's 1-indexed range) is used only as a soft
+    tie-breaker. Returns (start, end) 1-indexed, or None if nothing matches well.
+    """
+    tt = set(_norm(text).split())
+    if not tt:
+        return None
+    n = len(lines)
+    best, best_score = None, 0.0
+    for i in range(n):
+        joined = ""
+        for w in range(min(15, n - i)):
+            joined = (joined + " " + _norm(lines[i + w])).strip()
+            jt = set(joined.split())
+            inter = len(tt & jt)
+            cov = inter / len(tt)                    # how much of the rule is covered
+            jac = inter / len(tt | jt) if jt else 0  # penalize extra/noise lines
+            score = 0.5 * cov + 0.5 * jac
+            if hint:
+                dist = min(abs((i + 1) - hint[0]), abs((i + 1) - hint[1]))
+                score -= 0.008 * min(dist, 25)
+            if score > best_score:
+                best_score, best = score, (i + 1, i + w + 1)
+    return best if best_score >= 0.5 else None
+
+
 def match_node_to_source(node, spans):
     """Find the source span whose selected text best matches the node's paraphrase.
 
@@ -180,11 +210,22 @@ def build_project(proj_dir):
             nodes[node["id"]] = node
             edges.extend(e)
 
+    # Source file (raw, fetched at the CSV's pinned commit). Read it up front so
+    # we can re-derive correct line numbers from it (see below).
+    src_file = SRC / f"{project}.txt"
+    source_text = src_file.read_text(encoding="utf-8") if src_file.exists() else ""
+    source_lines = source_text.split("\n") if source_text else []
+
     # Replace each node's display text with the exact span selected as the rule
     # in the source file (from the CSV). The vault note's quote is kept as
     # "paraphrase"; "source_lines" and "verbatim" let the UI show provenance.
     spans = load_csv_spans(proj_dir)
-    matched = 0
+    matched = relocated = 0
+
+    def set_lines(node, start, end):
+        node["line_start"], node["line_end"] = start, end
+        node["source_lines"] = f"{start}" if start == end else f"{start}–{end}"
+
     for node in nodes.values():
         node["paraphrase"] = node["text"]
         if not spans:
@@ -196,14 +237,20 @@ def build_project(proj_dir):
         if exact and score >= MATCH_THRESHOLD:
             node["text"] = exact
             node["verbatim"] = True
-            node["source_lines"] = f"{key[0]}" if key[0] == key[1] else f"{key[0]}–{key[1]}"
-            node["line_start"], node["line_end"] = key[0], key[1]
+            set_lines(node, key[0], key[1])
+            # The CSV's (often LLM-estimated) line numbers drift; re-locate the
+            # exact text in the real source so the line ref + highlight are right.
+            if source_lines:
+                loc = locate_in_source(exact, source_lines, hint=key)
+                if loc and loc != (key[0], key[1]):
+                    set_lines(node, loc[0], loc[1])
+                    relocated += 1
             matched += 1
         else:
             node["verbatim"] = False
             node["source_lines"] = ""
             node["line_start"] = node["line_end"] = None
-    build_project.last_match = (matched, len(nodes))
+    build_project.last_match = (matched, len(nodes), relocated)
 
     # merge LLM rationales if present
     rfile = OUT / "rationales" / f"{project}.json"
@@ -216,11 +263,7 @@ def build_project(proj_dir):
     # drop edges pointing at unknown nodes (safety)
     edges = [e for e in edges if e["source"] in nodes and e["target"] in nodes]
 
-    # Embed the raw source file (fetched at the CSV's pinned commit, so its line
-    # numbers match line_start/line_end) so the UI can show it and highlight the
-    # current rule's span.
-    src_file = SRC / f"{project}.txt"
-    source_text = src_file.read_text(encoding="utf-8") if src_file.exists() else ""
+    # Source descriptor (rule_file name) and pinned URL for the source header.
     src_meta = parse_frontmatter((proj_dir / "_SOURCE.md").read_text(encoding="utf-8"))[0] \
         if (proj_dir / "_SOURCE.md").exists() else {}
     src_rows = load_csv_first_row(proj_dir)
@@ -253,10 +296,10 @@ def main():
         if d.is_dir() and (d / "Rules").is_dir():
             data = build_project(d)
             (OUT / f"{d.name}.json").write_text(json.dumps(data, indent=1, ensure_ascii=False))
-            n_rat = sum(1 for e in data["edges"] if e["rationale"])
             mv = sum(1 for n in data["nodes"].values() if n.get("verbatim"))
+            reloc = build_project.last_match[2] if hasattr(build_project, "last_match") else 0
             print(f"{d.name}: {len(data['nodes'])} nodes, {len(data['edges'])} edges "
-                  f"({n_rat} with rationale, {mv}/{len(data['nodes'])} verbatim from source)")
+                  f"({mv}/{len(data['nodes'])} verbatim, {reloc} line refs corrected vs CSV)")
             projects.append(d.name)
     (OUT / "projects.json").write_text(json.dumps(projects))
 
