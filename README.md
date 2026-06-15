@@ -63,7 +63,8 @@ by default; set `HOST=0.0.0.0` to expose it on your network (Docker does this au
 | File | Role |
 |------|------|
 | `inspector/fetch_sources.py` | Downloads each project's raw source rule file at the commit pinned in its CSV into `sources/<project>.txt` (so line numbers match). Run once. |
-| `inspector/build_data.py` | Parses the vault notes into `data/<project>.json`, maps each node to its exact source span, and embeds the source file. |
+| `inspector/build_data.py` | Builds `data/<project>.json` — from vault notes, or (for CSV-native projects with a `relations.json`) straight from the CSV. Maps each node to its exact source span and embeds the source file. |
+| `inspector/make_obsidian_notes.py` | Generates Obsidian vault notes (Rules/Context `.md` with relation `[[wikilinks]]`) for CSV-native projects, so they appear in Obsidian's graph view. |
 | `inspector/data/rationales/*.json` | Per-edge LLM rationales, merged into the data at build time. |
 | `inspector/server.py` | Python stdlib HTTP server (port 7077). Serves the UI and persists annotations. |
 | `inspector/index.html` | Single-file UI (vanilla JS). |

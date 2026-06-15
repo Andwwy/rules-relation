@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "path:\"elastix_gemm/Rules\" OR path:\"clinerules-tdd/Context\"",
+  "search": "path:\"pickle-agent/Rules\" OR path:\"clinerules-tdd/Context\"",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -53,6 +53,6 @@
   "repelStrength": 10.9288194444444,
   "linkStrength": 0.724001736111111,
   "linkDistance": 433,
-  "scale": 0.7931764484964484,
+  "scale": 0.7118887688030616,
   "close": false
 }

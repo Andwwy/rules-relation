@@ -402,9 +402,15 @@ def main():
     for d in sorted(VAULT.iterdir()):
         if not d.is_dir():
             continue
-        if (d / "Rules").is_dir():                       # vault-note project
+        has_csv = bool(list(d.glob("rules_*.csv")))
+        # CSV-native projects keep a relations.json (the marker). They may ALSO
+        # have generated Obsidian notes in Rules/ for the graph view, so check
+        # this before the vault-note path.
+        if has_csv and (d / "relations.json").exists():
+            data = build_project_from_csv(d)
+        elif (d / "Rules").is_dir():                      # vault-note project
             data = build_project(d)
-        elif list(d.glob("rules_*.csv")):                # CSV-native project
+        elif has_csv:                                     # CSV, no relations yet
             data = build_project_from_csv(d)
         else:
             continue
