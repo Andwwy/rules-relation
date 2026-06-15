@@ -36,13 +36,14 @@
   .srcline { display: flex; padding: 0 12px; white-space: pre-wrap; }
   .srcline .lnno { flex-shrink: 0; width: 34px; text-align: right; padding-right: 12px; color: #c2c2c2; user-select: none; }
   .srcline .lntext { flex: 1; color: #555; word-break: break-word; }
-  /* "light yellow" highlight for the current rule's span(s) */
-  .srcline.hl { background: #fff6b8; }
-  .srcline.hl .lntext { color: #222; }
-  .srcline.hl .lnno { color: #b9962a; }
-  .srcline.hl-start { box-shadow: inset 0 1px 0 #ecd279; }
-  .srcline.hl-end { box-shadow: inset 0 -1px 0 #ecd279; }
-  .srcline.hl-start.hl-end { box-shadow: inset 0 1px 0 #ecd279, inset 0 -1px 0 #ecd279; }
+  /* highlight the current edge's spans: SOURCE = red, TARGET = blue,
+     both-on-same-line = split red/blue so they don't blend */
+  .srcline.hl-src  { background: #ffdede; }
+  .srcline.hl-tgt  { background: #d9e6ff; }
+  .srcline.hl-both { background: linear-gradient(90deg, #ffdede 0%, #ffdede 50%, #d9e6ff 50%, #d9e6ff 100%); }
+  .srcline.hl-src .lntext, .srcline.hl-tgt .lntext, .srcline.hl-both .lntext { color: #1f1f1f; }
+  .srcline.hl-src .lnno { color: #c0392b; }
+  .srcline.hl-tgt .lnno { color: #2b6cb0; }
 
   /* ---------- bottom-main: edge inspector (panel) ---------- */
   #inspector { height: 44vh; flex-shrink: 0; overflow-y: auto; padding: 20px 28px; min-height: 80px; border-top: 1px solid var(--border); background: var(--bg); }
@@ -52,10 +53,13 @@
   .node-card .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; vertical-align: -1px; border: 2px solid rgba(0,0,0,.18); }
   .node-card .nid { font-weight: 700; font-size: 12.5px; }
   .node-card .ntype { font-size: 10px; letter-spacing: .05em; color: var(--muted); }
-  .node-card .nc-top .role { margin-left: auto; font-size: 9.5px; color: #bbb; text-transform: uppercase; letter-spacing: .05em; }
+  .node-card .nc-top .role { margin-left: auto; font-size: 9.5px; color: #bbb; text-transform: uppercase; letter-spacing: .05em; font-weight: 700; }
   .node-card h3 { margin: 5px 0 6px; font-size: 13.5px; line-height: 1.3; }
   .prov-row { margin-top: 2px; }
   .prov { font-size: 10.5px; color: var(--muted); white-space: nowrap; }
+  /* tie each card to its source-pane highlight color */
+  .role.src, .prov.src { color: #c0392b; }
+  .role.tgt, .prov.tgt { color: #2b6cb0; }
 
   .arrow-zone { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 6px; }
   .arrow-line { width: 100%; display: flex; align-items: center; }
@@ -279,22 +283,25 @@ function renderSourceShell() {
     `<div class="srcline" id="srcl-${i+1}"><span class="lnno">${i+1}</span><span class="lntext">${esc(ln) || ' '}</span></div>`).join('');
 }
 
-// Highlight the current edge's rule span(s) in light yellow and scroll into view.
+// Highlight the current edge's spans — SOURCE red, TARGET blue (split if they
+// share a line) — and scroll into view.
+function lineSet(n) {
+  const s = new Set();
+  if (n && n.line_start != null) for (let i = n.line_start; i <= n.line_end; i++) s.add(i);
+  return s;
+}
 function highlightSource(e) {
-  document.querySelectorAll('.srcline.hl').forEach(el => el.classList.remove('hl', 'hl-start', 'hl-end'));
-  const ns = [data.nodes[e.source], data.nodes[e.target]].filter(n => n && n.line_start);
-  for (const n of ns) {
-    for (let i = n.line_start; i <= n.line_end; i++) {
-      const el = $('#srcl-' + i);
-      if (!el) continue;
-      el.classList.add('hl');
-      if (i === n.line_start) el.classList.add('hl-start');
-      if (i === n.line_end) el.classList.add('hl-end');
-    }
+  document.querySelectorAll('.srcline').forEach(el => el.classList.remove('hl-src', 'hl-tgt', 'hl-both'));
+  const sl = lineSet(data.nodes[e.source]), tl = lineSet(data.nodes[e.target]);
+  const all = new Set([...sl, ...tl]);
+  for (const i of all) {
+    const el = $('#srcl-' + i);
+    if (!el) continue;
+    const inS = sl.has(i), inT = tl.has(i);
+    el.classList.add(inS && inT ? 'hl-both' : inS ? 'hl-src' : 'hl-tgt');
   }
-  if (ns.length) {
-    const first = Math.min(...ns.map(n => n.line_start));
-    const el = $('#srcl-' + first);
+  if (all.size) {
+    const el = $('#srcl-' + Math.min(...all));
     if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
   }
 }
@@ -322,12 +329,13 @@ function nodeCard(n, role) {
   const c = TYPE_COLOR[n.type] || '#ccc';
   // The rule text itself is shown (and highlighted) in the source pane above, so
   // the card stays compact: id/type, title, and the source line number.
+  const side = role === 'source' ? 'src' : role === 'target' ? 'tgt' : '';
   const line = (n.line_start != null)
-    ? `<div class="prov-row"><span class="prov">line ${esc(n.source_lines)}</span></div>` : '';
+    ? `<div class="prov-row"><span class="prov ${side}">line ${esc(n.source_lines)}</span></div>` : '';
   return `<div class="node-card" style="border-top:3px solid ${c}">
     <div class="nc-top"><span class="dot" style="background:${c}"></span><span class="nid">${n.id}</span>
       <span class="ntype">${TYPE_ICON[n.type]||''} ${n.type}</span>
-      <span class="role">${role}</span></div>
+      <span class="role ${side}">${role}</span></div>
     <h3>${esc(n.title)}</h3>
     ${line}
   </div>`;
