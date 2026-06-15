@@ -1,0 +1,698 @@
+[
+  {
+    "source": "C01",
+    "target": "R01",
+    "type": "support (defines)",
+    "rationale": "C01 ('Applies to: All Roo agents and tasks in this repository') defines the scope/audience for which the rules including R01 ('No silent downgrades / no janky workarounds (highest priority)') are binding."
+  },
+  {
+    "source": "C02",
+    "target": "R13",
+    "type": "support (motivates)",
+    "rationale": "C02 states the document's purpose is to ensure 'minimal-comment practices', motivating the minimal-comment policy R13 ('rate 1–10; only write if ≥ 8')."
+  },
+  {
+    "source": "C02",
+    "target": "R08",
+    "type": "support (motivates)",
+    "rationale": "C02 aims for 'consistency, ... and coherent architecture', motivating R08's requirement to 'Align with the established approach' for state management, styling, testing, etc."
+  },
+  {
+    "source": "C02",
+    "target": "R32",
+    "type": "support (motivates)",
+    "rationale": "C02's goal of 'coherent architecture' motivates the simplicity mandate R32 ('ALWAYS prefer the simplest solution that meets the specification')."
+  },
+  {
+    "source": "R02",
+    "target": "R01",
+    "type": "refinement",
+    "rationale": "R02 ('NEVER \"fix\" errors by disabling, downgrading, or bypassing core features', e.g. turning off GPU/CUDA, switching to CPU) is the concrete, specific statement of the broad R01 ('No silent downgrades / no janky workarounds')."
+  },
+  {
+    "source": "R03",
+    "target": "R02",
+    "type": "support",
+    "rationale": "R03 ('Attempt a real fix - correct package, version, PATH, provider, config') provides the constructive mechanism that makes following R02's prohibition on disabling/downgrading core features possible."
+  },
+  {
+    "source": "C03",
+    "target": "R03",
+    "type": "support (defines)",
+    "rationale": "C03 ('If a failure is caused by missing or misconfigured dependencies:') defines the triggering condition under which the procedure R03 ('Attempt a real fix') applies."
+  },
+  {
+    "source": "C03",
+    "target": "R04",
+    "type": "support (defines)",
+    "rationale": "C03 ('If a failure is caused by missing or misconfigured dependencies:') defines the condition scoping the escalation step R04 ('If the fix requires system installs or user action, STOP and report')."
+  },
+  {
+    "source": "R04",
+    "target": "R02",
+    "type": "support",
+    "rationale": "R04 ('If the fix requires system installs or user action, STOP and report') gives the escalation path that lets the agent avoid the forbidden workaround/downgrade of R02 when it cannot fix the issue itself."
+  },
+  {
+    "source": "R05",
+    "target": "R02",
+    "type": "exception",
+    "rationale": "R05 permits fallbacks ('CPU, reduced mode, mocks ... ONLY if explicitly requested by the user, OR already defined as an opt-in mode'), punching a gated hole in R02's prohibition against switching to CPU/reducing quality."
+  },
+  {
+    "source": "R06",
+    "target": "R02",
+    "type": "support",
+    "rationale": "R06 ('Defaults must remain on the best-supported path') reinforces R02 by ensuring the default configuration is never silently downgraded away from core features like GPU/CUDA."
+  },
+  {
+    "source": "R05",
+    "target": "R06",
+    "type": "exception",
+    "rationale": "R05 allows fallbacks (CPU, reduced mode) when user-requested or opt-in, which is the gated exception to R06's requirement that 'Defaults must remain on the best-supported path'."
+  },
+  {
+    "source": "R10",
+    "target": "R07",
+    "type": "refinement",
+    "rationale": "R10 ('Scan the codebase (components, hooks, services/api, utils, lib) and package.json to infer patterns') concretely specifies how to carry out R07's broad duty to 'proactively search the repo for existing patterns, utilities, or implementations'."
+  },
+  {
+    "source": "R11",
+    "target": "R07",
+    "type": "support",
+    "rationale": "R11 ('Summarize the chosen existing pattern before coding') operationalizes the outcome of R07's search-for-existing-patterns mandate by requiring the result be made explicit before coding."
+  },
+  {
+    "source": "R08",
+    "target": "R07",
+    "type": "support",
+    "rationale": "R08 ('Align with the established approach for' state management, styling, testing, etc.) is the action taken on the patterns that R07 directs the agent to search for; aligning depends on having found them."
+  },
+  {
+    "source": "R09",
+    "target": "R08",
+    "type": "support",
+    "rationale": "R09 ('Do not introduce parallel patterns, dual sources of truth, or divergent frameworks without explicit instruction') is the prohibitive counterpart enforcing R08's mandate to 'Align with the established approach'."
+  },
+  {
+    "source": "R12",
+    "target": "R08",
+    "type": "support",
+    "rationale": "R12 ('If conflicts are found, prefer refactoring toward the dominant repo pattern') provides the conflict-resolution mechanism supporting R08's goal of aligning with the established approach."
+  },
+  {
+    "source": "R19",
+    "target": "R08",
+    "type": "checkpoint",
+    "rationale": "R19 ('Before writing a new module/component: show which existing pattern or module you will align with and where it lives') is a procedural verification step enforcing R08's alignment requirement without adding a new substantive obligation."
+  },
+  {
+    "source": "R19",
+    "target": "R07",
+    "type": "checkpoint",
+    "rationale": "R19 ('show which existing pattern or module you will align with and where it lives') enforces that R07's mandated search for existing patterns was actually performed and reported before writing new code."
+  },
+  {
+    "source": "R11",
+    "target": "R19",
+    "type": "duplication",
+    "rationale": "R11 ('Summarize the chosen existing pattern before coding') and R19 ('Before writing a new module/component: show which existing pattern ... you will align with') express essentially the same norm of declaring the chosen pattern before coding."
+  },
+  {
+    "source": "R14",
+    "target": "R13",
+    "type": "refinement",
+    "rationale": "R14 ('If the answer is less than 8, do not add the comment') is the concrete decision rule that operationalizes R13's broad minimal-comment policy ('rate 1–10; only write if ≥ 8')."
+  },
+  {
+    "source": "R16",
+    "target": "R13",
+    "type": "support (exemplifies)",
+    "rationale": "R16 lists 'Acceptable comments (when necessity ≥ 8)' — non-obvious invariants, security footguns, ADR links, public API TSDoc — giving concrete examples that ground R13's 1–10 necessity threshold."
+  },
+  {
+    "source": "R15",
+    "target": "R13",
+    "type": "support",
+    "rationale": "R15 ('Prefer self-explanatory code: descriptive names, small functions, strong TypeScript types, and tests over comments') provides the means to satisfy R13's minimal-comment policy by reducing the need for comments at all."
+  },
+  {
+    "source": "R17",
+    "target": "R13",
+    "type": "refinement",
+    "rationale": "R17 ('Never leave commented-out code') is a specific, absolute prohibition within the broader minimal-comment policy R13 governing what comments are allowed."
+  },
+  {
+    "source": "R18",
+    "target": "C02",
+    "type": "checkpoint",
+    "rationale": "R18 ('At task start: confirm you will follow these rules') is a procedural acknowledgment step verifying adherence to the always-on repository-wide guidance described in C02."
+  },
+  {
+    "source": "R20",
+    "target": "R22",
+    "type": "support",
+    "rationale": "R20 ('After implementing: ensure formatting, linting, and tests run with the repo's existing toolchain. Use the existing package manager (detect via lockfile)') is the implementing action that satisfies R22's preference to 'Respect existing toolchain and scripts from package.json'."
+  },
+  {
+    "source": "R20",
+    "target": "R22",
+    "type": "duplication",
+    "rationale": "R20 ('use the repo's existing toolchain ... existing package manager (detect via lockfile)') and R22 ('Respect existing toolchain and scripts from package.json (package manager, lint/test commands)') restate the same norm about using the repo's existing toolchain."
+  },
+  {
+    "source": "R21",
+    "target": "C02",
+    "type": "support",
+    "rationale": "R21 ('If uncertainty remains: ask for clarification before proceeding') supports the overall goal of coherent, consistent work in C02 by preventing divergent guesses."
+  },
+  {
+    "source": "R26",
+    "target": "R25",
+    "type": "refinement",
+    "rationale": "R26 ('Do not use eslint-disable, @ts-ignore, @ts-expect-error, or similar pragmas to bypass linting or type errors') is the concrete enumeration of the broad prohibition R25 ('NEVER DISABLE LINTING, COMPILATION, OR TYPE ERRORS')."
+  },
+  {
+    "source": "R25",
+    "target": "R01",
+    "type": "refinement",
+    "rationale": "R25 ('NEVER DISABLE LINTING, COMPILATION, OR TYPE ERRORS') is a domain-specific instance of R01's broad prohibition on 'silent downgrades / janky workarounds'."
+  },
+  {
+    "source": "R26",
+    "target": "R01",
+    "type": "refinement",
+    "rationale": "R26 (no eslint-disable, @ts-ignore, @ts-expect-error pragmas) is a concrete example of the 'janky workaround' that R01 broadly prohibits."
+  },
+  {
+    "source": "R27",
+    "target": "R26",
+    "type": "support",
+    "rationale": "R27 ('FIX THE ROOT CAUSE - Refactor code to satisfy the rule properly') provides the constructive alternative that makes obeying R26's ban on suppression pragmas feasible."
+  },
+  {
+    "source": "R28",
+    "target": "R26",
+    "type": "support",
+    "rationale": "R28 ('RESTRUCTURE - Modify the code structure to avoid the issue') is another constructive mechanism enabling compliance with R26's prohibition on bypass pragmas."
+  },
+  {
+    "source": "R29",
+    "target": "R26",
+    "type": "exception",
+    "rationale": "R29 permits ('CONFIGURE - If the rule is genuinely inappropriate, update the config file ... with proper justification') a gated, justified way to change the rule, an exception to R26's blanket prohibition on bypassing lint/type errors."
+  },
+  {
+    "source": "R31",
+    "target": "R26",
+    "type": "exception",
+    "rationale": "R31 ('Only exception: Generated code or third-party dependencies that cannot be modified') explicitly carves a hole in R26's prohibition on suppression pragmas."
+  },
+  {
+    "source": "R31",
+    "target": "R25",
+    "type": "exception",
+    "rationale": "R31 ('Only exception: Generated code or third-party dependencies that cannot be modified') is the stated exception to R25's absolute ban on disabling linting/type errors."
+  },
+  {
+    "source": "R30",
+    "target": "R27",
+    "type": "support (exemplifies)",
+    "rationale": "R30 ('Examples of proper fixes' — move test utilities to separate config, replace export * with named exports, capture ref values) gives concrete instances of R27's 'FIX THE ROOT CAUSE / refactor properly' directive."
+  },
+  {
+    "source": "R30",
+    "target": "R29",
+    "type": "support (exemplifies)",
+    "rationale": "R30's example '✅ Move test utilities to separate config that disables the rule for test files' exemplifies R29's permitted CONFIGURE path of updating the config file with justification."
+  },
+  {
+    "source": "R33",
+    "target": "R32",
+    "type": "refinement",
+    "rationale": "R33 ('Lower complexity is a primary goal, second only to meeting the specification requirements') restates and sharpens R32 ('ALWAYS prefer the simplest solution that meets the specification') as a stated core principle."
+  },
+  {
+    "source": "R34",
+    "target": "R32",
+    "type": "refinement",
+    "rationale": "R34 ('Choose the solution with fewest moving parts, abstractions, or layers') is a concrete operationalization of R32's preference for 'the simplest solution that meets the specification'."
+  },
+  {
+    "source": "R35",
+    "target": "R32",
+    "type": "support",
+    "rationale": "R35 ('Eliminate redundant code, duplicate patterns, or parallel implementations') is a concrete practice furthering R32's simplest-solution mandate."
+  },
+  {
+    "source": "R36",
+    "target": "R32",
+    "type": "support",
+    "rationale": "R36 ('Refactor complex solutions into simpler ones when discovered') is a concrete remediation action serving R32's simplicity preference."
+  },
+  {
+    "source": "R37",
+    "target": "R34",
+    "type": "support",
+    "rationale": "R37 ('Question every abstraction: \"Does this actually reduce complexity, or just hide it?\"') provides the heuristic test backing R34's directive to choose the fewest abstractions/layers."
+  },
+  {
+    "source": "R35",
+    "target": "R09",
+    "type": "support",
+    "rationale": "R35 ('Eliminate redundant code, duplicate patterns, or parallel implementations') reinforces R09's prohibition on introducing 'parallel patterns, dual sources of truth, or divergent frameworks'."
+  },
+  {
+    "source": "R77",
+    "target": "R32",
+    "type": "checkpoint",
+    "rationale": "R77 ('If complexity is increasing without clear necessity, stop and simplify') is a procedural trip-wire that enforces R32's simplest-solution preference without adding a new substantive duty."
+  },
+  {
+    "source": "R39",
+    "target": "R32",
+    "type": "support",
+    "rationale": "R39 (never implement 'backward compatibility, multi-version support, or dual implementations' without approval) serves R32's simplicity mandate by blocking a common source of added complexity."
+  },
+  {
+    "source": "R38",
+    "target": "R39",
+    "type": "support (motivates)",
+    "rationale": "R38 ('The phrase \"backward compatibility\" is a CRITICAL WARNING SIGN') motivates and frames R39's prohibition on independently implementing backward compatibility."
+  },
+  {
+    "source": "R40",
+    "target": "R39",
+    "type": "support",
+    "rationale": "R40 ('If you believe backward compatibility is necessary: STOP ... ASK the user for explicit approval ... WAIT') gives the escalation procedure that operationalizes R39's 'without explicit approval' clause."
+  },
+  {
+    "source": "R42",
+    "target": "R39",
+    "type": "exception",
+    "rationale": "R42 ('Exception: Only implement backward compatibility when explicitly instructed after review') is the gated permission that excepts R39's prohibition on independently implementing backward compatibility."
+  },
+  {
+    "source": "C04",
+    "target": "R39",
+    "type": "support (motivates)",
+    "rationale": "C04 ('Rationale: Backward compatibility: Creates dual sources of truth ... Multiplies maintenance burden ... Adds permanent complexity') is the explicit justification motivating R39's prohibition."
+  },
+  {
+    "source": "C04",
+    "target": "R38",
+    "type": "support (motivates)",
+    "rationale": "C04 explains why backward compatibility is harmful (dual sources of truth, permanent compounding complexity), motivating R38's claim that the phrase is a 'CRITICAL WARNING SIGN'."
+  },
+  {
+    "source": "R41",
+    "target": "R39",
+    "type": "support",
+    "rationale": "R41 ('Migrate/refactor to the new pattern. Delete the old one') provides the preferred alternative to backward compatibility, supporting R39's prohibition by giving the path to take instead."
+  },
+  {
+    "source": "R41",
+    "target": "R09",
+    "type": "support",
+    "rationale": "R41 ('Migrate/refactor to the new pattern. Delete the old one') supports R09's ban on dual sources of truth by mandating removal of the old implementation rather than keeping both."
+  },
+  {
+    "source": "R78",
+    "target": "R39",
+    "type": "checkpoint",
+    "rationale": "R78 ('If you're considering backward compatibility, STOP and ask for approval first') is a procedural trip-wire enforcing R39/R40's require-approval rule without adding new substance."
+  },
+  {
+    "source": "R78",
+    "target": "R40",
+    "type": "duplication",
+    "rationale": "R78 ('If you're considering backward compatibility, STOP and ask for approval first') restates R40's procedure ('STOP ... ASK the user for explicit approval') as a near-verbatim checklist reminder."
+  },
+  {
+    "source": "R44",
+    "target": "R43",
+    "type": "refinement",
+    "rationale": "R44 ('NEVER over-architect or plan too far ahead') is the sharp prohibitive statement of R43's broad preference to 'stay flexible, plan incrementally'."
+  },
+  {
+    "source": "R45",
+    "target": "R43",
+    "type": "support (motivates)",
+    "rationale": "R45 ('Complex systems evolve successfully through iteration, not perfect up-front planning ... Stay adaptable') is the core philosophy motivating R43's 'stay flexible, plan incrementally'."
+  },
+  {
+    "source": "R45",
+    "target": "R44",
+    "type": "support (motivates)",
+    "rationale": "R45's philosophy that systems 'evolve through iteration, not perfect up-front planning' motivates R44's prohibition on over-architecting or planning too far ahead."
+  },
+  {
+    "source": "R46",
+    "target": "R43",
+    "type": "refinement",
+    "rationale": "R46 ('Build iteratively: Implement the minimum viable solution first, then evolve based on actual needs') concretely specifies R43's broad 'plan incrementally'."
+  },
+  {
+    "source": "R47",
+    "target": "R45",
+    "type": "support",
+    "rationale": "R47 ('Validate early: Test assumptions and designs with working code as quickly as possible') is a concrete practice serving R45's iteration-over-up-front-planning philosophy."
+  },
+  {
+    "source": "R48",
+    "target": "R43",
+    "type": "support",
+    "rationale": "R48 ('Stay modular: Design components ... so they can be replaced or refactored without cascading changes') is a concrete practice supporting R43's 'stay flexible' aim."
+  },
+  {
+    "source": "R49",
+    "target": "R48",
+    "type": "refinement",
+    "rationale": "R49 ('Avoid tight coupling: Don't hardcode dependencies on specific libraries, external services, or implementation details') narrows R48's broader 'stay modular / replaceable without cascading changes' goal to coupling specifically."
+  },
+  {
+    "source": "R50",
+    "target": "R49",
+    "type": "refinement",
+    "rationale": "R50 ('Use abstraction layers (interfaces, adapters) for external dependencies') is the concrete mechanism realizing R49's 'avoid tight coupling ... don't hardcode dependencies on ... external services'."
+  },
+  {
+    "source": "R51",
+    "target": "R49",
+    "type": "refinement",
+    "rationale": "R51 ('Prefer dependency injection over direct imports of concrete implementations') is a concrete technique implementing R49's 'avoid tight coupling' preference."
+  },
+  {
+    "source": "R52",
+    "target": "R49",
+    "type": "support",
+    "rationale": "R52 ('Keep business logic separate from framework/library-specific code') supports R49's 'avoid tight coupling' by decoupling business logic from specific frameworks."
+  },
+  {
+    "source": "R50",
+    "target": "R34",
+    "type": "conflict",
+    "rationale": "R50 ('Use abstraction layers (interfaces, adapters) for external dependencies') pulls toward adding abstraction layers, while R34 ('Choose the solution with fewest moving parts, abstractions, or layers') pulls toward minimizing them."
+  },
+  {
+    "source": "R50",
+    "target": "R37",
+    "type": "conflict",
+    "rationale": "R50 advocates abstraction layers for external dependencies, while R37 demands you 'Question every abstraction: \"Does this actually reduce complexity, or just hide it?\"' — they push in opposite directions on adding abstractions."
+  },
+  {
+    "source": "R54",
+    "target": "R43",
+    "type": "support",
+    "rationale": "R54 ('Defer irreversible decisions: Make decisions as late as possible when you have maximum information') is a concrete practice realizing R43's 'stay flexible, plan incrementally'."
+  },
+  {
+    "source": "R53",
+    "target": "R49",
+    "type": "support",
+    "rationale": "R53 ('Question assumptions: ... \"What would we do if this assumption proves wrong?\"') is the reflective check that supports keeping designs loosely coupled and replaceable per R49."
+  },
+  {
+    "source": "R55",
+    "target": "R44",
+    "type": "refinement",
+    "rationale": "R55 ('Plan one or two steps ahead, not ten') gives a concrete bound that operationalizes R44's prohibition 'NEVER over-architect or plan too far ahead'."
+  },
+  {
+    "source": "R56",
+    "target": "R44",
+    "type": "support (exemplifies)",
+    "rationale": "R56 ('Red flags that indicate over-planning' — abstractions for unneeded future extensibility, premature config systems, complex hierarchies, features 'because we'll need them eventually') enumerates concrete examples of the over-planning R44 prohibits."
+  },
+  {
+    "source": "R57",
+    "target": "R44",
+    "type": "checkpoint",
+    "rationale": "R57 ('When you catch yourself over-planning: STOP ... SIMPLIFY to the minimum ... BUILD what's needed now') is the procedural recovery routine enforcing R44's no-over-architecting rule."
+  },
+  {
+    "source": "R79",
+    "target": "R44",
+    "type": "checkpoint",
+    "rationale": "R79 ('If you're planning more than 1-2 steps ahead or building for hypothetical future needs, STOP and simplify to current requirements') is a trip-wire enforcing R44/R55 without new substance."
+  },
+  {
+    "source": "R79",
+    "target": "R55",
+    "type": "duplication",
+    "rationale": "R79 ('planning more than 1-2 steps ahead ... STOP and simplify') restates R55 ('Plan one or two steps ahead, not ten') as a near-identical reminder."
+  },
+  {
+    "source": "R58",
+    "target": "R54",
+    "type": "exception",
+    "rationale": "R58 ('Exception: If a decision is truly irreversible (database choice, foundational architecture), invest appropriate planning time') carves out cases from R54's 'defer irreversible decisions / decide as late as possible' guidance."
+  },
+  {
+    "source": "R58",
+    "target": "R44",
+    "type": "exception",
+    "rationale": "R58 ('Exception: If a decision is truly irreversible ... invest appropriate planning time') is the gated exception to R44's 'NEVER over-architect or plan too far ahead'."
+  },
+  {
+    "source": "R57",
+    "target": "R14",
+    "type": "support",
+    "rationale": "R57's step 'DOCUMENT assumptions in a comment (≥8 necessity) or ADR if significant' explicitly defers to and applies R14's ≥8 comment-necessity threshold."
+  },
+  {
+    "source": "R60",
+    "target": "R59",
+    "type": "refinement",
+    "rationale": "R60 ('Make meaningful behavioral dials discoverable ... from a single source of truth, but do so incrementally—only for values we're actually using or clearly will use soon') narrows R59's broad centralized-config mandate with an incrementality constraint."
+  },
+  {
+    "source": "R62",
+    "target": "R59",
+    "type": "support (defines)",
+    "rationale": "R62 ('What qualifies as a configurable primitive' vs 'What does NOT qualify') defines the term 'primitive values that control UX or system behavior' that R59 requires to live in centralized config."
+  },
+  {
+    "source": "R63",
+    "target": "R60",
+    "type": "refinement",
+    "rationale": "R63 ('Move a primitive to config only when you're actively working with it or it clearly affects user-facing behavior') concretely restates R60's 'do so incrementally—only for values we're actually using or clearly will use soon'."
+  },
+  {
+    "source": "R64",
+    "target": "R59",
+    "type": "support",
+    "rationale": "R64 ('Use existing config patterns') supports R59's centralized-configuration-layer mandate by directing reuse of the existing config layer rather than inventing new ones."
+  },
+  {
+    "source": "R65",
+    "target": "R59",
+    "type": "support",
+    "rationale": "R65 ('Name descriptively') supports R59's goal of making behavioral values 'discoverable' in a centralized config layer."
+  },
+  {
+    "source": "R66",
+    "target": "R59",
+    "type": "support",
+    "rationale": "R66 ('Provide defaults: Always include sensible defaults so the system works out-of-the-box') supports R59's centralized configuration by ensuring centralized values have usable defaults."
+  },
+  {
+    "source": "R67",
+    "target": "R72",
+    "type": "support",
+    "rationale": "R67 ('Don't create duplicates') is the brief prohibition that R72 ('Configuration values must have exactly ONE default definition') states precisely."
+  },
+  {
+    "source": "R72",
+    "target": "R67",
+    "type": "refinement",
+    "rationale": "R72 ('Configuration values must have exactly ONE default definition') is the concrete, precise statement of the terse R67 ('Don't create duplicates') in the configuration context."
+  },
+  {
+    "source": "R61",
+    "target": "R59",
+    "type": "conflict",
+    "rationale": "R61 explicitly flags tension: 'If there's any tension between this rule and the Evolving Architecture Mandate (Rule 6), Rule 6 wins' — acknowledging the centralized-config rule R59 can pull against the incremental/anti-over-architecting rules and declaring the tie-breaker."
+  },
+  {
+    "source": "R61",
+    "target": "R44",
+    "type": "conflict",
+    "rationale": "R61 names the tension between centralizing config (R59) and the Evolving Architecture Mandate; R44 ('NEVER over-architect or plan too far ahead') is the core of that mandate that can conflict with pre-emptively building config layers."
+  },
+  {
+    "source": "R73",
+    "target": "R72",
+    "type": "support (exemplifies)",
+    "rationale": "R73 ('Correct pattern: Pydantic Field(default=value) in config.py - single source of truth; Factories use config[\"key\"] - no fallbacks') gives positive examples of R72's 'exactly ONE default definition'."
+  },
+  {
+    "source": "R74",
+    "target": "R72",
+    "type": "support (exemplifies)",
+    "rationale": "R74 ('Violations to avoid: config.get(\"model\", \"gpt-4o-mini\") when LLMConfig already has this default; def __init__(self, temperature: float = 0.7) when config defines it') gives negative examples of breaking R72's single-default rule."
+  },
+  {
+    "source": "R75",
+    "target": "R72",
+    "type": "exception",
+    "rationale": "R75 ('Internal implementation details (retry counts, backoff delays) not exposed in config.yaml can have provider-level defaults') permits a gated exception to R72's requirement that config values have exactly one centralized default."
+  },
+  {
+    "source": "R69",
+    "target": "R59",
+    "type": "checkpoint",
+    "rationale": "R69 ('Before hard-coding a primitive that affects UX/behavior, ask: \"Should this be configurable?\"') is a procedural check enforcing R59's mandate that behavior-controlling primitives go into centralized config."
+  },
+  {
+    "source": "R70",
+    "target": "R60",
+    "type": "checkpoint",
+    "rationale": "R70 ('Before adding to config, ask: \"Do we actually need to change this, or am I over-architecting?\"') is the procedural check enforcing R60's incremental 'only for values we're actually using or clearly will use soon'."
+  },
+  {
+    "source": "R68",
+    "target": "R60",
+    "type": "checkpoint",
+    "rationale": "R68 ('When you catch yourself over-configuring: ASK is this a behavioral dial ... CHECK are we using this now ... If NO, leave as constant; If YES, add to config layer') is the procedural routine enforcing R60's incremental config policy."
+  },
+  {
+    "source": "R68",
+    "target": "R44",
+    "type": "support",
+    "rationale": "R68's over-configuring recovery routine ('Is this value actually a behavioral dial ... will need in the next 1-2 steps?') is a config-specific application of R44's prohibition on planning too far ahead / over-architecting."
+  },
+  {
+    "source": "R71",
+    "target": "R59",
+    "type": "support",
+    "rationale": "R71 ('When refactoring, consolidate scattered magic numbers into config if they meet the criteria above') is the remediation action serving R59's mandate to centralize primitives rather than scatter them as magic numbers."
+  },
+  {
+    "source": "R70",
+    "target": "R69",
+    "type": "support",
+    "rationale": "R70 ('Before adding to config, ask: ... am I over-architecting?') is the counterbalancing check to R69 ('Before hard-coding ... ask: Should this be configurable?'); together they gate the move into config in both directions."
+  },
+  {
+    "source": "R76",
+    "target": "R09",
+    "type": "checkpoint",
+    "rationale": "R76 ('If a proposed change creates a duplicate or conflicting pattern, stop and propose consolidation or a refactor plan instead') is the procedural trip-wire enforcing R09's ban on parallel patterns / dual sources of truth."
+  },
+  {
+    "source": "R76",
+    "target": "R35",
+    "type": "support",
+    "rationale": "R76 ('If a proposed change creates a duplicate or conflicting pattern, stop and propose consolidation') supports R35's directive to 'Eliminate redundant code, duplicate patterns, or parallel implementations'."
+  },
+  {
+    "source": "R76",
+    "target": "R67",
+    "type": "support",
+    "rationale": "R76 ('If a proposed change creates a duplicate ... stop and propose consolidation') enforces R67's 'Don't create duplicates' at proposal time."
+  },
+  {
+    "source": "R81",
+    "target": "R80",
+    "type": "refinement",
+    "rationale": "R81 ('Ad-hoc debug scripts, reproduction tests, or diagnostic files created during debugging must go in tests/_temp_/ for easy cleanup') is a concrete practice realizing the terse R80 ('keep repo clean')."
+  },
+  {
+    "source": "R82",
+    "target": "R81",
+    "type": "refinement",
+    "rationale": "R82 ('Place in tests/_temp_/ directory') restates the placement requirement of R81 ('debug ... files must go in tests/_temp_/') as a checklist item."
+  },
+  {
+    "source": "R82",
+    "target": "R81",
+    "type": "duplication",
+    "rationale": "R82 ('Place in tests/_temp_/ directory') and R81's clause 'must go in tests/_temp_/' state the identical placement norm."
+  },
+  {
+    "source": "R83",
+    "target": "R81",
+    "type": "support",
+    "rationale": "R83 ('Use descriptive names (e.g., debug_tts_state.py, repro_audio_hang.py)') supports R81's debug-file convention by specifying how the temp files should be named."
+  },
+  {
+    "source": "R84",
+    "target": "R80",
+    "type": "support",
+    "rationale": "R84 ('Clean up after investigation completes') directly serves R80's 'keep repo clean' by removing the temporary debug artifacts."
+  },
+  {
+    "source": "R84",
+    "target": "R81",
+    "type": "support",
+    "rationale": "R84 ('Clean up after investigation completes') fulfills the 'for easy cleanup' purpose of R81's tests/_temp_/ requirement."
+  },
+  {
+    "source": "R85",
+    "target": "R81",
+    "type": "checkpoint",
+    "rationale": "R85 ('Enforcement: Before completing a debug task, verify all temporary files are deleted or in tests/_temp_/') is a procedural verification step enforcing R81's placement rule, adding no new obligation about where files go."
+  },
+  {
+    "source": "R85",
+    "target": "R84",
+    "type": "checkpoint",
+    "rationale": "R85 ('Before completing a debug task, verify all temporary files are deleted or in tests/_temp_/') verifies R84's 'Clean up after investigation completes' was carried out."
+  },
+  {
+    "source": "R85",
+    "target": "R80",
+    "type": "checkpoint",
+    "rationale": "R85's pre-completion verification that temp files are deleted or quarantined enforces R80's 'keep repo clean' objective."
+  },
+  {
+    "source": "R24",
+    "target": "R08",
+    "type": "refinement",
+    "rationale": "R24 ('Prefer colocated tests alongside modules, matching the repo's current convention') is a concrete instance of R08's mandate to align with the established approach for 'Testing libraries and patterns' and 'File/folder structure ... conventions'."
+  },
+  {
+    "source": "R23",
+    "target": "R09",
+    "type": "support",
+    "rationale": "R23 ('Keep dependencies consistent. Avoid adding new libs unless required and approved') supports R09's prohibition on introducing 'divergent frameworks' by restricting new library additions."
+  },
+  {
+    "source": "R22",
+    "target": "R08",
+    "type": "refinement",
+    "rationale": "R22 ('Respect existing toolchain and scripts from package.json (package manager, lint/test commands)') is a concrete instance of R08's broad mandate to align with the established approach across the project."
+  },
+  {
+    "source": "R49",
+    "target": "R23",
+    "type": "conflict",
+    "rationale": "R49 ('Don't hardcode dependencies on specific libraries') favors abstracting away concrete libraries, while R23 ('Keep dependencies consistent. Avoid adding new libs') favors sticking with the established concrete library set — they can pull against each other when introducing an adapter requires a new lib."
+  },
+  {
+    "source": "R36",
+    "target": "R77",
+    "type": "support",
+    "rationale": "R36 ('Refactor complex solutions into simpler ones when discovered') is the constructive action that R77's trip-wire ('If complexity is increasing without clear necessity, stop and simplify') triggers."
+  },
+  {
+    "source": "R40",
+    "target": "R78",
+    "type": "support",
+    "rationale": "R40's detailed STOP/ASK/WAIT procedure provides the substance behind R78's reminder ('If you're considering backward compatibility, STOP and ask for approval first')."
+  },
+  {
+    "source": "R57",
+    "target": "R79",
+    "type": "support",
+    "rationale": "R57's recovery routine ('STOP ... SIMPLIFY to the minimum that solves the current requirement ... BUILD what's needed now') provides the substance behind R79's reminder to 'STOP and simplify to current requirements' when planning too far ahead."
+  },
+  {
+    "source": "R15",
+    "target": "R17",
+    "type": "support",
+    "rationale": "R15's preference for 'self-explanatory code ... over comments' supports R17's absolute prohibition 'Never leave commented-out code' by reinforcing minimal comment clutter."
+  }
+]

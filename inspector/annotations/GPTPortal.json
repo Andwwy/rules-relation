@@ -1,9 +1,9 @@
 {
  "edges": {
   "R03--support--R04": {
-   "mark": "agree",
-   "updated_at": "2026-06-15T00:18:16-04:00",
-   "comment": ""
+   "mark": "reject",
+   "updated_at": "2026-06-15T15:18:26+00:00",
+   "comment": "Duplicate and not connetced (restating) "
   },
   "R05--support--R04": {
    "mark": "agree",
@@ -26,6 +26,15 @@
   "R08--support--R04": {
    "mark": "agree",
    "updated_at": "2026-06-15T14:28:10+00:00"
+  },
+  "R09--checkpoint--R08": {
+   "mark": "agree",
+   "updated_at": "2026-06-15T16:10:30+00:00",
+   "comment": ""
+  },
+  "R09--support--R04": {
+   "mark": "agree",
+   "updated_at": "2026-06-15T15:19:32+00:00"
   }
  },
  "added": []

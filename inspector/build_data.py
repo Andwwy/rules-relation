@@ -288,19 +288,122 @@ def load_csv_first_row(proj_dir):
     return {}
 
 
+def clean_title(text):
+    """A short human-readable label from a verbatim rule span."""
+    t = text.split("\n")[0].strip()
+    t = re.sub(r"^\s*\d+\.\s+", "", t)          # "1. "
+    t = re.sub(r"^\s*[-*•]\s+", "", t)          # bullet
+    t = t.replace("**", "").replace("`", "").replace("__", "")
+    t = re.sub(r"\s+", " ", t).strip(" :-")
+    if len(t) > 90:
+        t = t[:88].rsplit(" ", 1)[0] + "…"
+    return t
+
+
+def _is_hand(row):
+    return row.get("extracted_by") in ("hand", row.get("annotator"))
+
+
+def build_project_from_csv(proj_dir):
+    """Build a project straight from its rules_*.csv (no vault notes).
+
+    Nodes = the human annotator's spans (authoritative) plus any LLM span that
+    doesn't overlap a hand span. Relations come from <proj>/relations.json
+    (produced by the LLM relation-detection pass), if present.
+    """
+    project = proj_dir.name
+    rows = list(csv.DictReader((list(proj_dir.glob("rules_*.csv"))[0]).open(encoding="utf-8")))
+
+    def span(r):
+        return (int(r["line_start"]), int(r["line_end"]))
+
+    hand = {}
+    for r in rows:
+        if _is_hand(r):
+            hand.setdefault(span(r), r)
+    hand_keys = list(hand)
+
+    def overlaps(s):
+        return any(not (s[1] < h[0] or s[0] > h[1]) for h in hand_keys)
+
+    canonical = dict(hand)
+    for r in rows:                       # add LLM-only spans (e.g. contexts the human didn't tag)
+        if not _is_hand(r) and span(r) not in canonical and not overlaps(span(r)):
+            canonical[span(r)] = r
+    # an LLM row per span, for its rationale (stored as judgment; unused in UI)
+    llm_by_span = {}
+    for r in rows:
+        if not _is_hand(r):
+            llm_by_span.setdefault(span(r), r)
+
+    source_text = (SRC / f"{project}.txt").read_text(encoding="utf-8") if (SRC / f"{project}.txt").exists() else ""
+    source_lines = source_text.split("\n") if source_text else []
+
+    items = sorted(canonical.items())     # by (line_start, line_end)
+    rc = cc = 0
+    nodes, by_key = {}, {}
+    for key, row in items:
+        is_ctx = (row.get("kind") == "context")
+        if is_ctx:
+            cc += 1; nid = f"C{cc:02d}"; ntype = "CONTEXT"
+        else:
+            rc += 1; nid = f"R{rc:02d}"; ntype = (row.get("tag") or "UNKNOWN").upper()
+        text = row["rule_text"].strip()
+        node = {
+            "id": nid, "kind": "context" if is_ctx else "rule",
+            "title": clean_title(text), "emoji": "", "type": ntype,
+            "text": text, "paraphrase": text,
+            "judgment": (llm_by_span.get(key, {}) or {}).get("llm_rationale", ""),
+            "source": row.get("source_url", ""),
+            "verbatim": True, "source_lines": "", "line_start": None, "line_end": None,
+        }
+        loc = locate_in_source(text, source_lines, hint=key) if source_lines else None
+        s, e = loc if loc else key
+        node["line_start"], node["line_end"] = s, e
+        node["source_lines"] = f"{s}" if s == e else f"{s}–{e}"
+        nodes[nid] = node
+        by_key[key] = nid
+
+    # relations (from the LLM detection pass)
+    edges = []
+    rel_file = proj_dir / "relations.json"
+    if rel_file.exists():
+        for r in json.loads(rel_file.read_text(encoding="utf-8")):
+            s, t, ty = r.get("source"), r.get("target"), r.get("type")
+            if s in nodes and t in nodes and s != t:
+                edges.append({
+                    "id": f"{s}--{ty.replace(' ', '_')}--{t}",
+                    "source": s, "target": t, "type": ty,
+                    "rationale": r.get("rationale", ""),
+                })
+
+    src_meta = parse_frontmatter((proj_dir / "_SOURCE.md").read_text(encoding="utf-8"))[0] \
+        if (proj_dir / "_SOURCE.md").exists() else {}
+    return {
+        "project": project, "nodes": nodes, "edges": edges,
+        "source_text": source_text,
+        "source_name": src_meta.get("rule_file", f"{project} source"),
+        "source_url": (rows[0].get("source_url", "") if rows else ""),
+    }
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "rationales").mkdir(exist_ok=True)
     projects = []
     for d in sorted(VAULT.iterdir()):
-        if d.is_dir() and (d / "Rules").is_dir():
+        if not d.is_dir():
+            continue
+        if (d / "Rules").is_dir():                       # vault-note project
             data = build_project(d)
-            (OUT / f"{d.name}.json").write_text(json.dumps(data, indent=1, ensure_ascii=False))
-            mv = sum(1 for n in data["nodes"].values() if n.get("verbatim"))
-            reloc = build_project.last_match[2] if hasattr(build_project, "last_match") else 0
-            print(f"{d.name}: {len(data['nodes'])} nodes, {len(data['edges'])} edges "
-                  f"({mv}/{len(data['nodes'])} verbatim, {reloc} line refs corrected vs CSV)")
-            projects.append(d.name)
+        elif list(d.glob("rules_*.csv")):                # CSV-native project
+            data = build_project_from_csv(d)
+        else:
+            continue
+        (OUT / f"{d.name}.json").write_text(json.dumps(data, indent=1, ensure_ascii=False))
+        mv = sum(1 for n in data["nodes"].values() if n.get("verbatim"))
+        print(f"{d.name}: {len(data['nodes'])} nodes, {len(data['edges'])} edges ({mv} verbatim)")
+        projects.append(d.name)
     (OUT / "projects.json").write_text(json.dumps(projects))
 
 
