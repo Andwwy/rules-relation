@@ -1,1 +1,64 @@
-{"edges":{},"added":[]}
+{
+ "edges": {
+  "C01--support_(defines)--R01": {
+   "mark": "reject",
+   "updated_at": "2026-06-15T18:13:43+00:00",
+   "comment": "feel like this C01 is unnecessary... "
+  },
+  "C02--support_(motivates)--R13": {
+   "mark": "agree",
+   "updated_at": "2026-06-15T18:18:46+00:00",
+   "comment": ""
+  },
+  "C02--support_(motivates)--R08": {
+   "mark": "agree",
+   "updated_at": "2026-06-15T18:18:42+00:00"
+  },
+  "C02--support_(motivates)--R32": {
+   "mark": "agree",
+   "updated_at": "2026-06-15T18:18:53+00:00"
+  },
+  "R02--refinement--R01": {
+   "mark": "agree",
+   "updated_at": "2026-06-15T18:19:20+00:00"
+  },
+  "R03--support--R02": {
+   "comment": "not related",
+   "updated_at": "2026-06-15T18:21:28+00:00",
+   "mark": "reject"
+  },
+  "C03--support_(defines)--R03": {
+   "mark": "unsure",
+   "updated_at": "2026-06-15T18:22:20+00:00",
+   "comment": "condition/trigger"
+  },
+  "C03--support_(defines)--R04": {
+   "comment": "condition/trigger",
+   "updated_at": "2026-06-15T18:22:16+00:00",
+   "mark": "unsure"
+  },
+  "R04--support--R02": {
+   "mark": "reject",
+   "updated_at": "2026-06-15T18:22:36+00:00"
+  },
+  "R05--exception--R02": {
+   "mark": "agree",
+   "updated_at": "2026-06-15T18:22:40+00:00"
+  },
+  "R06--support--R02": {
+   "mark": "agree",
+   "updated_at": "2026-06-15T18:22:48+00:00"
+  },
+  "R05--exception--R06": {
+   "mark": "agree",
+   "updated_at": "2026-06-15T18:22:58+00:00"
+  },
+  "R10--refinement--R07": {
+   "mark": "unsure",
+   "updated_at": "2026-06-15T18:23:12+00:00"
+  }
+ },
+ "added": [],
+ "nodes": [],
+ "cleared": false
+}

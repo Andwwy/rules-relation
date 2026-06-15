@@ -28,7 +28,7 @@
   main { flex: 1; display: flex; min-height: 0; }
 
   /* ---------- top-main: source file (editor) ---------- */
-  #source-pane { flex: 1; display: flex; flex-direction: column; background: var(--panel); min-height: 60px; }
+  #source-pane { flex: 1; display: flex; flex-direction: column; background: var(--panel); min-height: 60px; position: relative; }
   .src-head { display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-bottom: 1px solid var(--border); font-size: 12.5px; font-weight: 600; flex-shrink: 0; }
   .src-head #src-name { color: var(--text); }
   .src-head #src-link { margin-left: auto; font-size: 11px; color: #6c5ce7; text-decoration: none; font-weight: 600; }
@@ -36,12 +36,40 @@
   .srcline { display: flex; padding: 0 12px; white-space: pre-wrap; }
   .srcline .lnno { flex-shrink: 0; width: 34px; text-align: right; padding-right: 12px; color: #c2c2c2; user-select: none; }
   .srcline .lntext { flex: 1; color: #555; word-break: break-word; }
-  /* letter-level highlight of the current edge's exact rule text:
-     SOURCE = red, TARGET = blue, overlap = purple */
+  /* letter-level highlight. Every extracted rule/context span = grey (atomic);
+     current edge SOURCE = red, TARGET = blue, overlap = purple. */
+  .lntext .hl-atom { background: #e6e6e6; border-radius: 2px; }
   .lntext .hl-src  { background: #ffd2d2; border-radius: 2px; box-shadow: inset 0 -1px 0 #e88; }
   .lntext .hl-tgt  { background: #d2e2ff; border-radius: 2px; box-shadow: inset 0 -1px 0 #88a; }
   .lntext .hl-both { background: #e9d6f4; border-radius: 2px; box-shadow: inset 0 -1px 0 #a8c; }
   .lntext .hl-src, .lntext .hl-tgt, .lntext .hl-both { color: #1a1a1a; }
+  .lntext [data-nid] { cursor: pointer; }
+  .lntext [data-nid].pick-src { outline: 2px solid #e05a4f; outline-offset: 1px; }
+  .lntext [data-nid].pick-tgt { outline: 2px solid #3b7dd8; outline-offset: 1px; }
+
+  /* selection bar (build a relation from two picked spans) */
+  #sel-bar { position: absolute; left: 50%; transform: translateX(-50%); bottom: 10px; z-index: 20;
+    display: none; align-items: center; gap: 10px; background: #2e2e2e; color: #fff;
+    padding: 8px 14px; border-radius: 10px; font-size: 12.5px; box-shadow: 0 4px 14px rgba(0,0,0,.25); }
+  #sel-bar.show { display: flex; }
+  #sel-bar .pill { padding: 2px 9px; border-radius: 8px; font-weight: 700; }
+  #sel-bar .pill.s { background: #e05a4f; } #sel-bar .pill.t { background: #3b7dd8; }
+  #sel-bar .pill.empty { background: #555; color: #bbb; font-weight: 400; }
+  #sel-bar button { background: #4a4a4a; color: #fff; border: none; border-radius: 7px; padding: 4px 10px; cursor: pointer; font-size: 12px; }
+  #sel-bar button:hover { background: #5d5d5d; }
+  #sel-bar button.go { background: #6c5ce7; font-weight: 600; }
+  #sel-bar .arrow { color: #aaa; }
+
+  /* add-rule popup (from a raw text selection) */
+  #add-rule-pop { position: absolute; z-index: 30; display: none; background: #fff; border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 6px 20px rgba(0,0,0,.18); padding: 8px; }
+  #add-rule-pop.show { display: block; }
+  #add-rule-pop .arp-label { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; margin: 2px 4px 6px; }
+  #add-rule-pop .arp-types { display: flex; gap: 5px; }
+  #add-rule-pop .arp-types button { border: 1px solid var(--border); background: #fff; border-radius: 7px; padding: 5px 9px; cursor: pointer; font-size: 11.5px; font-weight: 600; }
+  #add-rule-pop .arp-types button:hover { filter: brightness(0.97); }
+  .clear-btn { width: 100%; padding: 7px; border-radius: 7px; border: 1px solid #eccfcc; background: #fff; color: var(--reject); cursor: pointer; font-size: 12px; margin-top: 6px; }
+  .clear-btn:hover { background: #fbeeec; }
 
   /* ---------- bottom-main: edge inspector (panel) ---------- */
   #inspector { height: 44vh; flex-shrink: 0; overflow-y: auto; padding: 20px 28px; min-height: 80px; border-top: 1px solid var(--border); background: var(--bg); }
@@ -143,7 +171,10 @@
       <div class="filters" id="filters"></div>
     </div>
     <div id="edge-list"></div>
-    <div class="add-bar"><button onclick="openModal()">＋ Add relation</button></div>
+    <div class="add-bar">
+      <button onclick="openModal()">＋ Add relation</button>
+      <button class="clear-btn" id="clear-btn" onclick="clearAllRelations()">Clear all relations</button>
+    </div>
   </aside>
 
   <div class="divider divider-v" id="div-v" title="Drag to resize"></div>
@@ -152,9 +183,19 @@
     <section id="source-pane">
       <div class="src-head">
         <span id="src-name">source</span>
-        <a id="src-link" href="#" target="_blank" rel="noopener" title="Open source on GitHub">↗ source</a>
+        <span style="margin-left:auto;font-size:11px;color:#aaa;font-weight:400">click a grey span to pick · shift-click for 2nd · select text to add a rule</span>
+        <a id="src-link" href="#" target="_blank" rel="noopener" title="Open source on GitHub" style="margin-left:12px">↗ source</a>
       </div>
       <div id="src-body"></div>
+      <div id="sel-bar">
+        <span class="pill empty" id="sel-s">pick source</span>
+        <span class="arrow">→</span>
+        <span class="pill empty" id="sel-t">pick target</span>
+        <button onclick="swapSel()">⇄ swap</button>
+        <button class="go" onclick="addRelationFromSel()">⌘⏎ add</button>
+        <button onclick="clearSel()">✕</button>
+      </div>
+      <div id="add-rule-pop"><div class="arp-label">Add selection as…</div><div class="arp-types" id="arp-types"></div></div>
     </section>
 
     <div class="divider divider-h" id="div-h" title="Drag to resize"></div>
@@ -197,9 +238,11 @@ const REL_COLOR = {
 const MARK_ICON = { agree: '✓', unsure: '?', reject: '✗' };
 const MARK_COLOR = { agree: 'var(--agree)', unsure: 'var(--unsure)', reject: 'var(--reject)' };
 
-let projects = [], project = null, data = null, ann = {edges:{}, added:[]};
+let projects = [], project = null, data = null, ann = {edges:{}, added:[], nodes:[], cleared:false};
 let edges = [], idx = 0, typeFilter = 'all', markFilter = 'all';
 let saveTimer = null;
+let selSource = null, selTarget = null;     // node ids picked in the source pane
+const REL_TYPES = ['refinement','exception','support','support (defines)','support (exemplifies)','support (motivates)','checkpoint','conflict','duplication'];
 
 const $ = s => document.querySelector(s);
 
@@ -261,6 +304,8 @@ async function loadProject(p) {
     (await fetch('/api/data/'+p)).json(),
     (await fetch('/api/annotations/'+p)).json(),
   ]);
+  mergeUserNodes();
+  clearSel();
   rebuildEdges();
   idx = Math.min(parseInt(localStorage.getItem('rri-idx-'+p) || '0'), Math.max(edges.length-1, 0));
   typeFilter = 'all'; markFilter = 'all';
@@ -268,72 +313,93 @@ async function loadProject(p) {
   renderTabs(); renderAll();
 }
 
-// Render the raw source file once per project (line-numbered rows we can highlight).
+// Fold user-added nodes (created from text selections) into data.nodes so they
+// behave like any other node (selectable, linkable, grey-highlighted).
+function mergeUserNodes() {
+  for (const n of (ann.nodes || [])) {
+    data.nodes[n.id] = { ...n, paraphrase: n.text, verbatim: true, judgment: '' };
+  }
+}
+
+let srcLines = [], srcLineOffsets = [], srcCharOwner = [];
+
+// Render the source file and precompute, for each character, the smallest node
+// that covers it (so every extracted span shows grey and is clickable).
 function renderSourceShell() {
-  const name = data.source_name || project;
-  $('#src-name').textContent = name;
+  $('#src-name').textContent = data.source_name || project;
   const link = $('#src-link');
   if (data.source_url) { link.href = data.source_url; link.style.display = ''; }
   else link.style.display = 'none';
   const text = data.source_text || '';
-  if (!text) { $('#src-body').innerHTML = '<div class="empty-state" style="margin-top:30px">Source file not available.<br>Run <code>fetch_sources.py</code> then <code>build_data.py</code>.</div>'; return; }
+  if (!text) { $('#src-body').innerHTML = '<div class="empty-state" style="margin-top:30px">Source file not available.</div>'; return; }
   srcLines = text.split('\n');
   srcLineOffsets = []; let o = 0;
   for (const ln of srcLines) { srcLineOffsets.push(o); o += ln.length + 1; }
+  // smallest covering node per char → grey "atomic" highlight + click target
+  srcCharOwner = new Array(text.length).fill(null);
+  const sized = Object.values(data.nodes).filter(n => n.char_start != null)
+    .map(n => [n.char_start, n.char_end, n.id]).sort((a, b) => (b[1]-b[0]) - (a[1]-a[0]));
+  for (const [s, e, id] of sized) for (let c = s; c < e && c < text.length; c++) srcCharOwner[c] = id;
   $('#src-body').innerHTML = srcLines.map((ln, i) =>
     `<div class="srcline" id="srcl-${i+1}"><span class="lnno">${i+1}</span><span class="lntext">${esc(ln) || ' '}</span></div>`).join('');
-  hlLines = new Set();
+  paintSource(false);
 }
 
-// Letter-level highlight: paint exactly each endpoint's character span — SOURCE
-// red, TARGET blue, overlap purple — splitting each affected line into segments.
-let srcLines = [], srcLineOffsets = [], hlLines = new Set();
+// The pair currently driving the highlight: the active selection if any, else
+// the inspected edge's endpoints.
+function hlPair() {
+  if (selSource || selTarget) return [selSource, selTarget];
+  const e = filteredEdges()[idx];
+  return e ? [e.source, e.target] : [null, null];
+}
 
-function highlightSource(e) {
-  const ranges = [];
-  for (const [node, flag] of [[data.nodes[e.source], 1], [data.nodes[e.target], 2]]) {
-    if (node && node.char_start != null) ranges.push([node.char_start, node.char_end, flag]);
-  }
-  // reset previously-highlighted lines to plain text (line i is element srcl-(i+1))
-  for (const i of hlLines) { const el = $('#srcl-' + (i + 1)); if (el) el.querySelector('.lntext').textContent = srcLines[i] || ' '; }
-  hlLines = new Set();
-  if (!ranges.length) return;
-
-  const lo = Math.min(...ranges.map(r => r[0])), hi = Math.max(...ranges.map(r => r[1]));
-  let firstLine = null;
+// Repaint every line: grey for atomic spans, red/blue for the current pair.
+function paintSource(scroll) {
+  if (!srcLines.length) return;
+  const [sId, tId] = hlPair();
+  const sN = sId && data.nodes[sId], tN = tId && data.nodes[tId];
+  const sR = sN && sN.char_start != null ? [sN.char_start, sN.char_end] : null;
+  const tR = tN && tN.char_start != null ? [tN.char_start, tN.char_end] : null;
   for (let i = 0; i < srcLines.length; i++) {
-    const start = srcLineOffsets[i], end = start + srcLines[i].length;
-    if (end < lo || start > hi) continue;                 // line outside all ranges
-    const html = segmentLine(i, ranges);
-    if (html === null) continue;                          // no chars highlighted on this line
-    const el = $('#srcl-' + (i + 1)); if (!el) continue;
-    el.querySelector('.lntext').innerHTML = html;
-    hlLines.add(i);
-    if (firstLine === null) firstLine = i;
+    const el = $('#srcl-' + (i + 1)); if (el) el.querySelector('.lntext').innerHTML = segmentLine(i, sR, tR);
   }
-  if (firstLine !== null) { const el = $('#srcl-' + (firstLine + 1)); if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+  if (scroll) {
+    const r = [sR, tR].filter(Boolean);
+    if (r.length) {
+      const firstChar = Math.min(...r.map(x => x[0]));
+      let ln = srcLineOffsets.findIndex((off, i) => firstChar < off + srcLines[i].length + 1);
+      if (ln < 0) ln = 0;
+      const el = $('#srcl-' + (ln + 1)); if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  }
 }
 
-function segmentLine(i, ranges) {
+function segmentLine(i, sR, tR) {
   const txt = srcLines[i], base = srcLineOffsets[i];
-  const flags = new Array(txt.length).fill(0);
-  let any = false;
-  for (const [s, en, f] of ranges) {
-    for (let c = Math.max(s, base); c < Math.min(en, base + txt.length); c++) { flags[c - base] |= f; any = true; }
-  }
-  if (!any) return null;
+  if (!txt.length) return ' ';
   let html = '', j = 0;
+  const klass = (g) => {
+    const inS = sR && g >= sR[0] && g < sR[1], inT = tR && g >= tR[0] && g < tR[1];
+    if (inS && inT) return 'hl-both';
+    if (inS) return 'hl-src';
+    if (inT) return 'hl-tgt';
+    return srcCharOwner[g] ? 'hl-atom' : '';
+  };
   while (j < txt.length) {
-    const f = flags[j]; let k = j; while (k < txt.length && flags[k] === f) k++;
+    const g0 = base + j, cls = klass(g0), owner = srcCharOwner[g0];
+    let k = j + 1;
+    while (k < txt.length && klass(base + k) === cls && srcCharOwner[base + k] === owner) k++;
     const seg = esc(txt.slice(j, k));
-    html += f === 0 ? seg : `<span class="${f === 1 ? 'hl-src' : f === 2 ? 'hl-tgt' : 'hl-both'}">${seg}</span>`;
+    if (!cls && !owner) html += seg;
+    else html += `<span class="${cls}"${owner ? ` data-nid="${owner}"` : ''}>${seg}</span>`;
     j = k;
   }
-  return html;
+  return html || ' ';
 }
 
 function rebuildEdges() {
-  edges = [...data.edges, ...(ann.added||[])];
+  const detected = ann.cleared ? [] : data.edges;
+  edges = [...detected, ...(ann.added||[])];
 }
 
 function relBase(t) { return t.startsWith('support') ? 'support' : t; }
@@ -407,13 +473,17 @@ function renderInspector() {
       <span class="hint">←/→ navigate · 1 agree · 2 unsure · 3 reject</span>
     </div>`;
 
-  highlightSource(e);
+  paintSource(true);
 }
 
 function renderSidebar() {
   const list = filteredEdges();
   $('#sb-title').textContent = project;
   $('#sb-count').textContent = list.length + ' edges';
+
+  const clr = $('#clear-btn');
+  if (ann.cleared) { clr.textContent = 'Restore detected relations'; clr.style.color = '#6c5ce7'; clr.style.borderColor = '#cfc9f2'; clr.onclick = restoreRelations; }
+  else { clr.textContent = 'Clear all relations'; clr.style.color = ''; clr.style.borderColor = ''; clr.onclick = clearAllRelations; }
 
   const baseTypes = ['all', ...new Set(edges.map(e => relBase(e.type)))];
   $('#filters').innerHTML = baseTypes.map(t => {
@@ -505,13 +575,15 @@ function queueComment(eid) {
 function flushComment() { clearTimeout(saveTimer); saveTimer = null; }
 
 /* ----- add edge modal ----- */
-function openModal() {
+function openModal(srcId, tgtId) {
   const opts = Object.values(data.nodes)
     .sort((a,b) => a.id.localeCompare(b.id, undefined, {numeric:true}))
     .map(n => `<option value="${n.id}">${n.id} — ${esc(n.title)}</option>`).join('');
   $('#m-source').innerHTML = opts; $('#m-target').innerHTML = opts;
   const cur = filteredEdges()[idx];
-  if (cur) { $('#m-source').value = cur.source; $('#m-target').value = cur.target; }
+  const s = srcId || (cur && cur.source), t = tgtId || (cur && cur.target);
+  if (s) $('#m-source').value = s;
+  if (t) $('#m-target').value = t;
   $('#m-rationale').value = '';
   $('#modal').classList.add('open');
 }
@@ -522,6 +594,7 @@ async function submitEdge() {
   if (e.source === e.target) { alert('Source and target are the same node.'); return; }
   await post({action:'add_edge', edge: e});
   closeModal();
+  clearSel();
   typeFilter = 'all'; markFilter = 'all';
   idx = filteredEdges().length - 1;
   renderAll();
@@ -533,11 +606,105 @@ async function removeAdded(eid) {
   renderAll();
 }
 
+/* ----- pick two spans → relation ----- */
+function selectNode(nid, shift) {
+  if (!nid) return;
+  if (!shift) {                       // plain click sets the source, clears target
+    selSource = nid; selTarget = null;
+  } else {                            // shift-click sets/replaces the target
+    if (!selSource) selSource = nid;
+    else if (nid !== selSource) selTarget = nid;
+  }
+  renderSelBar(); paintSource(false);
+}
+function swapSel() { [selSource, selTarget] = [selTarget, selSource]; renderSelBar(); paintSource(false); }
+function clearSel() { selSource = selTarget = null; renderSelBar(); if (srcLines.length) paintSource(false); }
+function pill(id, cls, empty) {
+  const el = $(id);
+  if (!cls) { el.className = 'pill empty'; el.textContent = empty; }
+  else { el.className = 'pill ' + cls; el.textContent = data.nodes[cls === 's' ? selSource : selTarget].id; }
+}
+function renderSelBar() {
+  const bar = $('#sel-bar');
+  if (!selSource && !selTarget) { bar.classList.remove('show'); return; }
+  bar.classList.add('show');
+  pill('#sel-s', selSource ? 's' : '', 'pick source');
+  pill('#sel-t', selTarget ? 't' : '', 'shift-click target');
+}
+function addRelationFromSel() {
+  if (!selSource || !selTarget) { setToast && 0; return; }
+  openModal(selSource, selTarget);
+}
+
+/* ----- select raw text → add a rule/context ----- */
+let pendingSel = null;   // {text, char_start, char_end, line_start, line_end, source_lines}
+function onSrcMouseUp() {
+  const sel = window.getSelection();
+  const txt = sel && sel.toString();
+  if (!txt || !txt.trim()) { hideAddRulePop(); return; }
+  const range = sel.getRangeAt(0);
+  const startLine = range.startContainer.parentElement && range.startContainer.parentElement.closest('.srcline');
+  const endLine = range.endContainer.parentElement && range.endContainer.parentElement.closest('.srcline');
+  if (!startLine || startLine !== endLine) { hideAddRulePop(); return; }   // keep it to one line
+  const li = +startLine.id.split('-')[1] - 1;
+  const lntext = startLine.querySelector('.lntext');
+  const pre = document.createRange(); pre.selectNodeContents(lntext); pre.setEnd(range.startContainer, range.startOffset);
+  const start = pre.toString().length;
+  pendingSel = {
+    text: txt.trim(),
+    char_start: srcLineOffsets[li] + start, char_end: srcLineOffsets[li] + start + txt.length,
+    line_start: li + 1, line_end: li + 1, source_lines: String(li + 1),
+  };
+  const r = range.getBoundingClientRect(), pane = $('#source-pane').getBoundingClientRect();
+  const pop = $('#add-rule-pop');
+  pop.style.left = Math.max(6, r.left - pane.left) + 'px';
+  pop.style.top = (r.bottom - pane.top + 6) + 'px';
+  pop.classList.add('show');
+}
+function hideAddRulePop() { $('#add-rule-pop').classList.remove('show'); pendingSel = null; }
+async function addNodeFromSelection(type) {
+  if (!pendingSel) return;
+  const kind = type === 'CONTEXT' ? 'context' : 'rule';
+  await post({ action: 'add_node', node: { ...pendingSel, type, kind, title: pendingSel.text } });
+  mergeUserNodes();
+  hideAddRulePop();
+  window.getSelection().removeAllRanges();
+  renderSourceShell();          // repaint with the new grey span
+  setToast(`Added ${type} from selection`);
+}
+
+/* ----- clear / restore relations ----- */
+async function clearAllRelations() {
+  if (!confirm('Clear ALL relations for this file (detected + added)? This cannot be undone except by re-running detection.')) return;
+  await post({ action: 'clear_relations' });
+  clearSel(); idx = 0; renderAll();
+}
+async function restoreRelations() { await post({ action: 'restore_relations' }); idx = 0; renderAll(); }
+
+function setToast(msg) {
+  const el = $('#savestate'); if (el) el.textContent = msg;
+}
+
+// source-pane interactions
+$('#src-body').addEventListener('click', ev => {
+  if (window.getSelection().toString().trim()) return;       // a text selection, not a node pick
+  const span = ev.target.closest('[data-nid]');
+  if (span) selectNode(span.getAttribute('data-nid'), ev.shiftKey);
+});
+$('#src-body').addEventListener('mouseup', () => setTimeout(onSrcMouseUp, 0));
+
 document.addEventListener('keydown', ev => {
+  const modalOpen = $('#modal').classList.contains('open');
+  if ((ev.metaKey || ev.ctrlKey) && ev.key === 'Enter') {   // ⌘⏎ add relation from picks
+    if (modalOpen) { ev.preventDefault(); submitEdge(); }
+    else if (selSource && selTarget) { ev.preventDefault(); addRelationFromSel(); }
+    return;
+  }
   if (ev.target.tagName === 'TEXTAREA' || ev.target.tagName === 'SELECT' || $('#modal').classList.contains('open')) {
     if (ev.key === 'Escape') closeModal();
     return;
   }
+  if (ev.key === 'Escape') { clearSel(); hideAddRulePop(); return; }
   const e = filteredEdges()[idx];
   if (ev.key === 'ArrowRight' || ev.key === 'j') step(1);
   else if (ev.key === 'ArrowLeft' || ev.key === 'k') step(-1);
@@ -545,6 +712,10 @@ document.addEventListener('keydown', ev => {
   else if (e && ev.key === '2') setMark(e.id, 'unsure');
   else if (e && ev.key === '3') setMark(e.id, 'reject');
 });
+
+// populate add-rule type buttons once
+$('#arp-types').innerHTML = [['PROHIBITION','🚫'],['PRESCRIPTION','✅'],['PREFERENCE','💡'],['PERMISSION','🔓'],['CONTEXT','🗒']]
+  .map(([t,ic]) => `<button style="color:${TYPE_COLOR[t]}" onclick="addNodeFromSelection('${t}')">${ic} ${t[0]+t.slice(1).toLowerCase()}</button>`).join('');
 
 init();
 </script>

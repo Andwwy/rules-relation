@@ -29,8 +29,14 @@ SAFE = re.compile(r"^[\w.-]+$")
 def load_ann(project):
     f = ANN / f"{project}.json"
     if f.exists():
-        return json.loads(f.read_text(encoding="utf-8"))
-    return {"edges": {}, "added": []}
+        ann = json.loads(f.read_text(encoding="utf-8"))
+    else:
+        ann = {}
+    ann.setdefault("edges", {})          # edge_id -> {mark, comment}
+    ann.setdefault("added", [])          # user-added relations
+    ann.setdefault("nodes", [])          # user-added rules/contexts (from text selection)
+    ann.setdefault("cleared", False)     # if true, detected relations are hidden
+    return ann
 
 
 def save_ann(project, data):
@@ -121,6 +127,29 @@ class Handler(BaseHTTPRequestHandler):
             elif action == "remove_added":
                 ann["added"] = [a for a in ann["added"] if a["id"] != body["edge_id"]]
                 ann["edges"].pop(body["edge_id"], None)
+            elif action == "add_node":
+                n = body["node"]
+                nid = "U%d" % (max([0] + [int(x["id"][1:]) for x in ann["nodes"] if x["id"][1:].isdigit()]) + 1)
+                ann["nodes"].append({
+                    "id": nid, "kind": n.get("kind", "rule"),
+                    "type": (n.get("type") or "UNKNOWN").upper(),
+                    "title": n.get("title", n.get("text", ""))[:90],
+                    "text": n.get("text", ""),
+                    "line_start": n.get("line_start"), "line_end": n.get("line_end"),
+                    "char_start": n.get("char_start"), "char_end": n.get("char_end"),
+                    "source_lines": n.get("source_lines", ""),
+                    "user_added": True, "created_at": now(),
+                })
+            elif action == "remove_node":
+                ann["nodes"] = [x for x in ann["nodes"] if x["id"] != body["node_id"]]
+                ann["added"] = [a for a in ann["added"]
+                               if a["source"] != body["node_id"] and a["target"] != body["node_id"]]
+            elif action == "clear_relations":
+                ann["edges"] = {}
+                ann["added"] = []
+                ann["cleared"] = True
+            elif action == "restore_relations":
+                ann["cleared"] = False
             else:
                 return self._send(400, {"error": "unknown action"})
             save_ann(name, ann)
