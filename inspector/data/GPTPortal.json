@@ -13,8 +13,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Review, refactor as needed, and ensure all code is working, fully-functional, well-designed, modular, responsive, and ready for production.",
-   "judgment": "The umbrella quality mandate; every coding-standards rule ultimately refines this. Very broad as written."
+   "text": "You will review, refactor as needed, and ensure all of the code is working, fully-functional, well-designed, modular, responsive, and ready for production.",
+   "judgment": "The umbrella quality mandate; every coding-standards rule ultimately refines this. Very broad as written.",
+   "paraphrase": "Review, refactor as needed, and ensure all code is working, fully-functional, well-designed, modular, responsive, and ready for production.",
+   "verbatim": true,
+   "source_lines": "10"
   },
   "R02": {
    "id": "R02",
@@ -29,7 +32,10 @@
    "agreement": "disagree",
    "source": "RULES.md",
    "text": "You always follow best practices.",
-   "judgment": "Annotator: 'what are best practices? looks like a parent rule.' Exactly — an unfalsifiable slogan whose meaning is entirely delegated to the concrete rules below."
+   "judgment": "Annotator: 'what are best practices? looks like a parent rule.' Exactly — an unfalsifiable slogan whose meaning is entirely delegated to the concrete rules below.",
+   "paraphrase": "You always follow best practices.",
+   "verbatim": true,
+   "source_lines": "14"
   },
   "R03": {
    "id": "R03",
@@ -44,7 +50,10 @@
    "agreement": "disagree",
    "source": "RULES.md",
    "text": "First think very deeply and thoroughly step-by-step - describe your careful and systematic plan for what to build in great detail.",
-   "judgment": "Plan-before-build duty. Annotator wants examples; vague but clearly prescriptive. Supports the Plan phase of the workflow."
+   "judgment": "Plan-before-build duty. Annotator wants examples; vague but clearly prescriptive. Supports the Plan phase of the workflow.",
+   "paraphrase": "First think very deeply and thoroughly step-by-step - describe your careful and systematic plan for what to build in great detail.",
+   "verbatim": true,
+   "source_lines": "15"
   },
   "R04": {
    "id": "R04",
@@ -58,8 +67,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Core Workflow: Research -> Plan -> Implement -> Validate.",
-   "judgment": "The parent process. Hand tagged PREFERENCE, but it is the spine the four phase-rules hang off; the phases support it."
+   "text": "### Core Workflow: Research → Plan → Implement → Validate",
+   "judgment": "The parent process. Hand tagged PREFERENCE, but it is the spine the four phase-rules hang off; the phases support it.",
+   "paraphrase": "Core Workflow: Research -> Plan -> Implement -> Validate.",
+   "verbatim": true,
+   "source_lines": "17–18"
   },
   "R05": {
    "id": "R05",
@@ -73,8 +85,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Start every feature with: 'Let me research the codebase and create a plan before implementing.'",
-   "judgment": "Entry trigger for the workflow; in chat becomes asking clarifying questions first."
+   "text": "Start every feature with: \"Let me research the codebase and create a plan before implementing.\"",
+   "judgment": "Entry trigger for the workflow; in chat becomes asking clarifying questions first.",
+   "paraphrase": "Start every feature with: 'Let me research the codebase and create a plan before implementing.'",
+   "verbatim": true,
+   "source_lines": "19"
   },
   "R06": {
    "id": "R06",
@@ -88,8 +103,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Research - understand existing patterns and architecture through systematic file exploration.",
-   "judgment": "Phase 1 rule; enables the workflow."
+   "text": "Research - Understand existing patterns and architecture through systematic file exploration",
+   "judgment": "Phase 1 rule; enables the workflow.",
+   "paraphrase": "Research - understand existing patterns and architecture through systematic file exploration.",
+   "verbatim": true,
+   "source_lines": "20"
   },
   "R07": {
    "id": "R07",
@@ -103,8 +121,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Plan - propose approach with architectural reasoning and verify with me if uncertain.",
-   "judgment": "Phase 2 rule; the 'verify if uncertain' clause links it to the collaboration/uncertainty rules."
+   "text": "Plan - Propose approach with architectural reasoning and verify with me if uncertain",
+   "judgment": "Phase 2 rule; the 'verify if uncertain' clause links it to the collaboration/uncertainty rules.",
+   "paraphrase": "Plan - propose approach with architectural reasoning and verify with me if uncertain.",
+   "verbatim": true,
+   "source_lines": "21"
   },
   "R08": {
    "id": "R08",
@@ -118,8 +139,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Implement - build complete, production-ready solutions with tests and error handling.",
-   "judgment": "Phase 3 rule; a domain instance of R01's production-ready mandate."
+   "text": "Implement - Build complete, production-ready solutions with tests and error handling",
+   "judgment": "Phase 3 rule; a domain instance of R01's production-ready mandate.",
+   "paraphrase": "Implement - build complete, production-ready solutions with tests and error handling.",
+   "verbatim": true,
+   "source_lines": "22"
   },
   "R09": {
    "id": "R09",
@@ -133,8 +157,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "RULES.md",
-   "text": "Validate - ALWAYS run formatters, linters, and tests after implementation.",
-   "judgment": "Phase 4 rule and a checkpoint on the implement phase — a mandated verify-moment with no new build obligation."
+   "text": "Validate - ALWAYS run formatters, linters, and tests after implementation",
+   "judgment": "Phase 4 rule and a checkpoint on the implement phase — a mandated verify-moment with no new build obligation.",
+   "paraphrase": "Validate - ALWAYS run formatters, linters, and tests after implementation.",
+   "verbatim": true,
+   "source_lines": "23"
   },
   "R10": {
    "id": "R10",
@@ -148,8 +175,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "If we fail to achieve our goal within three tries, stop, step back, and reflect on precisely what information you need from me.",
-   "judgment": "A bounded STOP-and-ask rule — the rare concrete trigger (three tries) in an otherwise self-assessed file."
+   "text": "If we fail to achieve our goal within three tries (whether due to error messages or other issues), stop, step back, and reflect on precisely what information you need from me to best assist.",
+   "judgment": "A bounded STOP-and-ask rule — the rare concrete trigger (three tries) in an otherwise self-assessed file.",
+   "paraphrase": "If we fail to achieve our goal within three tries, stop, step back, and reflect on precisely what information you need from me.",
+   "verbatim": true,
+   "source_lines": "29"
   },
   "R11": {
    "id": "R11",
@@ -164,7 +194,10 @@
    "agreement": "disagree",
    "source": "RULES.md",
    "text": "Rather than blindly reaching for solutions, intelligently gather information - ask for code output, files, context, or whatever else is necessary.",
-   "judgment": "The positive method behind R10 — how you spend the stop."
+   "judgment": "The positive method behind R10 — how you spend the stop.",
+   "paraphrase": "Rather than blindly reaching for solutions, intelligently gather information - ask for code output, files, context, or whatever else is necessary.",
+   "verbatim": true,
+   "source_lines": "29"
   },
   "R12": {
    "id": "R12",
@@ -178,8 +211,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Attempt one logical fix per error before asking for guidance.",
-   "judgment": "Concrete debugging cadence; bounds the trial-and-error loop."
+   "text": "Attempt one logical fix per error before asking for guidance",
+   "judgment": "Concrete debugging cadence; bounds the trial-and-error loop.",
+   "paraphrase": "Attempt one logical fix per error before asking for guidance.",
+   "verbatim": true,
+   "source_lines": "33"
   },
   "R13": {
    "id": "R13",
@@ -193,8 +229,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Add and verify logs to validate assumptions.",
-   "judgment": "Evidence rule; refined by the 5-7-sources procedure R14."
+   "text": "Add and verify logs to validate assumptions",
+   "judgment": "Evidence rule; refined by the 5-7-sources procedure R14.",
+   "paraphrase": "Add and verify logs to validate assumptions.",
+   "verbatim": true,
+   "source_lines": "34"
   },
   "R14": {
    "id": "R14",
@@ -208,8 +247,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "When stuck: reflect on 5-7 possible sources, distill to 1-2 most likely, then add logs to validate before implementing the fix.",
-   "judgment": "A concrete procedure operationalizing R13's 'validate assumptions'."
+   "text": "When stuck: \"Reflect on 5-7 different possible sources of the problem, distill those down to 1-2 most likely sources, and then add logs to validate your assumptions before implementing the actual code fix\"",
+   "judgment": "A concrete procedure operationalizing R13's 'validate assumptions'.",
+   "paraphrase": "When stuck: reflect on 5-7 possible sources, distill to 1-2 most likely, then add logs to validate before implementing the fix.",
+   "verbatim": true,
+   "source_lines": "34"
   },
   "R15": {
    "id": "R15",
@@ -223,8 +265,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "If first try fails, show and explain error outputs.",
-   "judgment": "Transparency duty inside the debugging loop."
+   "text": "If first try fails, show and explain error outputs",
+   "judgment": "Transparency duty inside the debugging loop.",
+   "paraphrase": "If first try fails, show and explain error outputs.",
+   "verbatim": true,
+   "source_lines": "35"
   },
   "R16": {
    "id": "R16",
@@ -238,8 +283,11 @@
    "llm_tag": "—",
    "agreement": "hand-only",
    "source": "RULES.md",
-   "text": "Detailed pseudocode before implementation; root cause analysis over quick fixes; extensive planning with systematic methodology.",
-   "judgment": "Hand-tagged PREFERENCE ('feels softer, super vague'). Restates the plan-first and root-cause themes; overlaps R03 and R36."
+   "text": "### Step-by-Step Planning\n- Detailed pseudocode before implementation\n- Root cause analysis over quick fixes\n- Extensive planning before action with systematic methodology",
+   "judgment": "Hand-tagged PREFERENCE ('feels softer, super vague'). Restates the plan-first and root-cause themes; overlaps R03 and R36.",
+   "paraphrase": "Detailed pseudocode before implementation; root cause analysis over quick fixes; extensive planning with systematic methodology.",
+   "verbatim": true,
+   "source_lines": "38–42"
   },
   "R17": {
    "id": "R17",
@@ -253,8 +301,11 @@
    "llm_tag": "—",
    "agreement": "hand-only",
    "source": "RULES.md",
-   "text": "Professional yet direct tone, content-first with minimal fluff.",
-   "judgment": "Style preference; parent for the directness rules."
+   "text": "- Professional yet direct tone, content-first with minimal fluff",
+   "judgment": "Style preference; parent for the directness rules.",
+   "paraphrase": "Professional yet direct tone, content-first with minimal fluff.",
+   "verbatim": true,
+   "source_lines": "46–47"
   },
   "R18": {
    "id": "R18",
@@ -268,8 +319,11 @@
    "llm_tag": "—",
    "agreement": "hand-only",
    "source": "RULES.md",
-   "text": "Structured responses with clear formatting.",
-   "judgment": "Style preference; loosely related to the response-format templates."
+   "text": "- Structured responses with clear formatting",
+   "judgment": "Style preference; loosely related to the response-format templates.",
+   "paraphrase": "Structured responses with clear formatting.",
+   "verbatim": true,
+   "source_lines": "47–48"
   },
   "R19": {
    "id": "R19",
@@ -283,8 +337,11 @@
    "llm_tag": "—",
    "agreement": "hand-only",
    "source": "RULES.md",
-   "text": "Support learning process and treat mistakes as growth opportunities.",
-   "judgment": "Soft, near-unenforceable values statement."
+   "text": "- Support learning process and treat mistakes as growth opportunities",
+   "judgment": "Soft, near-unenforceable values statement.",
+   "paraphrase": "Support learning process and treat mistakes as growth opportunities.",
+   "verbatim": true,
+   "source_lines": "48–49"
   },
   "R20": {
    "id": "R20",
@@ -298,8 +355,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Directly point out mistakes in reasoning rather than softening corrections.",
-   "judgment": "Concretizes the 'direct tone' preference into an actionable duty."
+   "text": "Directly point out mistakes in reasoning rather than softening corrections",
+   "judgment": "Concretizes the 'direct tone' preference into an actionable duty.",
+   "paraphrase": "Directly point out mistakes in reasoning rather than softening corrections.",
+   "verbatim": true,
+   "source_lines": "49"
   },
   "R21": {
    "id": "R21",
@@ -313,8 +373,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Don't end with opt-in follow-up suggestions unless specifically relevant.",
-   "judgment": "Clear prohibition; conflicts with the end-template R23, which mandates a 'Next Task' suggestions block."
+   "text": "Don't end with opt-in follow-up suggestions unless specifically relevant",
+   "judgment": "Clear prohibition; conflicts with the end-template R23, which mandates a 'Next Task' suggestions block.",
+   "paraphrase": "Don't end with opt-in follow-up suggestions unless specifically relevant.",
+   "verbatim": true,
+   "source_lines": "50"
   },
   "R22": {
    "id": "R22",
@@ -329,7 +392,10 @@
    "agreement": "hand-only",
    "source": "RULES.md",
    "text": "Start responses with: Language > Specialist / Includes / Requirements / ## Plan ... (unless answering a quick question).",
-   "judgment": "A concrete output-format mandate (annotator: 'this all feels like a rule!'). Grounded by the template context."
+   "judgment": "A concrete output-format mandate (annotator: 'this all feels like a rule!'). Grounded by the template context.",
+   "paraphrase": "Start responses with: Language > Specialist / Includes / Requirements / ## Plan ... (unless answering a quick question).",
+   "verbatim": false,
+   "source_lines": ""
   },
   "R23": {
    "id": "R23",
@@ -344,7 +410,10 @@
    "agreement": "hand-only",
    "source": "RULES.md",
    "text": "End responses with: History / Source Tree (with status emojis) / Next Task.",
-   "judgment": "Output-format mandate hand-tagged PREFERENCE. Its 'Next Task suggestions' clause directly conflicts with R21."
+   "judgment": "Output-format mandate hand-tagged PREFERENCE. Its 'Next Task suggestions' clause directly conflicts with R21.",
+   "paraphrase": "End responses with: History / Source Tree (with status emojis) / Next Task.",
+   "verbatim": false,
+   "source_lines": ""
   },
   "R24": {
    "id": "R24",
@@ -358,8 +427,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Code must start with path/filename as a one-line comment.",
-   "judgment": "Mechanically checkable formatting rule."
+   "text": "Code must start with path/filename as a one-line comment",
+   "judgment": "Mechanically checkable formatting rule.",
+   "paraphrase": "Code must start with path/filename as a one-line comment.",
+   "verbatim": true,
+   "source_lines": "85"
   },
   "R25": {
    "id": "R25",
@@ -373,8 +445,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Comments MUST describe purpose, not effect.",
-   "judgment": "Clear comment-quality rule; pairs with the small-functions rule R27."
+   "text": "Comments MUST describe purpose, not effect",
+   "judgment": "Clear comment-quality rule; pairs with the small-functions rule R27.",
+   "paraphrase": "Comments MUST describe purpose, not effect.",
+   "verbatim": true,
+   "source_lines": "86"
   },
   "R26": {
    "id": "R26",
@@ -388,8 +463,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Prioritize modularity, DRY, performance, and security.",
-   "judgment": "The architecture anchor — the most-refined node in this file; many concrete rules below operationalize one of its four pillars."
+   "text": "Prioritize modularity, DRY, performance, and security",
+   "judgment": "The architecture anchor — the most-refined node in this file; many concrete rules below operationalize one of its four pillars.",
+   "paraphrase": "Prioritize modularity, DRY, performance, and security.",
+   "verbatim": true,
+   "source_lines": "87"
   },
   "R27": {
    "id": "R27",
@@ -403,8 +481,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Keep functions small and focused - if you need comments to explain sections, split into functions.",
-   "judgment": "Concretizes R26's modularity and connects to the comment policy R25."
+   "text": "Keep functions small and focused - if you need comments to explain sections, split into functions",
+   "judgment": "Concretizes R26's modularity and connects to the comment policy R25.",
+   "paraphrase": "Keep functions small and focused - if you need comments to explain sections, split into functions.",
+   "verbatim": true,
+   "source_lines": "88"
   },
   "R28": {
    "id": "R28",
@@ -418,8 +499,11 @@
    "llm_tag": "PREFERENCE",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Prefer explicit over implicit: clear function names over clever abstractions.",
-   "judgment": "Readability preference."
+   "text": "Prefer explicit over implicit: clear function names over clever abstractions",
+   "judgment": "Readability preference.",
+   "paraphrase": "Prefer explicit over implicit: clear function names over clever abstractions.",
+   "verbatim": true,
+   "source_lines": "89"
   },
   "R29": {
    "id": "R29",
@@ -433,8 +517,11 @@
    "llm_tag": "PREFERENCE",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Early returns to reduce nesting - flat code is readable code.",
-   "judgment": "Concrete readability preference."
+   "text": "Early returns to reduce nesting - flat code is readable code",
+   "judgment": "Concrete readability preference.",
+   "paraphrase": "Early returns to reduce nesting - flat code is readable code.",
+   "verbatim": true,
+   "source_lines": "90"
   },
   "R30": {
    "id": "R30",
@@ -448,8 +535,11 @@
    "llm_tag": "—",
    "agreement": "hand-only",
    "source": "RULES.md",
-   "text": "Automatically scale verbosity: simple tasks concise; medium moderate; complex verbose with reasoning and alternatives.",
-   "judgment": "Adaptive style preference."
+   "text": "### Verbosity Auto-Scaling\nAutomatically scale verbosity based on task complexity:\n- Simple tasks: Concise, direct solutions\n- Medium complexity: Moderate explanation with key decisions\n- Complex tasks: Verbose with extracted functions, architectural reasoning, and alternatives",
+   "judgment": "Adaptive style preference.",
+   "paraphrase": "Automatically scale verbosity: simple tasks concise; medium moderate; complex verbose with reasoning and alternatives.",
+   "verbatim": true,
+   "source_lines": "92–96"
   },
   "R31": {
    "id": "R31",
@@ -464,7 +554,10 @@
    "agreement": "disagree",
    "source": "RULES.md",
    "text": "Refactor repetitive logic into reusable functions or shared modules.",
-   "judgment": "Concretizes R26's DRY pillar."
+   "judgment": "Concretizes R26's DRY pillar.",
+   "paraphrase": "Refactor repetitive logic into reusable functions or shared modules.",
+   "verbatim": true,
+   "source_lines": "101"
   },
   "R32": {
    "id": "R32",
@@ -479,7 +572,10 @@
    "agreement": "disagree",
    "source": "RULES.md",
    "text": "Code must be clear, minimal, and easy to reason about. Clever hacks or obscure optimizations are discouraged.",
-   "judgment": "Simplicity rule; overlaps the explicit-naming preference."
+   "judgment": "Simplicity rule; overlaps the explicit-naming preference.",
+   "paraphrase": "Code must be clear, minimal, and easy to reason about. Clever hacks or obscure optimizations are discouraged.",
+   "verbatim": true,
+   "source_lines": "104"
   },
   "R33": {
    "id": "R33",
@@ -494,7 +590,10 @@
    "agreement": "disagree",
    "source": "RULES.md",
    "text": "Each function or module must do one thing well.",
-   "judgment": "Single-responsibility — a concrete facet of R26 modularity."
+   "judgment": "Single-responsibility — a concrete facet of R26 modularity.",
+   "paraphrase": "Each function or module must do one thing well.",
+   "verbatim": true,
+   "source_lines": "107"
   },
   "R34": {
    "id": "R34",
@@ -509,7 +608,10 @@
    "agreement": "disagree",
    "source": "RULES.md",
    "text": "UI logic, state management, and backend comms should be modular and decoupled. Avoid mixing layers.",
-   "judgment": "Layer-separation rule refining R26."
+   "judgment": "Layer-separation rule refining R26.",
+   "paraphrase": "UI logic, state management, and backend comms should be modular and decoupled. Avoid mixing layers.",
+   "verbatim": true,
+   "source_lines": "110"
   },
   "R35": {
    "id": "R35",
@@ -524,7 +626,10 @@
    "agreement": "disagree",
    "source": "RULES.md",
    "text": "Always raise errors early. Never suppress silent failures or let invalid states pass undetected.",
-   "judgment": "Fail-fast rule combining a prescription and an embedded prohibition."
+   "judgment": "Fail-fast rule combining a prescription and an embedded prohibition.",
+   "paraphrase": "Always raise errors early. Never suppress silent failures or let invalid states pass undetected.",
+   "verbatim": true,
+   "source_lines": "113"
   },
   "R36": {
    "id": "R36",
@@ -538,8 +643,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Never debug just to get tests to pass - get at the root of the issue and fix underlying logic.",
-   "judgment": "Root-cause prohibition; near-identical in intent to R44 (never take the easy path)."
+   "text": "Never try to debug just to get tests to pass - Get at the root of the issue and prioritize fixing underlying logic rather than getting rid of errors.",
+   "judgment": "Root-cause prohibition; near-identical in intent to R44 (never take the easy path).",
+   "paraphrase": "Never debug just to get tests to pass - get at the root of the issue and fix underlying logic.",
+   "verbatim": true,
+   "source_lines": "116"
   },
   "R37": {
    "id": "R37",
@@ -554,7 +662,10 @@
    "agreement": "disagree",
    "source": "RULES.md",
    "text": "Reuse existing functions before creating new ones. Only extend when clearly justified.",
-   "judgment": "DRY-driven reuse rule refining R26."
+   "judgment": "DRY-driven reuse rule refining R26.",
+   "paraphrase": "Reuse existing functions before creating new ones. Only extend when clearly justified.",
+   "verbatim": true,
+   "source_lines": "119"
   },
   "R38": {
    "id": "R38",
@@ -568,8 +679,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Functions should either do something (command) or return something (query) - never both.",
-   "judgment": "Precise, checkable design rule."
+   "text": "Functions should either do something (command) or return something (query)—never both.",
+   "judgment": "Precise, checkable design rule.",
+   "paraphrase": "Functions should either do something (command) or return something (query) - never both.",
+   "verbatim": true,
+   "source_lines": "122"
   },
   "R39": {
    "id": "R39",
@@ -584,7 +698,10 @@
    "agreement": "disagree",
    "source": "RULES.md",
    "text": "Design logic as reusable, isolated components. No duplication. Think in shareable patterns.",
-   "judgment": "Restates R26's modularity+DRY; close to R31/R37."
+   "judgment": "Restates R26's modularity+DRY; close to R31/R37.",
+   "paraphrase": "Design logic as reusable, isolated components. No duplication. Think in shareable patterns.",
+   "verbatim": true,
+   "source_lines": "125"
   },
   "R40": {
    "id": "R40",
@@ -598,8 +715,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Production-ready code only - no placeholders, no 'maybe this works'.",
-   "judgment": "Concrete instance of R01's production-ready mandate."
+   "text": "Production-ready code only - no placeholders, no 'maybe this works'",
+   "judgment": "Concrete instance of R01's production-ready mandate.",
+   "paraphrase": "Production-ready code only - no placeholders, no 'maybe this works'.",
+   "verbatim": true,
+   "source_lines": "155"
   },
   "R41": {
    "id": "R41",
@@ -613,8 +733,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Always validate inputs, use secure randomness, prepared statements.",
-   "judgment": "Concretizes R26's security pillar; mechanically checkable."
+   "text": "Always validate inputs, use secure randomness, prepared statements",
+   "judgment": "Concretizes R26's security pillar; mechanically checkable.",
+   "paraphrase": "Always validate inputs, use secure randomness, prepared statements.",
+   "verbatim": true,
+   "source_lines": "158"
   },
   "R42": {
    "id": "R42",
@@ -628,8 +751,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "Measure before optimizing - no guessing.",
-   "judgment": "Evidence-before-action rule for performance."
+   "text": "Measure before optimizing - no guessing",
+   "judgment": "Evidence-before-action rule for performance.",
+   "paraphrase": "Measure before optimizing - no guessing.",
+   "verbatim": true,
+   "source_lines": "160"
   },
   "R43": {
    "id": "R43",
@@ -644,7 +770,10 @@
    "agreement": "disagree",
    "source": "RULES.md",
    "text": "Your thinking should be thorough and so it's fine if it's very long.",
-   "judgment": "A genuine permission — it licenses long reasoning chains, lifting any implicit brevity constraint."
+   "judgment": "A genuine permission — it licenses long reasoning chains, lifting any implicit brevity constraint.",
+   "paraphrase": "Your thinking should be thorough and so it's fine if it's very long.",
+   "verbatim": true,
+   "source_lines": "174"
   },
   "R44": {
    "id": "R44",
@@ -658,8 +787,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "NEVER take the 'easy' path or skip to an alternative the moment you encounter a bug; dig deep at the root and keep the established plan.",
-   "judgment": "Persistence prohibition; same norm as R36 from the determination angle."
+   "text": "NEVER try to take the \"easy\" path or skip to an alternative solution the moment you encounter a bug; instead, remain determined to dig deep at the root of the issue and debug the current problem, maintaining the plan and implementation that has been established.",
+   "judgment": "Persistence prohibition; same norm as R36 from the determination angle.",
+   "paraphrase": "NEVER take the 'easy' path or skip to an alternative the moment you encounter a bug; dig deep at the root and keep the established plan.",
+   "verbatim": true,
+   "source_lines": "176"
   },
   "R45": {
    "id": "R45",
@@ -673,8 +805,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "RULES.md",
-   "text": "You MUST iterate and keep going until the problem is solved, planning extensively and thinking systematically.",
-   "judgment": "The persistence mandate; pairs with R44 and R10's stop condition (tension: keep going vs stop after three tries)."
+   "text": "You MUST iterate and keep going until the problem is solved, planning extensively before taking action, thinking deeply, thoroughly, and carefully step-by-step in a systematic manner.",
+   "judgment": "The persistence mandate; pairs with R44 and R10's stop condition (tension: keep going vs stop after three tries).",
+   "paraphrase": "You MUST iterate and keep going until the problem is solved, planning extensively and thinking systematically.",
+   "verbatim": true,
+   "source_lines": "180"
   },
   "C01": {
    "id": "C01",
@@ -689,7 +824,10 @@
    "agreement": "",
    "source": "RULES.md",
    "text": "Language > Specialist: {language} > {expert role}; Includes: CSV of libraries/features; Requirements: verbosity/standards/design; ## Plan: step-by-step plan.",
-   "judgment": "The literal template content. It has no deontic force on its own; it is the format spec that makes R22 checkable."
+   "judgment": "The literal template content. It has no deontic force on its own; it is the format spec that makes R22 checkable.",
+   "paraphrase": "Language > Specialist: {language} > {expert role}; Includes: CSV of libraries/features; Requirements: verbosity/standards/design; ## Plan: step-by-step plan.",
+   "verbatim": false,
+   "source_lines": ""
   },
   "C02": {
    "id": "C02",
@@ -704,7 +842,10 @@
    "agreement": "",
    "source": "RULES.md",
    "text": "History: compressed summary of all requirements/code; Source Tree: files with 💾/⚠️/👻 and ✅/⭕️/🔴 status; Next Task: next step or enhancement suggestions.",
-   "judgment": "Format spec grounding R23 — and its 'Next Task suggestions' clause is the concrete source of the R21<->R23 conflict."
+   "judgment": "Format spec grounding R23 — and its 'Next Task suggestions' clause is the concrete source of the R21<->R23 conflict.",
+   "paraphrase": "History: compressed summary of all requirements/code; Source Tree: files with 💾/⚠️/👻 and ✅/⭕️/🔴 status; Next Task: next step or enhancement suggestions.",
+   "verbatim": false,
+   "source_lines": ""
   },
   "C03": {
    "id": "C03",
@@ -719,7 +860,10 @@
    "agreement": "",
    "source": "RULES.md",
    "text": "Iterative process: proactively ask for outputs/files/context; never assume structure or contents; ALWAYS stop and ask when code depends on prior outputs; never assume code worked without proof.",
-   "judgment": "Annotator: 'entire process feels super connected.' Context that grounds the 3-try and information-gathering rules."
+   "judgment": "Annotator: 'entire process feels super connected.' Context that grounds the 3-try and information-gathering rules.",
+   "paraphrase": "Iterative process: proactively ask for outputs/files/context; never assume structure or contents; ALWAYS stop and ask when code depends on prior outputs; never assume code worked without proof.",
+   "verbatim": false,
+   "source_lines": ""
   },
   "C04": {
    "id": "C04",
@@ -733,8 +877,11 @@
    "llm_tag": "",
    "agreement": "",
    "source": "RULES.md",
-   "text": "Take your time; check rigorously; watch boundary/edge cases; you may take multiple turns, but the final code must be perfect and production-ready.",
-   "judgment": "The quality bar motivating the persistence mandate; justifies but cannot itself be 'violated'."
+   "text": "Take your time and think through every step systematically. Check solutions rigorously and watch out for boundary cases. You can take multiple conversation turns to solve the problem, but when you are finished, your final code solution must be perfect and production-ready.",
+   "judgment": "The quality bar motivating the persistence mandate; justifies but cannot itself be 'violated'.",
+   "paraphrase": "Take your time; check rigorously; watch boundary/edge cases; you may take multiple turns, but the final code must be perfect and production-ready.",
+   "verbatim": true,
+   "source_lines": "178–179"
   }
  },
  "edges": [

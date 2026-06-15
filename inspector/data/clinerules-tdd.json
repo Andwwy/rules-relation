@@ -14,7 +14,10 @@
    "agreement": "hand-only",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "No silent downgrades / no janky workarounds (highest priority)",
-   "judgment": "Anchor rule of the whole file, explicitly marked highest priority. As written it is a slogan, not an operational rule: 'silent', 'downgrade' and 'janky' are all undefined. It only becomes enforceable through its refinements (R02, R06, R26). Annotator's own comment ('Prohibition or preference?') flags that without an operational definition the deontic force is ambiguous."
+   "judgment": "Anchor rule of the whole file, explicitly marked highest priority. As written it is a slogan, not an operational rule: 'silent', 'downgrade' and 'janky' are all undefined. It only becomes enforceable through its refinements (R02, R06, R26). Annotator's own comment ('Prohibition or preference?') flags that without an operational definition the deontic force is ambiguous.",
+   "paraphrase": "No silent downgrades / no janky workarounds (highest priority)",
+   "verbatim": true,
+   "source_lines": "10"
   },
   "R02": {
    "id": "R02",
@@ -28,8 +31,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "NEVER \"fix\" errors by disabling, downgrading, or bypassing core features (e.g., turning off GPU/CUDA, reducing quality, changing defaults, switching to CPU).",
-   "judgment": "Clear deontic force, good examples, hand and LLM agree. Residual vagueness: 'core feature' has no concrete definition (annotator flagged this) — the examples gesture at GPU/quality but the boundary is open."
+   "text": "**NEVER \"fix\" errors by disabling, downgrading, or bypassing core features** (e.g., turning off GPU/CUDA, reducing quality, changing defaults, switching to CPU).",
+   "judgment": "Clear deontic force, good examples, hand and LLM agree. Residual vagueness: 'core feature' has no concrete definition (annotator flagged this) — the examples gesture at GPU/quality but the boundary is open.",
+   "paraphrase": "NEVER \"fix\" errors by disabling, downgrading, or bypassing core features (e.g., turning off GPU/CUDA, reducing quality, changing defaults, switching to CPU).",
+   "verbatim": true,
+   "source_lines": "11"
   },
   "R03": {
    "id": "R03",
@@ -43,8 +49,11 @@
    "llm_tag": "—",
    "agreement": "hand-only",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Attempt a real fix - correct package, version, PATH, provider, config",
-   "judgment": "Gives direction but is vague ('real fix' is defined only by contrast with R01's banned workarounds). Functions as step 1 of the error-handling procedure that R04 continues."
+   "text": "1. **Attempt a real fix** - correct package, version, PATH, provider, config",
+   "judgment": "Gives direction but is vague ('real fix' is defined only by contrast with R01's banned workarounds). Functions as step 1 of the error-handling procedure that R04 continues.",
+   "paraphrase": "Attempt a real fix - correct package, version, PATH, provider, config",
+   "verbatim": true,
+   "source_lines": "14–15"
   },
   "R04": {
    "id": "R04",
@@ -58,8 +67,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "If the fix requires system installs or user action, STOP and report: what is missing, why, how to install/verify, commands to diagnose.",
-   "judgment": "One of the best-formed rules in the file: concrete trigger (system installs / user action), explicit halt, and a 4-item report checklist. Fully checkable. Member of the recurring STOP-and-ask family."
+   "text": "If the fix requires system installs or user action, STOP and report: Exactly what is missing, Why it's missing, How to install/verify it, Commands to diagnose the current state",
+   "judgment": "One of the best-formed rules in the file: concrete trigger (system installs / user action), explicit halt, and a 4-item report checklist. Fully checkable. Member of the recurring STOP-and-ask family.",
+   "paraphrase": "If the fix requires system installs or user action, STOP and report: what is missing, why, how to install/verify, commands to diagnose.",
+   "verbatim": true,
+   "source_lines": "15"
   },
   "R05": {
    "id": "R05",
@@ -73,8 +85,11 @@
    "llm_tag": "PERMISSION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Fallbacks (CPU, reduced mode, mocks) are allowed ONLY if explicitly requested by the user, OR already defined as an opt-in mode.",
-   "judgment": "Textbook permission-as-exception: it carves a precise, gated escape hatch out of R01/R02. The two conditions are objectively checkable. Annotator correctly noted it is 'a permission inside a prohibition'."
+   "text": "**Fallbacks (CPU, reduced mode, mocks) are allowed ONLY if:**\n- Explicitly requested by the user, OR\n- Already defined as an opt-in mode",
+   "judgment": "Textbook permission-as-exception: it carves a precise, gated escape hatch out of R01/R02. The two conditions are objectively checkable. Annotator correctly noted it is 'a permission inside a prohibition'.",
+   "paraphrase": "Fallbacks (CPU, reduced mode, mocks) are allowed ONLY if explicitly requested by the user, OR already defined as an opt-in mode.",
+   "verbatim": true,
+   "source_lines": "21–23"
   },
   "R06": {
    "id": "R06",
@@ -89,7 +104,10 @@
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Defaults must remain on the best-supported path. Never silently degrade behavior to \"make it work.\"",
-   "judgment": "Restates R01 with a defaults focus — partially redundant. 'Best-supported path' is undefined; hand annotation split this into a prescription + prohibition while the LLM merged them, showing segmentation disagreement, not semantic disagreement."
+   "judgment": "Restates R01 with a defaults focus — partially redundant. 'Best-supported path' is undefined; hand annotation split this into a prescription + prohibition while the LLM merged them, showing segmentation disagreement, not semantic disagreement.",
+   "paraphrase": "Defaults must remain on the best-supported path. Never silently degrade behavior to \"make it work.\"",
+   "verbatim": true,
+   "source_lines": "25"
   },
   "R07": {
    "id": "R07",
@@ -103,8 +121,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Before writing new code which establishes a new pattern, dev practice, minor architecture solution, algorithm, or UI technique, proactively search the repo for existing patterns.",
-   "judgment": "Clear action, but annotator rightly flags the trigger as vague: 'new code which establishes a new pattern' is judgment-dependent, and the search term is unspecified. Enforceable only via R12/R20's reporting duties."
+   "text": "Before writing new code which establishes a new pattern, dev practice, minor architecture solution, algorithm, or UI technique, proactively search the repo for existing patterns, utilities, or implementations that solve a similar problem.",
+   "judgment": "Clear action, but annotator rightly flags the trigger as vague: 'new code which establishes a new pattern' is judgment-dependent, and the search term is unspecified. Enforceable only via R12/R20's reporting duties.",
+   "paraphrase": "Before writing new code which establishes a new pattern, dev practice, minor architecture solution, algorithm, or UI technique, proactively search the repo for existing patterns.",
+   "verbatim": true,
+   "source_lines": "28"
   },
   "R08": {
    "id": "R08",
@@ -118,8 +139,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Align with the established approach for: state management, data fetching, HTTP layer, forms, styling, error handling, file structure, testing.",
-   "judgment": "Hand says PREFERENCE, LLM says PRESCRIPTION — a genuine tag disagreement. The imperative 'align' reads prescriptive; I side with the LLM. Requires codebase knowledge to apply (what IS the established approach?), so it is only as enforceable as R11's scan."
+   "text": "Align with the established approach for: State management, Data fetching/caching, HTTP layer, Form management, Styling, Error handling and notifications, File/folder structure, naming conventions, barrel exports, and index placement, Testing libraries and patterns",
+   "judgment": "Hand says PREFERENCE, LLM says PRESCRIPTION — a genuine tag disagreement. The imperative 'align' reads prescriptive; I side with the LLM. Requires codebase knowledge to apply (what IS the established approach?), so it is only as enforceable as R11's scan.",
+   "paraphrase": "Align with the established approach for: state management, data fetching, HTTP layer, forms, styling, error handling, file structure, testing.",
+   "verbatim": true,
+   "source_lines": "30"
   },
   "R09": {
    "id": "R09",
@@ -133,8 +157,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Do not introduce parallel patterns, dual sources of truth, or divergent frameworks without explicit instruction.",
-   "judgment": "Clear prohibition with an explicit-instruction escape hatch. 'Parallel pattern' is vague at the margin (annotator agrees), but R50/R52 make it concrete for the config domain. R10 provides the legal route around it."
+   "text": "**Do not introduce parallel patterns, dual sources of truth, or divergent frameworks** without explicit instruction.",
+   "judgment": "Clear prohibition with an explicit-instruction escape hatch. 'Parallel pattern' is vague at the margin (annotator agrees), but R50/R52 make it concrete for the config domain. R10 provides the legal route around it.",
+   "paraphrase": "Do not introduce parallel patterns, dual sources of truth, or divergent frameworks without explicit instruction.",
+   "verbatim": true,
+   "source_lines": "40"
   },
   "R10": {
    "id": "R10",
@@ -148,8 +175,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "If a new pattern seems necessary, propose it first with a short ADR draft in docs/adr (context, options, decision, consequences).",
-   "judgment": "Another hand/LLM tag split. The ADR content list makes it concretely checkable, which pushes it toward PRESCRIPTION. Acts as the sanctioned escape route from R09."
+   "text": "If a new pattern seems necessary, propose it first with a short ADR draft in docs/adr (include context, options considered, decision, consequences).",
+   "judgment": "Another hand/LLM tag split. The ADR content list makes it concretely checkable, which pushes it toward PRESCRIPTION. Acts as the sanctioned escape route from R09.",
+   "paraphrase": "If a new pattern seems necessary, propose it first with a short ADR draft in docs/adr (context, options, decision, consequences).",
+   "verbatim": true,
+   "source_lines": "40"
   },
   "R11": {
    "id": "R11",
@@ -163,8 +193,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Scan the codebase (components, hooks, services/api, utils, lib) and package.json to infer patterns.",
-   "judgment": "Concrete locations make this actionable. It is the evidence-gathering step that R07/R08 silently depend on."
+   "text": "Scan the codebase (components, hooks, services/api, utils, lib) and package.json to infer patterns",
+   "judgment": "Concrete locations make this actionable. It is the evidence-gathering step that R07/R08 silently depend on.",
+   "paraphrase": "Scan the codebase (components, hooks, services/api, utils, lib) and package.json to infer patterns.",
+   "verbatim": true,
+   "source_lines": "43"
   },
   "R12": {
    "id": "R12",
@@ -179,7 +212,10 @@
    "agreement": "untagged",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Summarize the chosen existing pattern before coding",
-   "judgment": "Hand annotator left this untagged and asked for an 'enforcement axis' — it is really an enforcement mechanism for R07/R08 rather than a standalone norm. PRESCRIPTION fits."
+   "judgment": "Hand annotator left this untagged and asked for an 'enforcement axis' — it is really an enforcement mechanism for R07/R08 rather than a standalone norm. PRESCRIPTION fits.",
+   "paraphrase": "Summarize the chosen existing pattern before coding",
+   "verbatim": true,
+   "source_lines": "44"
   },
   "R13": {
    "id": "R13",
@@ -194,7 +230,10 @@
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "If conflicts are found, prefer refactoring toward the dominant repo pattern",
-   "judgment": "Correctly tagged PREFERENCE ('prefer'). Gives the tie-breaking policy when R08 finds multiple competing conventions."
+   "judgment": "Correctly tagged PREFERENCE ('prefer'). Gives the tie-breaking policy when R08 finds multiple competing conventions.",
+   "paraphrase": "If conflicts are found, prefer refactoring toward the dominant repo pattern",
+   "verbatim": true,
+   "source_lines": "45"
   },
   "R14": {
    "id": "R14",
@@ -208,8 +247,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "disagree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Before adding any comment, rate 1-10 how necessary it is; if less than 8, do not add the comment.",
-   "judgment": "Three-way framing: hand tagged the rating ritual PREFERENCE and the cutoff PRESCRIPTION; the LLM collapsed both into a PROHIBITION. The pseudo-quantitative threshold is clever prompt engineering but unfalsifiable — the score is self-assigned, so the rule is really 'default to no comment'."
+   "text": "**If the answer is less than 8, do not add the comment.**",
+   "judgment": "Three-way framing: hand tagged the rating ritual PREFERENCE and the cutoff PRESCRIPTION; the LLM collapsed both into a PROHIBITION. The pseudo-quantitative threshold is clever prompt engineering but unfalsifiable — the score is self-assigned, so the rule is really 'default to no comment'.",
+   "paraphrase": "Before adding any comment, rate 1-10 how necessary it is; if less than 8, do not add the comment.",
+   "verbatim": true,
+   "source_lines": "50–51"
   },
   "R15": {
    "id": "R15",
@@ -224,7 +266,10 @@
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Prefer self-explanatory code: descriptive names, small functions, strong TypeScript types, and tests over comments.",
-   "judgment": "Clean, uncontroversial preference; both annotators agree. Provides the positive alternative that makes R14 satisfiable."
+   "judgment": "Clean, uncontroversial preference; both annotators agree. Provides the positive alternative that makes R14 satisfiable.",
+   "paraphrase": "Prefer self-explanatory code: descriptive names, small functions, strong TypeScript types, and tests over comments.",
+   "verbatim": true,
+   "source_lines": "52–53"
   },
   "R16": {
    "id": "R16",
@@ -239,7 +284,10 @@
    "agreement": "hand-only",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Acceptable comments (when necessity ≥ 8): non-obvious invariants, footguns, links to ADRs, public API TSDoc.",
-   "judgment": "Hand tagged PREFERENCE but functionally this is a PERMISSION — it enumerates what MAY be commented once R14's bar is met. Doubles as context that partially operationalizes R14's fuzzy score."
+   "judgment": "Hand tagged PREFERENCE but functionally this is a PERMISSION — it enumerates what MAY be commented once R14's bar is met. Doubles as context that partially operationalizes R14's fuzzy score.",
+   "paraphrase": "Acceptable comments (when necessity ≥ 8): non-obvious invariants, footguns, links to ADRs, public API TSDoc.",
+   "verbatim": false,
+   "source_lines": ""
   },
   "R17": {
    "id": "R17",
@@ -253,8 +301,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "disagree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "TODO statements should not be created but also should not be removed without explicit instruction.",
-   "judgment": "Buried inside the whitelist bullet list but is actually a bidirectional prohibition (LLM got the tag right). Unusual and well-defined: both actions are objectively detectable in a diff."
+   "text": "TODO statements should not be created but also should not be removed without explicit instruction",
+   "judgment": "Buried inside the whitelist bullet list but is actually a bidirectional prohibition (LLM got the tag right). Unusual and well-defined: both actions are objectively detectable in a diff.",
+   "paraphrase": "TODO statements should not be created but also should not be removed without explicit instruction.",
+   "verbatim": true,
+   "source_lines": "59"
   },
   "R18": {
    "id": "R18",
@@ -269,7 +320,10 @@
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Never leave commented-out code. Remove it or gate it behind feature flags if essential.",
-   "judgment": "Crisp and diff-checkable. Hand annotator split the remedy ('remove or feature-flag') into a separate PREFERENCE — a reasonable two-norm segmentation the LLM merged."
+   "judgment": "Crisp and diff-checkable. Hand annotator split the remedy ('remove or feature-flag') into a separate PREFERENCE — a reasonable two-norm segmentation the LLM merged.",
+   "paraphrase": "Never leave commented-out code. Remove it or gate it behind feature flags if essential.",
+   "verbatim": true,
+   "source_lines": "61"
   },
   "R19": {
    "id": "R19",
@@ -283,8 +337,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "At task start: confirm you will follow these rules. Explicitly list detected patterns relevant to the task.",
-   "judgment": "Pure compliance ritual. Annotator's 'What rules??' flags a real referential ambiguity — 'these rules' assumes the whole file is in context. The pattern-listing half operationalizes R11."
+   "text": "At task start: confirm you will follow these rules. Explicitly list detected patterns relevant to the task (state, data fetching, HTTP, styling, tests)",
+   "judgment": "Pure compliance ritual. Annotator's 'What rules??' flags a real referential ambiguity — 'these rules' assumes the whole file is in context. The pattern-listing half operationalizes R11.",
+   "paraphrase": "At task start: confirm you will follow these rules. Explicitly list detected patterns relevant to the task.",
+   "verbatim": true,
+   "source_lines": "64"
   },
   "R20": {
    "id": "R20",
@@ -298,8 +355,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "untagged",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Before writing a new module/component: show which existing pattern or module you will align with and where it lives.",
-   "judgment": "Hand left untagged with 'gives obligation but vague'. The 'where it lives' requirement actually makes it more checkable than R12, which it otherwise duplicates."
+   "text": "**Before writing a new module/component:** show which existing pattern or module you will align with and where it lives",
+   "judgment": "Hand left untagged with 'gives obligation but vague'. The 'where it lives' requirement actually makes it more checkable than R12, which it otherwise duplicates.",
+   "paraphrase": "Before writing a new module/component: show which existing pattern or module you will align with and where it lives.",
+   "verbatim": true,
+   "source_lines": "65"
   },
   "R21": {
    "id": "R21",
@@ -313,8 +373,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "After implementing: ensure formatting, linting, and tests run with the repo's existing toolchain. Use the existing package manager (detect via lockfile).",
-   "judgment": "Concrete and checkable; 'detect via lockfile' even supplies the detection method. Bridges the task protocol to S5's toolchain rules."
+   "text": "**After implementing:** ensure formatting, linting, and tests run with the repo's existing toolchain. Use the existing package manager (detect via lockfile)",
+   "judgment": "Concrete and checkable; 'detect via lockfile' even supplies the detection method. Bridges the task protocol to S5's toolchain rules.",
+   "paraphrase": "After implementing: ensure formatting, linting, and tests run with the repo's existing toolchain. Use the existing package manager (detect via lockfile).",
+   "verbatim": true,
+   "source_lines": "66"
   },
   "R22": {
    "id": "R22",
@@ -329,7 +392,10 @@
    "agreement": "disagree",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "If uncertainty remains: ask for clarification before proceeding",
-   "judgment": "Hand/LLM tag split again. 'Before proceeding' makes it a blocking obligation, so PRESCRIPTION is the better reading. Trigger ('uncertainty remains') is self-assessed and thus weak. Member of the STOP-and-ask family."
+   "judgment": "Hand/LLM tag split again. 'Before proceeding' makes it a blocking obligation, so PRESCRIPTION is the better reading. Trigger ('uncertainty remains') is self-assessed and thus weak. Member of the STOP-and-ask family.",
+   "paraphrase": "If uncertainty remains: ask for clarification before proceeding",
+   "verbatim": true,
+   "source_lines": "67"
   },
   "R23": {
    "id": "R23",
@@ -344,7 +410,10 @@
    "agreement": "disagree",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Respect existing toolchain and scripts from package.json (package manager, lint/test commands)",
-   "judgment": "Tag split (hand PREF / llm PRESC). 'Respect' is imperative; I side with PRESCRIPTION. Largely redundant with R21."
+   "judgment": "Tag split (hand PREF / llm PRESC). 'Respect' is imperative; I side with PRESCRIPTION. Largely redundant with R21.",
+   "paraphrase": "Respect existing toolchain and scripts from package.json (package manager, lint/test commands)",
+   "verbatim": true,
+   "source_lines": "70"
   },
   "R24": {
    "id": "R24",
@@ -359,7 +428,10 @@
    "agreement": "disagree",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Keep dependencies consistent. Avoid adding new libs unless required and approved",
-   "judgment": "'Avoid... unless approved' is a soft-worded prohibition with an approval gate — the LLM's PROHIBITION tag captures the deontic structure better than hand's PREFERENCE. 'Required' is vague; 'approved' is checkable."
+   "judgment": "'Avoid... unless approved' is a soft-worded prohibition with an approval gate — the LLM's PROHIBITION tag captures the deontic structure better than hand's PREFERENCE. 'Required' is vague; 'approved' is checkable.",
+   "paraphrase": "Keep dependencies consistent. Avoid adding new libs unless required and approved",
+   "verbatim": true,
+   "source_lines": "71"
   },
   "R25": {
    "id": "R25",
@@ -373,8 +445,11 @@
    "llm_tag": "PREFERENCE",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Prefer colocated tests alongside modules, matching the repo's current convention",
-   "judgment": "Clean preference, agreed by both annotators. The 'matching current convention' clause subordinates it to R08."
+   "text": "- Prefer colocated tests alongside modules, matching the repo's current convention",
+   "judgment": "Clean preference, agreed by both annotators. The 'matching current convention' clause subordinates it to R08.",
+   "paraphrase": "Prefer colocated tests alongside modules, matching the repo's current convention",
+   "verbatim": true,
+   "source_lines": "72–73"
   },
   "R26": {
    "id": "R26",
@@ -388,8 +463,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "🚨 NEVER DISABLE LINTING, COMPILATION, OR TYPE ERRORS 🚨",
-   "judgment": "The loudest rule in the file (emoji sirens, all caps). Perfectly clear scope, full annotator agreement. It is R01's most concrete instantiation: suppressing checks is the canonical 'silent downgrade'."
+   "text": "**🚨 NEVER DISABLE LINTING, COMPILATION, OR TYPE ERRORS 🚨**",
+   "judgment": "The loudest rule in the file (emoji sirens, all caps). Perfectly clear scope, full annotator agreement. It is R01's most concrete instantiation: suppressing checks is the canonical 'silent downgrade'.",
+   "paraphrase": "🚨 NEVER DISABLE LINTING, COMPILATION, OR TYPE ERRORS 🚨",
+   "verbatim": true,
+   "source_lines": "74–75"
   },
   "R27": {
    "id": "R27",
@@ -404,7 +482,10 @@
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Do not use eslint-disable, @ts-ignore, @ts-expect-error, or similar pragmas to bypass linting or type errors.",
-   "judgment": "Maximally enforceable — these are literal grep-able strings. The best-specified prohibition in the corpus."
+   "judgment": "Maximally enforceable — these are literal grep-able strings. The best-specified prohibition in the corpus.",
+   "paraphrase": "Do not use eslint-disable, @ts-ignore, @ts-expect-error, or similar pragmas to bypass linting or type errors.",
+   "verbatim": true,
+   "source_lines": "76"
   },
   "R28": {
    "id": "R28",
@@ -418,8 +499,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "When encountering lint/type errors: 1. FIX THE ROOT CAUSE  2. RESTRUCTURE  3. CONFIGURE (config-file change with justification).",
-   "judgment": "A well-ordered escalation procedure. Hand interestingly tagged step 3 (CONFIGURE) as PERMISSION — defensible, since it licenses an otherwise-suspect action under conditions. The ladder gives R26 its positive counterpart."
+   "text": "**When encountering lint/type errors:**\n1. **FIX THE ROOT CAUSE** - Refactor code to satisfy the rule properly",
+   "judgment": "A well-ordered escalation procedure. Hand interestingly tagged step 3 (CONFIGURE) as PERMISSION — defensible, since it licenses an otherwise-suspect action under conditions. The ladder gives R26 its positive counterpart.",
+   "paraphrase": "When encountering lint/type errors: 1. FIX THE ROOT CAUSE  2. RESTRUCTURE  3. CONFIGURE (config-file change with justification).",
+   "verbatim": true,
+   "source_lines": "78–79"
   },
   "R29": {
    "id": "R29",
@@ -433,8 +517,11 @@
    "llm_tag": "PERMISSION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Only exception: generated code or third-party dependencies that cannot be modified. Even then, isolate with targeted config changes, not inline disables.",
-   "judgment": "Well-bounded permission with a nested prescription (config-only isolation). Mirrors the R05 pattern: exception narrowly carved out of a hard prohibition."
+   "text": "Only exception: Generated code or third-party dependencies that cannot be modified. Even then, isolate with targeted config changes, not inline disables.",
+   "judgment": "Well-bounded permission with a nested prescription (config-only isolation). Mirrors the R05 pattern: exception narrowly carved out of a hard prohibition.",
+   "paraphrase": "Only exception: generated code or third-party dependencies that cannot be modified. Even then, isolate with targeted config changes, not inline disables.",
+   "verbatim": true,
+   "source_lines": "89"
   },
   "R30": {
    "id": "R30",
@@ -448,8 +535,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "ALWAYS prefer the simplest solution that meets the specification. Actively reduce complexity rather than add it. Lower complexity is a primary goal, second only to meeting the spec.",
-   "judgment": "'ALWAYS prefer' is an oxymoronic construction — preference verb, prescription quantifier — which explains the hand/LLM tag split. Crucially, this sentence states an explicit priority ordering (spec > simplicity > everything else), one of only two places the file ranks its own rules."
+   "text": "ALWAYS prefer the simplest solution that meets the specification. When implementing features or refactoring, actively reduce complexity rather than add it.",
+   "judgment": "'ALWAYS prefer' is an oxymoronic construction — preference verb, prescription quantifier — which explains the hand/LLM tag split. Crucially, this sentence states an explicit priority ordering (spec > simplicity > everything else), one of only two places the file ranks its own rules.",
+   "paraphrase": "ALWAYS prefer the simplest solution that meets the specification. Actively reduce complexity rather than add it. Lower complexity is a primary goal, second only to meeting the spec.",
+   "verbatim": true,
+   "source_lines": "92"
   },
   "R31": {
    "id": "R31",
@@ -463,8 +553,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Choose the solution with fewest moving parts. Eliminate redundant code, duplicate patterns, or parallel implementations. Refactor complex solutions into simpler ones when discovered.",
-   "judgment": "Three concrete tactics consolidated from separate annotations (with minor hand/LLM tag splits on individual bullets). 'When discovered' gives the refactor clause an event trigger, which is good rule design."
+   "text": "- Eliminate redundant code, duplicate patterns, or parallel implementations",
+   "judgment": "Three concrete tactics consolidated from separate annotations (with minor hand/LLM tag splits on individual bullets). 'When discovered' gives the refactor clause an event trigger, which is good rule design.",
+   "paraphrase": "Choose the solution with fewest moving parts. Eliminate redundant code, duplicate patterns, or parallel implementations. Refactor complex solutions into simpler ones when discovered.",
+   "verbatim": true,
+   "source_lines": "98–99"
   },
   "R32": {
    "id": "R32",
@@ -478,8 +571,11 @@
    "llm_tag": "—",
    "agreement": "hand-only",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Question every abstraction: \"Does this actually reduce complexity, or just hide it?\"",
-   "judgment": "A reflective heuristic rather than an enforceable norm. Its real value in the graph: it is the counterweight to R40's pro-abstraction advice — the file's most direct internal tension."
+   "text": "- Question every abstraction: \"Does this actually reduce complexity, or just hide it?\"",
+   "judgment": "A reflective heuristic rather than an enforceable norm. Its real value in the graph: it is the counterweight to R40's pro-abstraction advice — the file's most direct internal tension.",
+   "paraphrase": "Question every abstraction: \"Does this actually reduce complexity, or just hide it?\"",
+   "verbatim": true,
+   "source_lines": "100–101"
   },
   "R34": {
    "id": "R34",
@@ -493,8 +589,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "NEVER independently implement backward compatibility, multi-version support, or dual implementations without explicit approval.",
-   "judgment": "Clear prohibition with an approval gate; full annotator agreement. 'Dual implementations' links it conceptually to R09's parallel-pattern ban."
+   "text": "**NEVER independently implement backward compatibility, multi-version support, or dual implementations** without explicit approval.",
+   "judgment": "Clear prohibition with an approval gate; full annotator agreement. 'Dual implementations' links it conceptually to R09's parallel-pattern ban.",
+   "paraphrase": "NEVER independently implement backward compatibility, multi-version support, or dual implementations without explicit approval.",
+   "verbatim": true,
+   "source_lines": "106"
   },
   "R35": {
    "id": "R35",
@@ -508,8 +607,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "If you believe backward compatibility is necessary: 1. STOP immediately 2. ASK with a clear proposal (what, why, complexity cost, migration alternative) 3. WAIT for explicit instruction.",
-   "judgment": "Well-structured halt protocol with a concrete proposal checklist; annotator notes the trigger ('if you believe...') is self-assessed and vague. Duplicated almost verbatim by R56 in the meta-trigger section."
+   "text": "If you believe backward compatibility is necessary: STOP implementation immediately, ASK the user for explicit approval with a clear proposal, WAIT for explicit instruction before proceeding",
+   "judgment": "Well-structured halt protocol with a concrete proposal checklist; annotator notes the trigger ('if you believe...') is self-assessed and vague. Duplicated almost verbatim by R56 in the meta-trigger section.",
+   "paraphrase": "If you believe backward compatibility is necessary: 1. STOP immediately 2. ASK with a clear proposal (what, why, complexity cost, migration alternative) 3. WAIT for explicit instruction.",
+   "verbatim": true,
+   "source_lines": "106"
   },
   "R36": {
    "id": "R36",
@@ -524,7 +626,10 @@
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Default approach: Migrate/refactor to the new pattern. Delete the old one. Move forward as a cohesive unit.",
-   "judgment": "The positive default that makes R34 livable. 'Move forward as a cohesive unit' is rhetorical filler; the first two sentences are the operative content."
+   "judgment": "The positive default that makes R34 livable. 'Move forward as a cohesive unit' is rhetorical filler; the first two sentences are the operative content.",
+   "paraphrase": "Default approach: Migrate/refactor to the new pattern. Delete the old one. Move forward as a cohesive unit.",
+   "verbatim": true,
+   "source_lines": "121"
   },
   "R37": {
    "id": "R37",
@@ -539,7 +644,10 @@
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Exception: Only implement backward compatibility when explicitly instructed after review.",
-   "judgment": "Symmetric to R05/R29: a narrowly gated permission closing the loop on its prohibition. The three exception rules share an identical logical shape — strong evidence of a deliberate authoring pattern."
+   "judgment": "Symmetric to R05/R29: a narrowly gated permission closing the loop on its prohibition. The three exception rules share an identical logical shape — strong evidence of a deliberate authoring pattern.",
+   "paraphrase": "Exception: Only implement backward compatibility when explicitly instructed after review.",
+   "verbatim": true,
+   "source_lines": "123"
   },
   "R38": {
    "id": "R38",
@@ -553,8 +661,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "NEVER over-architect or plan too far ahead. Build incrementally, validate constantly, maintain the ability to pivot.",
-   "judgment": "Agreed prohibition, but 'over-architect' is self-referentially vague — the file later supplies red-flag examples (designing for hypothetical extensibility, premature config systems) that do the real definitional work. This is 'Rule 6', the one R46 declares the winner of all conflicts."
+   "text": "NEVER over-architect or plan too far ahead. Build incrementally, validate constantly, and maintain the ability to pivot when requirements change.",
+   "judgment": "Agreed prohibition, but 'over-architect' is self-referentially vague — the file later supplies red-flag examples (designing for hypothetical extensibility, premature config systems) that do the real definitional work. This is 'Rule 6', the one R46 declares the winner of all conflicts.",
+   "paraphrase": "NEVER over-architect or plan too far ahead. Build incrementally, validate constantly, maintain the ability to pivot.",
+   "verbatim": true,
+   "source_lines": "128"
   },
   "R39": {
    "id": "R39",
@@ -568,8 +679,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Build iteratively: implement the minimum viable solution first, then evolve. Validate early: test assumptions with working code as quickly as possible. Question assumptions. Defer irreversible decisions until you have maximum information.",
-   "judgment": "Consolidates four philosophy bullets. Annotator flags 'defer until maximum information' as potentially infinite regress — you never provably have maximum information. Philosophy, not enforceable norms."
+   "text": "- **Build iteratively:** Implement the minimum viable solution first, then evolve based on actual needs",
+   "judgment": "Consolidates four philosophy bullets. Annotator flags 'defer until maximum information' as potentially infinite regress — you never provably have maximum information. Philosophy, not enforceable norms.",
+   "paraphrase": "Build iteratively: implement the minimum viable solution first, then evolve. Validate early: test assumptions with working code as quickly as possible. Question assumptions. Defer irreversible decisions until you have maximum information.",
+   "verbatim": true,
+   "source_lines": "133–134"
   },
   "R40": {
    "id": "R40",
@@ -583,8 +697,11 @@
    "llm_tag": "PREFERENCE",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Avoid tight coupling. Use abstraction layers (interfaces, adapters) for external dependencies. Prefer dependency injection over direct imports. Keep business logic separate from framework code.",
-   "judgment": "Consolidates four pro-abstraction preferences. This cluster is the file's biggest internal tension: R30/R31 say fewest layers and R32 says distrust abstractions, while this says add interfaces, adapters and DI. No priority rule arbitrates this specific conflict — the genuine gap in the rule system."
+   "text": "- Use abstraction layers (interfaces, adapters) for external dependencies",
+   "judgment": "Consolidates four pro-abstraction preferences. This cluster is the file's biggest internal tension: R30/R31 say fewest layers and R32 says distrust abstractions, while this says add interfaces, adapters and DI. No priority rule arbitrates this specific conflict — the genuine gap in the rule system.",
+   "paraphrase": "Avoid tight coupling. Use abstraction layers (interfaces, adapters) for external dependencies. Prefer dependency injection over direct imports. Keep business logic separate from framework code.",
+   "verbatim": true,
+   "source_lines": "137–138"
   },
   "R41": {
    "id": "R41",
@@ -598,8 +715,11 @@
    "llm_tag": "PREFERENCE",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Defer irreversible decisions: make decisions as late as possible when you have maximum information",
-   "judgment": "Annotator: vague, and 'maximum information' could be forever. Pairs with R44, which carves out when planning IS appropriate."
+   "text": "- **Defer irreversible decisions:** Make decisions as late as possible when you have maximum information",
+   "judgment": "Annotator: vague, and 'maximum information' could be forever. Pairs with R44, which carves out when planning IS appropriate.",
+   "paraphrase": "Defer irreversible decisions: make decisions as late as possible when you have maximum information",
+   "verbatim": true,
+   "source_lines": "141–142"
   },
   "R42": {
    "id": "R42",
@@ -613,8 +733,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Focus on the immediate task and the next logical step, not distant future scenarios.",
-   "judgment": "The quantified planning horizon (1-2 steps) makes R38 almost operational. Duplicated by meta-trigger R57."
+   "text": "Focus on the immediate task and the next logical step, not distant future scenarios",
+   "judgment": "The quantified planning horizon (1-2 steps) makes R38 almost operational. Duplicated by meta-trigger R57.",
+   "paraphrase": "Focus on the immediate task and the next logical step, not distant future scenarios.",
+   "verbatim": true,
+   "source_lines": "142"
   },
   "R43": {
    "id": "R43",
@@ -628,8 +751,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "When you catch yourself over-planning: 1. STOP 2. SIMPLIFY to the minimum 3. DOCUMENT assumptions (comment ≥8 necessity, or ADR) 4. BUILD what's needed now.",
-   "judgment": "Another STOP-family protocol. Notably cross-references R14's comment threshold and R10's ADR mechanism — the densest interlinking point in the file."
+   "text": "**When you catch yourself over-planning:**\n1. **STOP** implementation\n2. **SIMPLIFY** to the minimum that solves the current requirement\n3. **DOCUMENT** assumptions in a comment (≥8 necessity) or ADR if significant\n4. **BUILD** what's needed now, knowing you can refactor later",
+   "judgment": "Another STOP-family protocol. Notably cross-references R14's comment threshold and R10's ADR mechanism — the densest interlinking point in the file.",
+   "paraphrase": "When you catch yourself over-planning: 1. STOP 2. SIMPLIFY to the minimum 3. DOCUMENT assumptions (comment ≥8 necessity, or ADR) 4. BUILD what's needed now.",
+   "verbatim": true,
+   "source_lines": "151–155"
   },
   "R44": {
    "id": "R44",
@@ -643,8 +769,11 @@
    "llm_tag": "—",
    "agreement": "hand-only",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "If a decision is truly irreversible (database choice, foundational architecture), invest appropriate planning time. But these are rarer than they seem.",
-   "judgment": "Hand tagged PRESCRIPTION but the logical role is a PERMISSION carved out of R38 (it licenses otherwise-banned up-front planning). Annotator rightly flags both 'truly irreversible' and 'appropriate planning time' as vague."
+   "text": "**Exception:** If a decision is truly irreversible (database choice, foundational architecture), invest appropriate planning time. But these are rarer than they seem.",
+   "judgment": "Hand tagged PRESCRIPTION but the logical role is a PERMISSION carved out of R38 (it licenses otherwise-banned up-front planning). Annotator rightly flags both 'truly irreversible' and 'appropriate planning time' as vague.",
+   "paraphrase": "If a decision is truly irreversible (database choice, foundational architecture), invest appropriate planning time. But these are rarer than they seem.",
+   "verbatim": true,
+   "source_lines": "163–164"
   },
   "R45": {
    "id": "R45",
@@ -658,8 +787,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Primitive values that control UX or system behavior should live in a centralized configuration layer, not scattered as magic numbers.",
-   "judgment": "Tag split again on 'should'. The accompanying qualifies/does-not-qualify lists (annotator: 'context for the following rules') are what make it usable — without them 'behavioral primitive' would be hopelessly vague. Inherently in tension with R38/R30, which R46 explicitly resolves."
+   "text": "Primitive values that control UX or system behavior should live in a centralized configuration layer, not scattered as magic numbers throughout the codebase.",
+   "judgment": "Tag split again on 'should'. The accompanying qualifies/does-not-qualify lists (annotator: 'context for the following rules') are what make it usable — without them 'behavioral primitive' would be hopelessly vague. Inherently in tension with R38/R30, which R46 explicitly resolves.",
+   "paraphrase": "Primitive values that control UX or system behavior should live in a centralized configuration layer, not scattered as magic numbers.",
+   "verbatim": true,
+   "source_lines": "166"
   },
   "R46": {
    "id": "R46",
@@ -674,7 +806,10 @@
    "agreement": "untagged",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "If there's any tension between this rule and the Evolving Architecture Mandate (Rule 6), Rule 6 wins. Do not build elaborate configuration systems prematurely.",
-   "judgment": "The only explicit meta-rule / priority declaration in the file (annotator: 'rule hierarchy' — left untagged because it isn't a first-order norm). Resolves the R45-vs-R38 conflict but conspicuously does NOT resolve the R40-vs-R30 abstraction tension."
+   "judgment": "The only explicit meta-rule / priority declaration in the file (annotator: 'rule hierarchy' — left untagged because it isn't a first-order norm). Resolves the R45-vs-R38 conflict but conspicuously does NOT resolve the R40-vs-R30 abstraction tension.",
+   "paraphrase": "If there's any tension between this rule and the Evolving Architecture Mandate (Rule 6), Rule 6 wins. Do not build elaborate configuration systems prematurely.",
+   "verbatim": true,
+   "source_lines": "170"
   },
   "R47": {
    "id": "R47",
@@ -688,8 +823,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Move a primitive to config only when you're actively working with it or it clearly affects user-facing behavior.",
-   "judgment": "The 'only when' gate gives this a clear conditional structure. It is R45 throttled by R38's incrementalism."
+   "text": "Move a primitive to config only when you're actively working with it or it clearly affects user-facing behavior",
+   "judgment": "The 'only when' gate gives this a clear conditional structure. It is R45 throttled by R38's incrementalism.",
+   "paraphrase": "Move a primitive to config only when you're actively working with it or it clearly affects user-facing behavior.",
+   "verbatim": true,
+   "source_lines": "185"
   },
   "R48": {
    "id": "R48",
@@ -703,8 +841,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Scan for config.py, config.yaml, environment variables, or settings modules already in the repo. Align with what exists.",
-   "judgment": "Config-domain instance of R07/R08 — same search-then-align structure, fully concrete file targets."
+   "text": "Scan for [`config.py`](sovereign_core/config.py), [`config.yaml`](config.yaml), environment variables, or settings modules already in the repo. Align with what exists.",
+   "judgment": "Config-domain instance of R07/R08 — same search-then-align structure, fully concrete file targets.",
+   "paraphrase": "Scan for config.py, config.yaml, environment variables, or settings modules already in the repo. Align with what exists.",
+   "verbatim": true,
+   "source_lines": "186"
   },
   "R49": {
    "id": "R49",
@@ -718,8 +859,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Config keys should be self-documenting (max_retry_attempts, llm_response_timeout_seconds). Always include sensible defaults so the system works out-of-the-box.",
-   "judgment": "Two merged micro-rules (naming + defaults). Good examples; 'sensible' is the only soft spot. The defaults clause feeds directly into R52's single-definition constraint."
+   "text": "Config keys should be self-documenting (e.g., `max_retry_attempts`, `llm_response_timeout_seconds`, `voice_type`)",
+   "judgment": "Two merged micro-rules (naming + defaults). Good examples; 'sensible' is the only soft spot. The defaults clause feeds directly into R52's single-definition constraint.",
+   "paraphrase": "Config keys should be self-documenting (max_retry_attempts, llm_response_timeout_seconds). Always include sensible defaults so the system works out-of-the-box.",
+   "verbatim": true,
+   "source_lines": "187"
   },
   "R50": {
    "id": "R50",
@@ -733,8 +877,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Don't create duplicates: if a value is already configurable somewhere, use that mechanism. Don't create parallel config sources.",
-   "judgment": "Config-domain instance of R09's dual-source-of-truth ban. Clear and checkable."
+   "text": "Don't create duplicates: If a value is already configurable somewhere, use that mechanism. Don't create parallel config sources.",
+   "judgment": "Config-domain instance of R09's dual-source-of-truth ban. Clear and checkable.",
+   "paraphrase": "Don't create duplicates: if a value is already configurable somewhere, use that mechanism. Don't create parallel config sources.",
+   "verbatim": true,
+   "source_lines": "189"
   },
   "R51": {
    "id": "R51",
@@ -748,8 +895,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "When you catch yourself over-configuring: ASK is this a real behavioral dial? CHECK are we using it now or within 1-2 steps? If NO to both → well-named constant. If YES → existing config layer.",
-   "judgment": "Mirror image of R43 (over-planning recovery) for the config domain — same catch-yourself trigger, same decision-tree remedy. Inherits R42's 1-2-step horizon. Well-formed."
+   "text": "**When you catch yourself over-configuring:**\n1. **ASK:** \"Is this value actually a behavioral dial users/operators will want to adjust?\"\n2. **CHECK:** \"Are we using this now, or will we clearly need to tune it in the next 1-2 steps?\"\n3. **If NO to both:** Leave it as a well-named constant in the module where it's used\n4. **If YES:** Add it to the existing config layer with a descriptive name and default",
+   "judgment": "Mirror image of R43 (over-planning recovery) for the config domain — same catch-yourself trigger, same decision-tree remedy. Inherits R42's 1-2-step horizon. Well-formed.",
+   "paraphrase": "When you catch yourself over-configuring: ASK is this a real behavioral dial? CHECK are we using it now or within 1-2 steps? If NO to both → well-named constant. If YES → existing config layer.",
+   "verbatim": true,
+   "source_lines": "197–201"
   },
   "R52": {
    "id": "R52",
@@ -763,8 +913,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Configuration values must have exactly ONE default definition. Never duplicate defaults across config models, factories, or provider constructors. (✅ Pydantic Field(default=...) as single source ❌ config.get('model', 'gpt-4o-mini') fallbacks)",
-   "judgment": "Exceptionally well-specified: the correct-pattern/violation examples make it mechanically checkable. The strongest concrete instance of the anti-duplication theme."
+   "text": "Configuration values must have exactly ONE default definition. Never duplicate defaults across config models, factories, or provider constructors.",
+   "judgment": "Exceptionally well-specified: the correct-pattern/violation examples make it mechanically checkable. The strongest concrete instance of the anti-duplication theme.",
+   "paraphrase": "Configuration values must have exactly ONE default definition. Never duplicate defaults across config models, factories, or provider constructors. (✅ Pydantic Field(default=...) as single source ❌ config.get('model', 'gpt-4o-mini') fallbacks)",
+   "verbatim": true,
+   "source_lines": "215"
   },
   "R53": {
    "id": "R53",
@@ -778,8 +931,11 @@
    "llm_tag": "—",
    "agreement": "hand-only",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Internal implementation details (retry counts, backoff delays) not exposed in config.yaml can have provider-level defaults.",
-   "judgment": "Fourth instance of the gated-exception pattern (after R05, R29, R37). Boundary is clear: exposed-in-config.yaml vs internal."
+   "text": "Internal implementation details (retry counts, backoff delays) not exposed in config.yaml can have provider-level defaults",
+   "judgment": "Fourth instance of the gated-exception pattern (after R05, R29, R37). Boundary is clear: exposed-in-config.yaml vs internal.",
+   "paraphrase": "Internal implementation details (retry counts, backoff delays) not exposed in config.yaml can have provider-level defaults.",
+   "verbatim": true,
+   "source_lines": "227"
   },
   "R54": {
    "id": "R54",
@@ -794,7 +950,10 @@
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "If a proposed change creates a duplicate or conflicting pattern, stop and propose consolidation or a refactor plan instead.",
-   "judgment": "Runtime tripwire enforcing R09. Same halt-and-propose shape as R35."
+   "judgment": "Runtime tripwire enforcing R09. Same halt-and-propose shape as R35.",
+   "paraphrase": "If a proposed change creates a duplicate or conflicting pattern, stop and propose consolidation or a refactor plan instead.",
+   "verbatim": true,
+   "source_lines": "230"
   },
   "R55": {
    "id": "R55",
@@ -808,8 +967,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "If complexity is increasing without clear necessity, stop and simplify.",
-   "judgment": "Runtime tripwire for R30/R38. 'Without clear necessity' is self-assessed — same weakness as every catch-yourself trigger in the file."
+   "text": "**If complexity is increasing without clear necessity, stop and simplify.**",
+   "judgment": "Runtime tripwire for R30/R38. 'Without clear necessity' is self-assessed — same weakness as every catch-yourself trigger in the file.",
+   "paraphrase": "If complexity is increasing without clear necessity, stop and simplify.",
+   "verbatim": true,
+   "source_lines": "232–233"
   },
   "R56": {
    "id": "R56",
@@ -823,8 +985,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "If you're considering backward compatibility, STOP and ask for approval first.",
-   "judgment": "Pure duplicate of R35 (compressed). Redundancy is likely intentional reinforcement, but in a rule-consistency audit it counts as a duplicate norm."
+   "text": "**If you're considering backward compatibility, STOP and ask for approval first.**",
+   "judgment": "Pure duplicate of R35 (compressed). Redundancy is likely intentional reinforcement, but in a rule-consistency audit it counts as a duplicate norm.",
+   "paraphrase": "If you're considering backward compatibility, STOP and ask for approval first.",
+   "verbatim": true,
+   "source_lines": "234–235"
   },
   "R57": {
    "id": "R57",
@@ -838,8 +1003,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "If you're planning more than 1-2 steps ahead or building for hypothetical future needs, STOP and simplify to current requirements.",
-   "judgment": "Duplicate of R42 + R43 compressed into a tripwire. Same reinforcement-by-repetition authoring style."
+   "text": "**If you're planning more than 1-2 steps ahead or building for hypothetical future needs, STOP and simplify to current requirements.**",
+   "judgment": "Duplicate of R42 + R43 compressed into a tripwire. Same reinforcement-by-repetition authoring style.",
+   "paraphrase": "If you're planning more than 1-2 steps ahead or building for hypothetical future needs, STOP and simplify to current requirements.",
+   "verbatim": true,
+   "source_lines": "236–237"
   },
   "R58": {
    "id": "R58",
@@ -854,7 +1022,10 @@
    "agreement": "hand-only",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "keep repo clean",
-   "judgment": "Slogan-level preference; only meaningful through R59/R60. Same anchor-plus-refinements structure as R01."
+   "judgment": "Slogan-level preference; only meaningful through R59/R60. Same anchor-plus-refinements structure as R01.",
+   "paraphrase": "keep repo clean",
+   "verbatim": true,
+   "source_lines": "238"
   },
   "R59": {
    "id": "R59",
@@ -868,8 +1039,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Ad-hoc debug scripts, reproduction tests, or diagnostic files created during debugging must go in tests/_temp_/ for easy cleanup. Use descriptive names (debug_tts_state.py, repro_audio_hang.py).",
-   "judgment": "Concrete path, concrete examples — fully checkable. One of the most enforceable rules in the file."
+   "text": "**Ad-hoc debug scripts, reproduction tests, or diagnostic files created during debugging must go in `tests/_temp_/` for easy cleanup.*",
+   "judgment": "Concrete path, concrete examples — fully checkable. One of the most enforceable rules in the file.",
+   "paraphrase": "Ad-hoc debug scripts, reproduction tests, or diagnostic files created during debugging must go in tests/_temp_/ for easy cleanup. Use descriptive names (debug_tts_state.py, repro_audio_hang.py).",
+   "verbatim": true,
+   "source_lines": "239"
   },
   "R60": {
    "id": "R60",
@@ -883,8 +1057,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "agree",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Clean up after investigation completes. Enforcement: before completing a debug task, verify all temporary files are deleted or in tests/_temp_/.",
-   "judgment": "Rare case where the rule names its own enforcement step ('Enforcement: ... verify'). The annotator asked elsewhere for an enforcement axis — this rule shows the file's author occasionally provided one."
+   "text": "**Enforcement:** Before completing a debug task, verify all temporary files are deleted or in `tests/_temp_/`.",
+   "judgment": "Rare case where the rule names its own enforcement step ('Enforcement: ... verify'). The annotator asked elsewhere for an enforcement axis — this rule shows the file's author occasionally provided one.",
+   "paraphrase": "Clean up after investigation completes. Enforcement: before completing a debug task, verify all temporary files are deleted or in tests/_temp_/.",
+   "verbatim": true,
+   "source_lines": "246"
   },
   "C01": {
    "id": "C01",
@@ -899,7 +1076,10 @@
    "agreement": "",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Applies to: all Roo agents and tasks in this repository. Purpose: always-on, repo-wide guidance for consistency, minimal comments, and coherent architecture.",
-   "judgment": "Preamble. Declares the binding scope (all agents, always) and names the three master goals — each goal seeds one anchor-rule cluster, so it fans out to those anchors."
+   "judgment": "Preamble. Declares the binding scope (all agents, always) and names the three master goals — each goal seeds one anchor-rule cluster, so it fans out to those anchors.",
+   "paraphrase": "Applies to: all Roo agents and tasks in this repository. Purpose: always-on, repo-wide guidance for consistency, minimal comments, and coherent architecture.",
+   "verbatim": false,
+   "source_lines": ""
   },
   "C02": {
    "id": "C02",
@@ -913,8 +1093,11 @@
    "llm_tag": "",
    "agreement": "",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "🚨 BACKWARD COMPATIBILITY RED FLAG 🚨 — the phrase \"backward compatibility\" is a CRITICAL WARNING SIGN.",
-   "judgment": "Reclassified from rule R33: no deontic force, nothing to violate, so not a rule. An attention trigger that primes the whole S07 prohibition family. Its earlier 'idle rule' status was the tell."
+   "text": "**The phrase \"backward compatibility\" is a CRITICAL WARNING SIGN.**",
+   "judgment": "Reclassified from rule R33: no deontic force, nothing to violate, so not a rule. An attention trigger that primes the whole S07 prohibition family. Its earlier 'idle rule' status was the tell.",
+   "paraphrase": "🚨 BACKWARD COMPATIBILITY RED FLAG 🚨 — the phrase \"backward compatibility\" is a CRITICAL WARNING SIGN.",
+   "verbatim": true,
+   "source_lines": "104–105"
   },
   "C03": {
    "id": "C03",
@@ -929,7 +1112,10 @@
    "agreement": "",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Backward compatibility creates dual sources of truth that evolve independently, multiplies maintenance burden and bug surface, fragments the codebase into parallel implementations, prevents clean evolution, and adds permanent compounding complexity.",
-   "judgment": "Skipped by both CSV annotators, yet it is the justification for the entire S07 cluster and the explicit bridge from backward-compat to the dual-sources theme (R09). Justifies the prohibition and its forward-migration default; never determines compliance."
+   "judgment": "Skipped by both CSV annotators, yet it is the justification for the entire S07 cluster and the explicit bridge from backward-compat to the dual-sources theme (R09). Justifies the prohibition and its forward-migration default; never determines compliance.",
+   "paraphrase": "Backward compatibility creates dual sources of truth that evolve independently, multiplies maintenance burden and bug surface, fragments the codebase into parallel implementations, prevents clean evolution, and adds permanent compounding complexity.",
+   "verbatim": false,
+   "source_lines": ""
   },
   "C04": {
    "id": "C04",
@@ -943,8 +1129,11 @@
    "llm_tag": "",
    "agreement": "",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Complex systems evolve successfully through iteration, not through perfect up-front planning. Requirements change, assumptions fail, Murphy's Law applies — stay adaptable.",
-   "judgment": "The worldview behind Rule 6. It underlies the ENTIRE Rule-6 family, not just its headline rule — every incrementalism/modularity rule inherits its justification from here."
+   "text": "**Core philosophy:** Complex systems evolve successfully through iteration, not through perfect up-front planning. Requirements change, assumptions fail, and Murphy's Law applies. Stay adaptable.",
+   "judgment": "The worldview behind Rule 6. It underlies the ENTIRE Rule-6 family, not just its headline rule — every incrementalism/modularity rule inherits its justification from here.",
+   "paraphrase": "Complex systems evolve successfully through iteration, not through perfect up-front planning. Requirements change, assumptions fail, Murphy's Law applies — stay adaptable.",
+   "verbatim": true,
+   "source_lines": "130"
   },
   "C05": {
    "id": "C05",
@@ -958,8 +1147,11 @@
    "llm_tag": "",
    "agreement": "",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "Over-planning red flags: abstractions for \"future extensibility\" not needed now; config systems before knowing what needs configuring; complex class hierarchies; features \"because we'll need them eventually\"; architectures for hypothetical scale.",
-   "judgment": "Annotator: 'not a rule but useful context'. It supplies the observable detection criteria that R43's self-assessed 'catch yourself over-planning' trigger lacks — this context is what rescues R43 (and the R57 tripwire) from unfalsifiability. The 'config before needed' flag also reaches into the config rules."
+   "text": "**Red flags that indicate over-planning:**\n- Designing abstractions for \"future extensibility\" that aren't needed now\n- Building configuration systems before you know what needs to be configured\n- Creating complex class hierarchies or inheritance structures\n- Implementing features \"because we'll need them eventually\"\n- Choosing architectures based on hypothetical scale rather than current needs",
+   "judgment": "Annotator: 'not a rule but useful context'. It supplies the observable detection criteria that R43's self-assessed 'catch yourself over-planning' trigger lacks — this context is what rescues R43 (and the R57 tripwire) from unfalsifiability. The 'config before needed' flag also reaches into the config rules.",
+   "paraphrase": "Over-planning red flags: abstractions for \"future extensibility\" not needed now; config systems before knowing what needs configuring; complex class hierarchies; features \"because we'll need them eventually\"; architectures for hypothetical scale.",
+   "verbatim": true,
+   "source_lines": "144–149"
   },
   "C06": {
    "id": "C06",
@@ -974,7 +1166,10 @@
    "agreement": "",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Over-configuring red flags: making every constant configurable \"just in case\"; multi-layer config systems before needed; config schemas validating hypothetical settings; extracting details with zero user impact.",
-   "judgment": "Config-domain mirror of C05 — the detection criteria for R51's self-catch trigger, and a reminder of R46's 'don't build elaborate config prematurely'."
+   "judgment": "Config-domain mirror of C05 — the detection criteria for R51's self-catch trigger, and a reminder of R46's 'don't build elaborate config prematurely'.",
+   "paraphrase": "Over-configuring red flags: making every constant configurable \"just in case\"; multi-layer config systems before needed; config schemas validating hypothetical settings; extracting details with zero user impact.",
+   "verbatim": false,
+   "source_lines": ""
   },
   "C07": {
    "id": "C07",
@@ -989,7 +1184,10 @@
    "agreement": "",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "Qualifies: UX params (timeouts, retries, debounce), system behavior (log levels, TTLs, batch sizes), AI/ML settings (model, temperature), thresholds. Does NOT qualify: math constants, protocol-defined values, non-observable details, one-off values.",
-   "judgment": "Annotator: 'context for the following set of rules'. This definition makes the vague predicate 'behavioral primitive' decidable across the whole config cluster — without it those rules are unapplicable."
+   "judgment": "Annotator: 'context for the following set of rules'. This definition makes the vague predicate 'behavioral primitive' decidable across the whole config cluster — without it those rules are unapplicable.",
+   "paraphrase": "Qualifies: UX params (timeouts, retries, debounce), system behavior (log levels, TTLs, batch sizes), AI/ML settings (model, temperature), thresholds. Does NOT qualify: math constants, protocol-defined values, non-observable details, one-off values.",
+   "verbatim": false,
+   "source_lines": ""
   },
   "C08": {
    "id": "C08",
@@ -1004,7 +1202,10 @@
    "agreement": "",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "✅ simple fetch wrapper ❌ complex HTTP client with retry/caching/queuing up front · ✅ hard-code API endpoint ❌ multi-env config for a single-env app · ✅ useState ❌ Redux \"because we might need global state\" · ✅ write the feature ❌ design a plugin system first.",
-   "judgment": "Paired ✅/❌ cases that operationalize Rule 6 — the cheapest form of checkability. The HTTP-client and plugin cases also illustrate the coupling/abstraction rule."
+   "judgment": "Paired ✅/❌ cases that operationalize Rule 6 — the cheapest form of checkability. The HTTP-client and plugin cases also illustrate the coupling/abstraction rule.",
+   "paraphrase": "✅ simple fetch wrapper ❌ complex HTTP client with retry/caching/queuing up front · ✅ hard-code API endpoint ❌ multi-env config for a single-env app · ✅ useState ❌ Redux \"because we might need global state\" · ✅ write the feature ❌ design a plugin system first.",
+   "verbatim": false,
+   "source_lines": ""
   },
   "C09": {
    "id": "C09",
@@ -1019,7 +1220,10 @@
    "agreement": "",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "✅ llm_temperature: 0.7 in config ❌ hard-coded 0.7 in every call · ✅ wake_word_sensitivity in config ❌ magic number in detector · ❌ BYTES_PER_SAMPLE=2 in config when it's part of the audio format ✅ leave as a module constant.",
-   "judgment": "Operationalizes the centralize-config rules. Its last case illustrates the NEGATIVE boundary of definition C07 — an example clarifying a definition clarifying a rule (context can chain)."
+   "judgment": "Operationalizes the centralize-config rules. Its last case illustrates the NEGATIVE boundary of definition C07 — an example clarifying a definition clarifying a rule (context can chain).",
+   "paraphrase": "✅ llm_temperature: 0.7 in config ❌ hard-coded 0.7 in every call · ✅ wake_word_sensitivity in config ❌ magic number in detector · ❌ BYTES_PER_SAMPLE=2 in config when it's part of the audio format ✅ leave as a module constant.",
+   "verbatim": false,
+   "source_lines": ""
   },
   "C10": {
    "id": "C10",
@@ -1033,8 +1237,11 @@
    "llm_tag": "",
    "agreement": "",
    "source": "adamglang/sovereign-core .clinerules",
-   "text": "❌ // eslint-disable-next-line ... · ✅ move test utilities to a separate config · ✅ replace export * with named exports · ✅ capture ref values in effect scope to satisfy exhaustive-deps.",
-   "judgment": "Hand-tagged PREFERENCE in the CSV, but it prescribes nothing — it illustrates the escalation ladder and the pragma ban with concrete cases. Examples-misread-as-preferences was a recurring annotation issue (see also C11)."
+   "text": "**Examples of proper fixes:**\n- ❌ `// eslint-disable-next-line react-refresh/only-export-components`\n- ✅ Move test utilities to separate config that disables the rule for test files\n- ✅ Replace `export *` with explicit named exports\n- ✅ Capture ref values in effect scope to satisfy exhaustive-deps",
+   "judgment": "Hand-tagged PREFERENCE in the CSV, but it prescribes nothing — it illustrates the escalation ladder and the pragma ban with concrete cases. Examples-misread-as-preferences was a recurring annotation issue (see also C11).",
+   "paraphrase": "❌ // eslint-disable-next-line ... · ✅ move test utilities to a separate config · ✅ replace export * with named exports · ✅ capture ref values in effect scope to satisfy exhaustive-deps.",
+   "verbatim": true,
+   "source_lines": "83–87"
   },
   "C11": {
    "id": "C11",
@@ -1049,7 +1256,10 @@
    "agreement": "",
    "source": "adamglang/sovereign-core .clinerules",
    "text": "✅ Pydantic Field(default=value) as the single source · ✅ factories use config[\"key\"] with no fallbacks · ❌ config.get(\"model\", \"gpt-4o-mini\") in a factory · ❌ def __init__(self, temperature=0.7) in a provider.",
-   "judgment": "Also hand-tagged PREFERENCE; same misclassification as C10. These ✅/❌ cases are what make the single-default rule mechanically checkable, and they reinforce the no-parallel-config-sources rule."
+   "judgment": "Also hand-tagged PREFERENCE; same misclassification as C10. These ✅/❌ cases are what make the single-default rule mechanically checkable, and they reinforce the no-parallel-config-sources rule.",
+   "paraphrase": "✅ Pydantic Field(default=value) as the single source · ✅ factories use config[\"key\"] with no fallbacks · ❌ config.get(\"model\", \"gpt-4o-mini\") in a factory · ❌ def __init__(self, temperature=0.7) in a provider.",
+   "verbatim": false,
+   "source_lines": ""
   }
  },
  "edges": [

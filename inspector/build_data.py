@@ -7,6 +7,8 @@ For each project folder (one with Rules/ inside), emits data/<project>.json:
 If data/rationales/<project>.json exists (edge_id -> rationale string),
 rationales are merged into the edges.
 """
+import csv
+import difflib
 import json
 import re
 import sys
@@ -17,6 +19,68 @@ OUT = Path(__file__).resolve().parent / "data"
 
 REL_RE = re.compile(r"^- \*\*(?P<type>[^*]+)\*\*\s*(?:→|->)\s*\[\[(?P<target>[^\]|]+)(?:\|(?P<label>[^\]]+))?\]\]")
 TITLE_RE = re.compile(r"^# (?P<emoji>\S+)?\s*(?P<title>.+)$")
+
+# A node is mapped to a CSV row (the source span the labeler/LLM selected as the
+# rule) only when the best text similarity clears this bar. Below it we keep the
+# vault's paraphrase and flag verbatim=False — almost always synthesized context
+# nodes that summarize several source spans and have no single literal text.
+MATCH_THRESHOLD = 0.5
+DEONTIC_TAGS = {"PROHIBITION", "PRESCRIPTION", "PREFERENCE", "PERMISSION"}
+
+
+def _norm(s):
+    return re.sub(r"\s+", " ", re.sub(r"[^a-z0-9 ]", " ", (s or "").lower())).strip()
+
+
+def _similarity(a, b):
+    """Blend sequence ratio with token-set overlap so reordered paraphrases score well."""
+    na, nb = _norm(a), _norm(b)
+    seq = difflib.SequenceMatcher(None, na, nb).ratio()
+    ta, tb = set(na.split()), set(nb.split())
+    jac = len(ta & tb) / max(1, len(ta | tb))
+    return max(seq, jac)
+
+
+def load_csv_spans(proj_dir):
+    """Group every CSV row by its (line_start, line_end) source span."""
+    csvs = list(proj_dir.glob("rules_*.csv"))
+    if not csvs:
+        return {}
+    spans = {}
+    with csvs[0].open(encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            try:
+                key = (int(r["line_start"]), int(r["line_end"]))
+            except (ValueError, KeyError):
+                continue
+            spans.setdefault(key, []).append(r)
+    return spans
+
+
+def match_node_to_source(node, spans):
+    """Find the source span whose selected text best matches the node's paraphrase.
+
+    Returns (exact_text, (line_start, line_end), score). Prefers the hand-selected
+    row's text (a literal source span) over the LLM's reworded extraction. A soft
+    penalty discourages matching a rule to a row of a different deontic tag.
+    """
+    paraphrase = node.get("text", "")
+    rtype = (node.get("type") or "").upper()
+    best, best_score, best_key = None, -1.0, None
+    for key, rows in spans.items():
+        for r in rows:
+            sc = _similarity(paraphrase, r.get("rule_text", ""))
+            tag = (r.get("tag") or "").upper()
+            if rtype in DEONTIC_TAGS and tag and tag != rtype:
+                sc *= 0.85
+            if sc > best_score:
+                best_score, best, best_key = sc, (key, rows, r), key
+    if best is None:
+        return None, None, 0.0
+    _, rows, row = best
+    hand = [x for x in rows if x.get("extracted_by") == "hand"]
+    exact = (hand[0] if hand else row).get("rule_text", "").strip()
+    return exact, best_key, best_score
 
 
 def parse_frontmatter(text):
@@ -115,6 +179,28 @@ def build_project(proj_dir):
             nodes[node["id"]] = node
             edges.extend(e)
 
+    # Replace each node's display text with the exact span selected as the rule
+    # in the source file (from the CSV). The vault note's quote is kept as
+    # "paraphrase"; "source_lines" and "verbatim" let the UI show provenance.
+    spans = load_csv_spans(proj_dir)
+    matched = 0
+    for node in nodes.values():
+        node["paraphrase"] = node["text"]
+        if not spans:
+            node["verbatim"] = False
+            node["source_lines"] = ""
+            continue
+        exact, key, score = match_node_to_source(node, spans)
+        if exact and score >= MATCH_THRESHOLD:
+            node["text"] = exact
+            node["verbatim"] = True
+            node["source_lines"] = f"{key[0]}" if key[0] == key[1] else f"{key[0]}–{key[1]}"
+            matched += 1
+        else:
+            node["verbatim"] = False
+            node["source_lines"] = ""
+    build_project.last_match = (matched, len(nodes))
+
     # merge LLM rationales if present
     rfile = OUT / "rationales" / f"{project}.json"
     if rfile.exists():
@@ -137,7 +223,9 @@ def main():
             data = build_project(d)
             (OUT / f"{d.name}.json").write_text(json.dumps(data, indent=1, ensure_ascii=False))
             n_rat = sum(1 for e in data["edges"] if e["rationale"])
-            print(f"{d.name}: {len(data['nodes'])} nodes, {len(data['edges'])} edges ({n_rat} with rationale)")
+            mv = sum(1 for n in data["nodes"].values() if n.get("verbatim"))
+            print(f"{d.name}: {len(data['nodes'])} nodes, {len(data['edges'])} edges "
+                  f"({n_rat} with rationale, {mv}/{len(data['nodes'])} verbatim from source)")
             projects.append(d.name)
     (OUT / "projects.json").write_text(json.dumps(projects))
 

@@ -14,7 +14,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Read the Critical Terminology section below at the beginning of every conversation to ensure correct understanding of the architecture.",
-   "judgment": "A pre-task loading duty. Annotator noted each term might be its own verifiable unit. Grounded by the terminology context nodes — it has no content without them."
+   "judgment": "A pre-task loading duty. Annotator noted each term might be its own verifiable unit. Grounded by the terminology context nodes — it has no content without them.",
+   "paraphrase": "Read the Critical Terminology section below at the beginning of every conversation to ensure correct understanding of the architecture.",
+   "verbatim": true,
+   "source_lines": "5"
   },
   "R02": {
    "id": "R02",
@@ -29,7 +32,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "All code should be robust and validated.",
-   "judgment": "Slogan-level parent; 'robust' and 'validated' are undefined here and only become operational through the incremental-dev and verification rules that refine it."
+   "judgment": "Slogan-level parent; 'robust' and 'validated' are undefined here and only become operational through the incremental-dev and verification rules that refine it.",
+   "paraphrase": "All code should be robust and validated.",
+   "verbatim": true,
+   "source_lines": "21"
   },
   "R03": {
    "id": "R03",
@@ -44,7 +50,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "MS2.0 design with clear module boundaries and interfaces.",
-   "judgment": "The modularity anchor for the RTL cluster. Concrete only via the ready/valid, FIFO, and parameterization rules that refine it."
+   "judgment": "The modularity anchor for the RTL cluster. Concrete only via the ready/valid, FIFO, and parameterization rules that refine it.",
+   "paraphrase": "MS2.0 design with clear module boundaries and interfaces.",
+   "verbatim": true,
+   "source_lines": "22"
   },
   "R04": {
    "id": "R04",
@@ -59,7 +68,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Build, test, and validate incrementally.",
-   "judgment": "Process rule that operationalizes R02. Paired with the R05 prohibition."
+   "judgment": "Process rule that operationalizes R02. Paired with the R05 prohibition.",
+   "paraphrase": "Build, test, and validate incrementally.",
+   "verbatim": true,
+   "source_lines": "23"
   },
   "R05": {
    "id": "R05",
@@ -74,7 +86,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Never make large untested changes.",
-   "judgment": "The prohibition twin of R04 — a large untested change is exactly a violation of incremental development, so it refines R04."
+   "judgment": "The prohibition twin of R04 — a large untested change is exactly a violation of incremental development, so it refines R04.",
+   "paraphrase": "Never make large untested changes.",
+   "verbatim": true,
+   "source_lines": "23"
   },
   "R06": {
    "id": "R06",
@@ -89,7 +104,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Always consult MULTI_ROW_REFERENCE.md and AMD_GEMM_REFERENCE.md for architectural patterns.",
-   "judgment": "Evidence-gathering rule enabling aligned design. Near-duplicate of R26 (consult docs frequently)."
+   "judgment": "Evidence-gathering rule enabling aligned design. Near-duplicate of R26 (consult docs frequently).",
+   "paraphrase": "Always consult MULTI_ROW_REFERENCE.md and AMD_GEMM_REFERENCE.md for architectural patterns.",
+   "verbatim": true,
+   "source_lines": "24"
   },
   "R07": {
    "id": "R07",
@@ -104,7 +122,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Adopt ready-valid handshaking, FIFO decoupling, and coding conventions from AMD reference.",
-   "judgment": "Supplies the concrete conventions that make R03's modular design real; itself refined by the protocol-level rules R27/R28."
+   "judgment": "Supplies the concrete conventions that make R03's modular design real; itself refined by the protocol-level rules R27/R28.",
+   "paraphrase": "Adopt ready-valid handshaking, FIFO decoupling, and coding conventions from AMD reference.",
+   "verbatim": true,
+   "source_lines": "25"
   },
   "R08": {
    "id": "R08",
@@ -118,8 +139,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
-   "text": "Always use ./build_and_flash.sh for automated workflow (also for programming/flashing).",
-   "judgment": "Consolidates two near-identical rows (L89, L98). Concrete and checkable."
+   "text": "Always use `./build_and_flash.sh` for automated workflow.",
+   "judgment": "Consolidates two near-identical rows (L89, L98). Concrete and checkable.",
+   "paraphrase": "Always use ./build_and_flash.sh for automated workflow (also for programming/flashing).",
+   "verbatim": true,
+   "source_lines": "89"
   },
   "R09": {
    "id": "R09",
@@ -134,7 +158,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Keep recovery procedures ready.",
-   "judgment": "Preparedness duty; vague on what 'ready' means but clearly scoped to flashing failures."
+   "judgment": "Preparedness duty; vague on what 'ready' means but clearly scoped to flashing failures.",
+   "paraphrase": "Keep recovery procedures ready.",
+   "verbatim": true,
+   "source_lines": "90"
   },
   "R10": {
    "id": "R10",
@@ -148,8 +175,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
-   "text": "After any change, run test_registers to verify device health (run after every hardware operation).",
-   "judgment": "Consolidates L91 and L147. A checkpoint: it adds no new code obligation, only a designated moment to verify device health against R02's robustness."
+   "text": "After any change, run `test_registers` to verify device health.",
+   "judgment": "Consolidates L91 and L147. A checkpoint: it adds no new code obligation, only a designated moment to verify device health against R02's robustness.",
+   "paraphrase": "After any change, run test_registers to verify device health (run after every hardware operation).",
+   "verbatim": true,
+   "source_lines": "91"
   },
   "R11": {
    "id": "R11",
@@ -164,7 +194,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "No Hardcoded Results.",
-   "judgment": "Crisp, grep-able prohibition. Paired with the positive R12."
+   "judgment": "Crisp, grep-able prohibition. Paired with the positive R12.",
+   "paraphrase": "No Hardcoded Results.",
+   "verbatim": true,
+   "source_lines": "92"
   },
   "R12": {
    "id": "R12",
@@ -179,7 +212,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "All tests must use golden references or computed values.",
-   "judgment": "The positive complement of R11 — using golden references is how you satisfy 'no hardcoded results'."
+   "judgment": "The positive complement of R11 — using golden references is how you satisfy 'no hardcoded results'.",
+   "paraphrase": "All tests must use golden references or computed values.",
+   "verbatim": true,
+   "source_lines": "92"
   },
   "R13": {
    "id": "R13",
@@ -193,8 +229,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
-   "text": "Use `make clean && make`.",
-   "judgment": "Concrete build command. Paired with the R14 prohibition."
+   "text": "Use `make clean &amp;&amp; make`.",
+   "judgment": "Concrete build command. Paired with the R14 prohibition.",
+   "paraphrase": "Use `make clean && make`.",
+   "verbatim": true,
+   "source_lines": "97"
   },
   "R14": {
    "id": "R14",
@@ -209,7 +248,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Never skip clean.",
-   "judgment": "Prohibition twin of R13 — skipping clean violates the clean-build rule."
+   "judgment": "Prohibition twin of R13 — skipping clean violates the clean-build rule.",
+   "paraphrase": "Never skip clean.",
+   "verbatim": true,
+   "source_lines": "97"
   },
   "R15": {
    "id": "R15",
@@ -224,7 +266,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Run test suite starting with `test_registers`.",
-   "judgment": "Ordering rule for validation; concretizes the basic-checks-first principle R18."
+   "judgment": "Ordering rule for validation; concretizes the basic-checks-first principle R18.",
+   "paraphrase": "Run test suite starting with `test_registers`.",
+   "verbatim": true,
+   "source_lines": "99"
   },
   "R16": {
    "id": "R16",
@@ -239,7 +284,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Update README.md for technical changes.",
-   "judgment": "Documentation routing rule. Overlaps R22 (technical detail belongs in README)."
+   "judgment": "Documentation routing rule. Overlaps R22 (technical detail belongs in README).",
+   "paraphrase": "Update README.md for technical changes.",
+   "verbatim": true,
+   "source_lines": "100"
   },
   "R17": {
    "id": "R17",
@@ -254,7 +302,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Update CHANGELOG.md for fixes.",
-   "judgment": "Concrete and checkable documentation duty."
+   "judgment": "Concrete and checkable documentation duty.",
+   "paraphrase": "Update CHANGELOG.md for fixes.",
+   "verbatim": true,
+   "source_lines": "100"
   },
   "R18": {
    "id": "R18",
@@ -269,7 +320,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Start with basic health checks, build complexity.",
-   "judgment": "Incremental-testing principle; a domain instance of R04 for the test phase."
+   "judgment": "Incremental-testing principle; a domain instance of R04 for the test phase.",
+   "paraphrase": "Start with basic health checks, build complexity.",
+   "verbatim": true,
+   "source_lines": "144"
   },
   "R19": {
    "id": "R19",
@@ -284,7 +338,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Never assume.",
-   "judgment": "Terse prohibition; paired with the positive verification rule R20."
+   "judgment": "Terse prohibition; paired with the positive verification rule R20.",
+   "paraphrase": "Never assume.",
+   "verbatim": true,
+   "source_lines": "146"
   },
   "R20": {
    "id": "R20",
@@ -299,7 +356,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Always verify against references.",
-   "judgment": "Positive complement of R19 — verifying is how you avoid assuming."
+   "judgment": "Positive complement of R19 — verifying is how you avoid assuming.",
+   "paraphrase": "Always verify against references.",
+   "verbatim": true,
+   "source_lines": "146"
   },
   "R21": {
    "id": "R21",
@@ -313,8 +373,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
-   "text": "Update CLAUDE.md only for major architectural shifts, philosophy/workflow changes, new integration points, or critical operational procedure changes.",
-   "judgment": "A restriction framed as a permission-with-conditions; functionally bans CLAUDE.md edits outside the listed categories."
+   "text": "Update CLAUDE.md only for major architectural shifts, changes in development philosophy or workflow, new integration points with other projects, or critical operational procedure changes.",
+   "judgment": "A restriction framed as a permission-with-conditions; functionally bans CLAUDE.md edits outside the listed categories.",
+   "paraphrase": "Update CLAUDE.md only for major architectural shifts, philosophy/workflow changes, new integration points, or critical operational procedure changes.",
+   "verbatim": true,
+   "source_lines": "151"
   },
   "R22": {
    "id": "R22",
@@ -329,7 +392,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "For technical details, specifications, and implementation notes, update README.md instead.",
-   "judgment": "The routing rule that makes R21's restriction livable — it tells you where detail goes instead."
+   "judgment": "The routing rule that makes R21's restriction livable — it tells you where detail goes instead.",
+   "paraphrase": "For technical details, specifications, and implementation notes, update README.md instead.",
+   "verbatim": true,
+   "source_lines": "159"
   },
   "R23": {
    "id": "R23",
@@ -344,7 +410,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Core RTL modules - keep modular and parameterized.",
-   "judgment": "Concrete instance of R03's modularity for the core RTL."
+   "judgment": "Concrete instance of R03's modularity for the core RTL.",
+   "paraphrase": "Core RTL modules - keep modular and parameterized.",
+   "verbatim": true,
+   "source_lines": "136"
   },
   "R24": {
    "id": "R24",
@@ -359,7 +428,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Obsolete modules - do not use.",
-   "judgment": "Clear prohibition; boundary depends on what is marked obsolete."
+   "judgment": "Clear prohibition; boundary depends on what is marked obsolete.",
+   "paraphrase": "Obsolete modules - do not use.",
+   "verbatim": true,
+   "source_lines": "137"
   },
   "R25": {
    "id": "R25",
@@ -373,8 +445,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
-   "text": "Essential tests only. Archive obsolete tests. Maintain clean test suites.",
-   "judgment": "Consolidates three cleanliness rows into one norm."
+   "text": "Maintain clean test suites.",
+   "judgment": "Consolidates three cleanliness rows into one norm.",
+   "paraphrase": "Essential tests only. Archive obsolete tests. Maintain clean test suites.",
+   "verbatim": true,
+   "source_lines": "139"
   },
   "R26": {
    "id": "R26",
@@ -389,7 +464,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Reference documentation - consult frequently.",
-   "judgment": "Generic consult-the-docs rule; duplicate-in-spirit of R06 which names the specific references."
+   "judgment": "Generic consult-the-docs rule; duplicate-in-spirit of R06 which names the specific references.",
+   "paraphrase": "Reference documentation - consult frequently.",
+   "verbatim": true,
+   "source_lines": "140"
   },
   "R27": {
    "id": "R27",
@@ -403,8 +481,11 @@
    "llm_tag": "PRESCRIPTION",
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
-   "text": "All inter-module communication uses ready/valid protocol (ready/valid signals between all FSMs).",
-   "judgment": "Consolidates L117 and L127. Concretizes R07's 'adopt ready/valid' into a universal requirement."
+   "text": "All inter-module communication uses ready/valid protocol.",
+   "judgment": "Consolidates L117 and L127. Concretizes R07's 'adopt ready/valid' into a universal requirement.",
+   "paraphrase": "All inter-module communication uses ready/valid protocol (ready/valid signals between all FSMs).",
+   "verbatim": true,
+   "source_lines": "117"
   },
   "R28": {
    "id": "R28",
@@ -419,7 +500,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "FIFOs between pipeline stages for flow control and timing isolation.",
-   "judgment": "Concretizes R07's 'FIFO decoupling'."
+   "judgment": "Concretizes R07's 'FIFO decoupling'.",
+   "paraphrase": "FIFOs between pipeline stages for flow control and timing isolation.",
+   "verbatim": true,
+   "source_lines": "118"
   },
   "R29": {
    "id": "R29",
@@ -434,7 +518,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "No Blocking Operations.",
-   "judgment": "Prohibition enabled by the FIFO decoupling rule — non-blocking flow is what FIFOs buy."
+   "judgment": "Prohibition enabled by the FIFO decoupling rule — non-blocking flow is what FIFOs buy.",
+   "paraphrase": "No Blocking Operations.",
+   "verbatim": true,
+   "source_lines": "131"
   },
   "R30": {
    "id": "R30",
@@ -449,7 +536,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Automatic partitioning across rows (V) and columns (C).",
-   "judgment": "Behavioral rule grounded by the distribution-formula and capacity context nodes — unapplicable without them."
+   "judgment": "Behavioral rule grounded by the distribution-formula and capacity context nodes — unapplicable without them.",
+   "paraphrase": "Automatic partitioning across rows (V) and columns (C).",
+   "verbatim": true,
+   "source_lines": "119"
   },
   "R31": {
    "id": "R31",
@@ -463,8 +553,11 @@
    "llm_tag": "PROHIBITION",
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
-   "text": "AMD GEMM RTL: reference implementation (READ-ONLY).",
-   "judgment": "Hard boundary on a specific path; maximally checkable."
+   "text": "AMD GEMM RTL: `/home/dev/Dev/elastix_gemm/amd_gemm/ip/` - Reference implementation (READ-ONLY).",
+   "judgment": "Hard boundary on a specific path; maximally checkable.",
+   "paraphrase": "AMD GEMM RTL: reference implementation (READ-ONLY).",
+   "verbatim": true,
+   "source_lines": "180"
   },
   "R32": {
    "id": "R32",
@@ -479,7 +572,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Think rigorously. Test thoroughly. Document clearly.",
-   "judgment": "Three closing slogans; aspirational parents whose teeth are the concrete testing/doc rules elsewhere."
+   "judgment": "Three closing slogans; aspirational parents whose teeth are the concrete testing/doc rules elsewhere.",
+   "paraphrase": "Think rigorously. Test thoroughly. Document clearly.",
+   "verbatim": false,
+   "source_lines": ""
   },
   "R33": {
    "id": "R33",
@@ -494,7 +590,10 @@
    "agreement": "disagree",
    "source": "gemm/CLAUDE.md",
    "text": "Clear separation of control and data paths.",
-   "judgment": "Architectural separation rule; a concrete facet of R03 modularity, grounded by the dual-memory context."
+   "judgment": "Architectural separation rule; a concrete facet of R03 modularity, grounded by the dual-memory context.",
+   "paraphrase": "Clear separation of control and data paths.",
+   "verbatim": true,
+   "source_lines": "108"
   },
   "C01": {
    "id": "C01",
@@ -508,8 +607,11 @@
    "llm_tag": "",
    "agreement": "",
    "source": "gemm/CLAUDE.md",
-   "text": "Native Vector (NV): a vector of GFP numbers, may contain multiple groups.",
-   "judgment": "Core term. Hand-tagged PERMISSION but it has no deontic force — a definition. Grounds any rule that reasons over NVs."
+   "text": "- **Native Vector (NV)**: A vector of GFP numbers, may contain multiple groups",
+   "judgment": "Core term. Hand-tagged PERMISSION but it has no deontic force — a definition. Grounds any rule that reasons over NVs.",
+   "paraphrase": "Native Vector (NV): a vector of GFP numbers, may contain multiple groups.",
+   "verbatim": true,
+   "source_lines": "35–36"
   },
   "C02": {
    "id": "C02",
@@ -523,8 +625,11 @@
    "llm_tag": "",
    "agreement": "",
    "source": "gemm/CLAUDE.md",
-   "text": "Row: a row of compute tiles, each with its own row_bram for activations (mapped to a GDDR6 channel); row_bram holds the left matrix.",
-   "judgment": "Hand-tagged PRESCRIPTION but it states an architectural fact, not an obligation — context. Grounds the partitioning and modular-RTL rules."
+   "text": "- **Row**: A row of compute tiles, each row has its own row_bram for activations (mapped to GDDR6 channel)",
+   "judgment": "Hand-tagged PRESCRIPTION but it states an architectural fact, not an obligation — context. Grounds the partitioning and modular-RTL rules.",
+   "paraphrase": "Row: a row of compute tiles, each with its own row_bram for activations (mapped to a GDDR6 channel); row_bram holds the left matrix.",
+   "verbatim": true,
+   "source_lines": "52–53"
   },
   "C03": {
    "id": "C03",
@@ -538,8 +643,11 @@
    "llm_tag": "",
    "agreement": "",
    "source": "gemm/CLAUDE.md",
-   "text": "Dual-Memory Architecture: BRAM for low-latency result storage and command buffering; GDDR6 for high-bandwidth matrix data.",
-   "judgment": "Hand-tagged PREFERENCE ('could be prescription'); really a structural definition that grounds the control/data separation rule."
+   "text": "**Dual-Memory Architecture**:\n  - BRAM: Low-latency result storage and command buffering\n  - GDDR6: High-bandwidth matrix data storage",
+   "judgment": "Hand-tagged PREFERENCE ('could be prescription'); really a structural definition that grounds the control/data separation rule.",
+   "paraphrase": "Dual-Memory Architecture: BRAM for low-latency result storage and command buffering; GDDR6 for high-bandwidth matrix data.",
+   "verbatim": true,
+   "source_lines": "105–107"
   },
   "C04": {
    "id": "C04",
@@ -553,8 +661,11 @@
    "llm_tag": "",
    "agreement": "",
    "source": "gemm/CLAUDE.md",
-   "text": "2-D Tile Array: 16x16 compute tiles in rows/columns; mlp_bram holds shared weights (right matrix) broadcast to all columns.",
-   "judgment": "Architectural definition grounding partitioning and modular-RTL rules."
+   "text": "- **mlp_bram**: Shared weight storage (right matrix), broadcast to all columns",
+   "judgment": "Architectural definition grounding partitioning and modular-RTL rules.",
+   "paraphrase": "2-D Tile Array: 16x16 compute tiles in rows/columns; mlp_bram holds shared weights (right matrix) broadcast to all columns.",
+   "verbatim": true,
+   "source_lines": "116–117"
   },
   "C05": {
    "id": "C05",
@@ -568,8 +679,11 @@
    "llm_tag": "",
    "agreement": "",
    "source": "gemm/CLAUDE.md",
-   "text": "First (V % num_rows) rows get (V/num_rows + 1) NVs; first (C % num_cols) columns get (C/num_cols + 1) NVs; distribute evenly, remainder to lower-indexed partitions.",
-   "judgment": "These formulas define exactly how R30's 'automatic partitioning' behaves — the rule is unverifiable without them."
+   "text": "Distribute evenly, remainder goes to lower-indexed partitions.",
+   "judgment": "These formulas define exactly how R30's 'automatic partitioning' behaves — the rule is unverifiable without them.",
+   "paraphrase": "First (V % num_rows) rows get (V/num_rows + 1) NVs; first (C % num_cols) columns get (C/num_cols + 1) NVs; distribute evenly, remainder to lower-indexed partitions.",
+   "verbatim": true,
+   "source_lines": "66"
   },
   "C06": {
    "id": "C06",
@@ -583,8 +697,11 @@
    "llm_tag": "",
    "agreement": "",
    "source": "gemm/CLAUDE.md",
-   "text": "Maximum safe back-to-back FETCH-DISPATCH operations = number of columns (each tile BRAM holds 128 NVs; each FETCH brings 128 NVs; N columns x 128 = capacity).",
-   "judgment": "A capacity constraint the partitioning/dispatch logic must respect; bounds R30."
+   "text": "**Maximum safe back-to-back FETCH-DISPATCH operations = Number of Columns**\n  - Each tile BRAM holds 128 NVs\n  - Each FETCH brings 128 NVs to distribute\n  - With N columns: N dispatches × 128 NVs = N columns × 128 NV capacity",
+   "judgment": "A capacity constraint the partitioning/dispatch logic must respect; bounds R30.",
+   "paraphrase": "Maximum safe back-to-back FETCH-DISPATCH operations = number of columns (each tile BRAM holds 128 NVs; each FETCH brings 128 NVs; N columns x 128 = capacity).",
+   "verbatim": true,
+   "source_lines": "69–72"
   },
   "C07": {
    "id": "C07",
@@ -598,8 +715,11 @@
    "llm_tag": "",
    "agreement": "",
    "source": "gemm/CLAUDE.md",
-   "text": "Circular Buffer Pattern: dual-pointer (rd_ptr/wr_ptr) streaming. Hierarchical Buffering: multiple BRAM levels to decouple stages.",
-   "judgment": "Named architectural patterns (hand: PREFERENCE) that ground the FIFO/decoupling and modular rules."
+   "text": "- **Circular Buffer Pattern**: Dual-pointer management (rd_ptr/wr_ptr) for streaming results",
+   "judgment": "Named architectural patterns (hand: PREFERENCE) that ground the FIFO/decoupling and modular rules.",
+   "paraphrase": "Circular Buffer Pattern: dual-pointer (rd_ptr/wr_ptr) streaming. Hierarchical Buffering: multiple BRAM levels to decouple stages.",
+   "verbatim": true,
+   "source_lines": "109–110"
   }
  },
  "edges": [

@@ -17,6 +17,15 @@
   "R07--support--R04": {
    "mark": "agree",
    "updated_at": "2026-06-15T00:18:20-04:00"
+  },
+  "R08--refinement--R01": {
+   "mark": "reject",
+   "updated_at": "2026-06-15T14:28:05+00:00",
+   "comment": "feels like Duplication, both vague and no direct instruction given"
+  },
+  "R08--support--R04": {
+   "mark": "agree",
+   "updated_at": "2026-06-15T14:28:10+00:00"
   }
  },
  "added": []
