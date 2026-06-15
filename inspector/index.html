@@ -47,20 +47,17 @@
   /* ---------- bottom-main: edge inspector (panel) ---------- */
   #inspector { height: 44vh; flex-shrink: 0; overflow-y: auto; padding: 20px 28px; min-height: 80px; border-top: 1px solid var(--border); background: var(--bg); }
   .edge-stage { display: grid; grid-template-columns: 1fr 200px 1fr; gap: 0; align-items: stretch; margin-bottom: 4px; }
-  .node-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
-  .node-card .dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; margin-right: 7px; vertical-align: -2px; border: 2px solid rgba(0,0,0,.18); }
-  .node-card .nid { font-weight: 700; font-size: 13px; }
-  .node-card .ntype { font-size: 10.5px; letter-spacing: .06em; color: var(--muted); margin-left: 7px; }
-  .node-card h3 { margin: 6px 0 8px; font-size: 15px; line-height: 1.35; }
-  .node-card blockquote { margin: 0; padding: 8px 12px; background: #f6f6f4; border-left: 3px solid var(--border); font-size: 12.5px; color: #555; border-radius: 0 6px 6px 0; max-height: 130px; overflow-y: auto; }
-  .node-card .role { font-size: 10.5px; color: var(--muted); margin-top: 8px; text-transform: uppercase; letter-spacing: .05em; }
-  .prov-row { margin-top: 6px; }
-  .prov { font-size: 10.5px; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+  .node-card { background: var(--panel); border: 1px solid var(--border); border-radius: 9px; padding: 10px 13px; position: relative; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
+  .node-card .nc-top { display: flex; align-items: center; gap: 6px; }
+  .node-card .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; vertical-align: -1px; border: 2px solid rgba(0,0,0,.18); }
+  .node-card .nid { font-weight: 700; font-size: 12.5px; }
+  .node-card .ntype { font-size: 10px; letter-spacing: .05em; color: var(--muted); }
+  .node-card .nc-top .role { margin-left: auto; font-size: 9.5px; color: #bbb; text-transform: uppercase; letter-spacing: .05em; }
+  .node-card h3 { margin: 5px 0 6px; font-size: 13.5px; line-height: 1.3; }
+  .prov-row { margin-top: 2px; }
+  .prov { font-size: 10px; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
   .prov.verbatim { color: #4a8a4a; background: #eef6ec; }
   .prov.approx { color: #b07d2a; background: #fbf4e6; }
-  details.judg { margin-top: 8px; font-size: 12px; color: #666; }
-  details.judg summary { cursor: pointer; color: var(--muted); font-size: 11.5px; user-select: none; }
-  details.judg p { margin: 6px 0 0; }
 
   .arrow-zone { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 6px; }
   .arrow-line { width: 100%; display: flex; align-items: center; }
@@ -69,11 +66,14 @@
   .rel-chip { margin-top: 10px; padding: 4px 14px; border-radius: 14px; font-size: 12.5px; font-weight: 600; border: 1px solid; white-space: nowrap; }
   .user-flag { margin-top: 6px; font-size: 10.5px; color: #6c5ce7; font-weight: 600; }
 
-  .rationale { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin-top: 18px; }
+  .rationale { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; margin-top: 14px; }
   .rationale .label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
-  .rationale .label::before { content: "✦"; color: #6c5ce7; }
+  .rationale .label::before { content: "❝"; color: #6c5ce7; font-weight: 700; }
   .rationale p { margin: 0; font-size: 13.5px; color: #444; }
   .rationale p.empty { color: var(--muted); font-style: italic; }
+  .judg-p { margin: 0 0 8px !important; }
+  .judg-p:last-child { margin-bottom: 0 !important; }
+  .judg-nid { display: inline-block; font-weight: 700; font-size: 11px; color: #6c5ce7; background: #efedfb; padding: 1px 7px; border-radius: 8px; margin-right: 6px; }
 
   .annotate { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; margin-top: 14px; }
   .annotate .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
@@ -330,22 +330,25 @@ function renderAll() { renderInspector(); renderSidebar(); renderProgress(); }
 function nodeCard(n, role) {
   if (!n) return '<div class="node-card">missing node</div>';
   const c = TYPE_COLOR[n.type] || '#ccc';
-  const judg = n.judgment ? `<details class="judg"><summary>analyst judgment</summary><p>${esc(n.judgment)}</p></details>` : '';
-  // Provenance: the blockquote is the exact span selected as the rule in the
-  // source file. Where no single source span matched (mostly synthesized
-  // context), we show the vault's paraphrase and say so.
+  // The rule text itself is shown (and highlighted) in the source pane above, so
+  // the card stays compact: id/type, title, and a source-line reference.
   const prov = n.verbatim
-    ? `<span class="prov verbatim" title="Exact text selected as the rule in the source file">⌁ verbatim from source · line ${esc(n.source_lines)}</span>`
-    : `<span class="prov approx" title="No single source span matched — showing the vault's paraphrase">≈ paraphrase (no exact source span)</span>`;
+    ? `<span class="prov verbatim" title="Exact text selected as the rule in the source file">⌁ verbatim · line ${esc(n.source_lines)}</span>`
+    : `<span class="prov approx" title="No single source span matched — showing the vault's paraphrase">≈ paraphrase (no source span)</span>`;
   return `<div class="node-card" style="border-top:3px solid ${c}">
-    <div><span class="dot" style="background:${c}"></span><span class="nid">${n.id}</span>
-      <span class="ntype">${TYPE_ICON[n.type]||''} ${n.type}</span></div>
+    <div class="nc-top"><span class="dot" style="background:${c}"></span><span class="nid">${n.id}</span>
+      <span class="ntype">${TYPE_ICON[n.type]||''} ${n.type}</span>
+      <span class="role">${role}</span></div>
     <h3>${esc(n.title)}</h3>
-    <blockquote>${esc(n.text) || '<i>no rule text</i>'}</blockquote>
     <div class="prov-row">${prov}</div>
-    ${judg}
-    <div class="role">${role}</div>
   </div>`;
+}
+
+// Replaces the LLM rationale box: the analyst's judgment for each endpoint.
+function judgmentBlock(src, tgt) {
+  const parts = [src, tgt].filter(n => n && n.judgment).map(n =>
+    `<p class="judg-p"><span class="judg-nid">${n.id}</span> ${esc(n.judgment)}</p>`);
+  return parts.length ? parts.join('') : '<p class="empty">No analyst judgment recorded for these nodes.</p>';
 }
 
 function renderInspector() {
@@ -356,9 +359,6 @@ function renderInspector() {
   const a = ann.edges[e.id] || {};
   const src = data.nodes[e.source], tgt = data.nodes[e.target];
   const rc = REL_COLOR[e.type] || '#777';
-  const rationale = e.rationale
-    ? `<p>${esc(e.rationale)}</p>`
-    : `<p class="empty">${e.user_added ? 'User-added relation — rationale is whatever you wrote below.' : 'No LLM rationale generated for this edge yet.'}</p>`;
 
   $('#inspector').innerHTML = `
     <div class="edge-stage">
@@ -372,8 +372,8 @@ function renderInspector() {
     </div>
 
     <div class="rationale">
-      <div class="label">LLM rationale</div>
-      ${rationale}
+      <div class="label">Analyst judgment</div>
+      ${judgmentBlock(src, tgt)}
     </div>
 
     <div class="annotate">
