@@ -16,6 +16,7 @@ from pathlib import Path
 
 VAULT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "data"
+SRC = Path(__file__).resolve().parent / "sources"  # raw source files (fetch_sources.py)
 
 REL_RE = re.compile(r"^- \*\*(?P<type>[^*]+)\*\*\s*(?:→|->)\s*\[\[(?P<target>[^\]|]+)(?:\|(?P<label>[^\]]+))?\]\]")
 TITLE_RE = re.compile(r"^# (?P<emoji>\S+)?\s*(?P<title>.+)$")
@@ -189,16 +190,19 @@ def build_project(proj_dir):
         if not spans:
             node["verbatim"] = False
             node["source_lines"] = ""
+            node["line_start"] = node["line_end"] = None
             continue
         exact, key, score = match_node_to_source(node, spans)
         if exact and score >= MATCH_THRESHOLD:
             node["text"] = exact
             node["verbatim"] = True
             node["source_lines"] = f"{key[0]}" if key[0] == key[1] else f"{key[0]}–{key[1]}"
+            node["line_start"], node["line_end"] = key[0], key[1]
             matched += 1
         else:
             node["verbatim"] = False
             node["source_lines"] = ""
+            node["line_start"] = node["line_end"] = None
     build_project.last_match = (matched, len(nodes))
 
     # merge LLM rationales if present
@@ -211,7 +215,34 @@ def build_project(proj_dir):
 
     # drop edges pointing at unknown nodes (safety)
     edges = [e for e in edges if e["source"] in nodes and e["target"] in nodes]
-    return {"project": project, "nodes": nodes, "edges": edges}
+
+    # Embed the raw source file (fetched at the CSV's pinned commit, so its line
+    # numbers match line_start/line_end) so the UI can show it and highlight the
+    # current rule's span.
+    src_file = SRC / f"{project}.txt"
+    source_text = src_file.read_text(encoding="utf-8") if src_file.exists() else ""
+    src_meta = parse_frontmatter((proj_dir / "_SOURCE.md").read_text(encoding="utf-8"))[0] \
+        if (proj_dir / "_SOURCE.md").exists() else {}
+    src_rows = load_csv_first_row(proj_dir)
+
+    return {
+        "project": project,
+        "nodes": nodes,
+        "edges": edges,
+        "source_text": source_text,
+        "source_name": src_meta.get("rule_file", f"{project} source"),
+        "source_url": src_rows.get("source_url", ""),
+    }
+
+
+def load_csv_first_row(proj_dir):
+    csvs = list(proj_dir.glob("rules_*.csv"))
+    if not csvs:
+        return {}
+    with csvs[0].open(encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            return r
+    return {}
 
 
 def main():

@@ -51,7 +51,8 @@ by default; set `HOST=0.0.0.0` to expose it on your network (Docker does this au
 ### What you can do
 
 - **Switch projects** with the tabs in the header — rules, edges and annotations all swap together.
-- **Inspect an edge** in the center: source node → relation → target node, plus the LLM rationale.
+- **Read the source** in the left pane: the original rule file, with the current edge's rule span(s) highlighted in light yellow.
+- **Inspect an edge** in the center: source node → relation → target node (exact source text), plus the LLM rationale.
 - **Review** each edge: `✓ agree` / `? unsure` / `✗ reject` and a free-text comment (auto-saves).
 - **Filter** the relation list (right/left panel) by relation type or review status.
 - **Add relations** the LLM missed via **＋ Add relation** (pick source, type, target, write your own rationale).
@@ -61,7 +62,8 @@ by default; set `HOST=0.0.0.0` to expose it on your network (Docker does this au
 
 | File | Role |
 |------|------|
-| `inspector/build_data.py` | Parses the vault notes (frontmatter, rule text, `→ [[target]]` relations) into `data/<project>.json`. |
+| `inspector/fetch_sources.py` | Downloads each project's raw source rule file at the commit pinned in its CSV into `sources/<project>.txt` (so line numbers match). Run once. |
+| `inspector/build_data.py` | Parses the vault notes into `data/<project>.json`, maps each node to its exact source span, and embeds the source file. |
 | `inspector/data/rationales/*.json` | Per-edge LLM rationales, merged into the data at build time. |
 | `inspector/server.py` | Python stdlib HTTP server (port 7077). Serves the UI and persists annotations. |
 | `inspector/index.html` | Single-file UI (vanilla JS). |

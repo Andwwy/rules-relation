@@ -20,8 +20,8 @@
   },
   "R08--refinement--R01": {
    "mark": "reject",
-   "updated_at": "2026-06-15T14:28:05+00:00",
-   "comment": "feels like Duplication, both vague and no direct instruction given"
+   "updated_at": "2026-06-15T14:39:29+00:00",
+   "comment": "Duplication, and irrelevant (not connected). It's just repeated and happened to be about the same thing"
   },
   "R08--support--R04": {
    "mark": "agree",

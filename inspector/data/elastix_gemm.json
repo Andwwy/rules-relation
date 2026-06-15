@@ -17,7 +17,9 @@
    "judgment": "A pre-task loading duty. Annotator noted each term might be its own verifiable unit. Grounded by the terminology context nodes — it has no content without them.",
    "paraphrase": "Read the Critical Terminology section below at the beginning of every conversation to ensure correct understanding of the architecture.",
    "verbatim": true,
-   "source_lines": "5"
+   "source_lines": "5",
+   "line_start": 5,
+   "line_end": 5
   },
   "R02": {
    "id": "R02",
@@ -35,7 +37,9 @@
    "judgment": "Slogan-level parent; 'robust' and 'validated' are undefined here and only become operational through the incremental-dev and verification rules that refine it.",
    "paraphrase": "All code should be robust and validated.",
    "verbatim": true,
-   "source_lines": "21"
+   "source_lines": "21",
+   "line_start": 21,
+   "line_end": 21
   },
   "R03": {
    "id": "R03",
@@ -53,7 +57,9 @@
    "judgment": "The modularity anchor for the RTL cluster. Concrete only via the ready/valid, FIFO, and parameterization rules that refine it.",
    "paraphrase": "MS2.0 design with clear module boundaries and interfaces.",
    "verbatim": true,
-   "source_lines": "22"
+   "source_lines": "22",
+   "line_start": 22,
+   "line_end": 22
   },
   "R04": {
    "id": "R04",
@@ -71,7 +77,9 @@
    "judgment": "Process rule that operationalizes R02. Paired with the R05 prohibition.",
    "paraphrase": "Build, test, and validate incrementally.",
    "verbatim": true,
-   "source_lines": "23"
+   "source_lines": "23",
+   "line_start": 23,
+   "line_end": 23
   },
   "R05": {
    "id": "R05",
@@ -89,7 +97,9 @@
    "judgment": "The prohibition twin of R04 — a large untested change is exactly a violation of incremental development, so it refines R04.",
    "paraphrase": "Never make large untested changes.",
    "verbatim": true,
-   "source_lines": "23"
+   "source_lines": "23",
+   "line_start": 23,
+   "line_end": 23
   },
   "R06": {
    "id": "R06",
@@ -107,7 +117,9 @@
    "judgment": "Evidence-gathering rule enabling aligned design. Near-duplicate of R26 (consult docs frequently).",
    "paraphrase": "Always consult MULTI_ROW_REFERENCE.md and AMD_GEMM_REFERENCE.md for architectural patterns.",
    "verbatim": true,
-   "source_lines": "24"
+   "source_lines": "24",
+   "line_start": 24,
+   "line_end": 24
   },
   "R07": {
    "id": "R07",
@@ -125,7 +137,9 @@
    "judgment": "Supplies the concrete conventions that make R03's modular design real; itself refined by the protocol-level rules R27/R28.",
    "paraphrase": "Adopt ready-valid handshaking, FIFO decoupling, and coding conventions from AMD reference.",
    "verbatim": true,
-   "source_lines": "25"
+   "source_lines": "25",
+   "line_start": 25,
+   "line_end": 25
   },
   "R08": {
    "id": "R08",
@@ -143,7 +157,9 @@
    "judgment": "Consolidates two near-identical rows (L89, L98). Concrete and checkable.",
    "paraphrase": "Always use ./build_and_flash.sh for automated workflow (also for programming/flashing).",
    "verbatim": true,
-   "source_lines": "89"
+   "source_lines": "89",
+   "line_start": 89,
+   "line_end": 89
   },
   "R09": {
    "id": "R09",
@@ -161,7 +177,9 @@
    "judgment": "Preparedness duty; vague on what 'ready' means but clearly scoped to flashing failures.",
    "paraphrase": "Keep recovery procedures ready.",
    "verbatim": true,
-   "source_lines": "90"
+   "source_lines": "90",
+   "line_start": 90,
+   "line_end": 90
   },
   "R10": {
    "id": "R10",
@@ -179,7 +197,9 @@
    "judgment": "Consolidates L91 and L147. A checkpoint: it adds no new code obligation, only a designated moment to verify device health against R02's robustness.",
    "paraphrase": "After any change, run test_registers to verify device health (run after every hardware operation).",
    "verbatim": true,
-   "source_lines": "91"
+   "source_lines": "91",
+   "line_start": 91,
+   "line_end": 91
   },
   "R11": {
    "id": "R11",
@@ -197,7 +217,9 @@
    "judgment": "Crisp, grep-able prohibition. Paired with the positive R12.",
    "paraphrase": "No Hardcoded Results.",
    "verbatim": true,
-   "source_lines": "92"
+   "source_lines": "92",
+   "line_start": 92,
+   "line_end": 92
   },
   "R12": {
    "id": "R12",
@@ -215,7 +237,9 @@
    "judgment": "The positive complement of R11 — using golden references is how you satisfy 'no hardcoded results'.",
    "paraphrase": "All tests must use golden references or computed values.",
    "verbatim": true,
-   "source_lines": "92"
+   "source_lines": "92",
+   "line_start": 92,
+   "line_end": 92
   },
   "R13": {
    "id": "R13",
@@ -233,7 +257,9 @@
    "judgment": "Concrete build command. Paired with the R14 prohibition.",
    "paraphrase": "Use `make clean && make`.",
    "verbatim": true,
-   "source_lines": "97"
+   "source_lines": "97",
+   "line_start": 97,
+   "line_end": 97
   },
   "R14": {
    "id": "R14",
@@ -251,7 +277,9 @@
    "judgment": "Prohibition twin of R13 — skipping clean violates the clean-build rule.",
    "paraphrase": "Never skip clean.",
    "verbatim": true,
-   "source_lines": "97"
+   "source_lines": "97",
+   "line_start": 97,
+   "line_end": 97
   },
   "R15": {
    "id": "R15",
@@ -269,7 +297,9 @@
    "judgment": "Ordering rule for validation; concretizes the basic-checks-first principle R18.",
    "paraphrase": "Run test suite starting with `test_registers`.",
    "verbatim": true,
-   "source_lines": "99"
+   "source_lines": "99",
+   "line_start": 99,
+   "line_end": 99
   },
   "R16": {
    "id": "R16",
@@ -287,7 +317,9 @@
    "judgment": "Documentation routing rule. Overlaps R22 (technical detail belongs in README).",
    "paraphrase": "Update README.md for technical changes.",
    "verbatim": true,
-   "source_lines": "100"
+   "source_lines": "100",
+   "line_start": 100,
+   "line_end": 100
   },
   "R17": {
    "id": "R17",
@@ -305,7 +337,9 @@
    "judgment": "Concrete and checkable documentation duty.",
    "paraphrase": "Update CHANGELOG.md for fixes.",
    "verbatim": true,
-   "source_lines": "100"
+   "source_lines": "100",
+   "line_start": 100,
+   "line_end": 100
   },
   "R18": {
    "id": "R18",
@@ -323,7 +357,9 @@
    "judgment": "Incremental-testing principle; a domain instance of R04 for the test phase.",
    "paraphrase": "Start with basic health checks, build complexity.",
    "verbatim": true,
-   "source_lines": "144"
+   "source_lines": "144",
+   "line_start": 144,
+   "line_end": 144
   },
   "R19": {
    "id": "R19",
@@ -341,7 +377,9 @@
    "judgment": "Terse prohibition; paired with the positive verification rule R20.",
    "paraphrase": "Never assume.",
    "verbatim": true,
-   "source_lines": "146"
+   "source_lines": "146",
+   "line_start": 146,
+   "line_end": 146
   },
   "R20": {
    "id": "R20",
@@ -359,7 +397,9 @@
    "judgment": "Positive complement of R19 — verifying is how you avoid assuming.",
    "paraphrase": "Always verify against references.",
    "verbatim": true,
-   "source_lines": "146"
+   "source_lines": "146",
+   "line_start": 146,
+   "line_end": 146
   },
   "R21": {
    "id": "R21",
@@ -377,7 +417,9 @@
    "judgment": "A restriction framed as a permission-with-conditions; functionally bans CLAUDE.md edits outside the listed categories.",
    "paraphrase": "Update CLAUDE.md only for major architectural shifts, philosophy/workflow changes, new integration points, or critical operational procedure changes.",
    "verbatim": true,
-   "source_lines": "151"
+   "source_lines": "151",
+   "line_start": 151,
+   "line_end": 151
   },
   "R22": {
    "id": "R22",
@@ -395,7 +437,9 @@
    "judgment": "The routing rule that makes R21's restriction livable — it tells you where detail goes instead.",
    "paraphrase": "For technical details, specifications, and implementation notes, update README.md instead.",
    "verbatim": true,
-   "source_lines": "159"
+   "source_lines": "159",
+   "line_start": 159,
+   "line_end": 159
   },
   "R23": {
    "id": "R23",
@@ -413,7 +457,9 @@
    "judgment": "Concrete instance of R03's modularity for the core RTL.",
    "paraphrase": "Core RTL modules - keep modular and parameterized.",
    "verbatim": true,
-   "source_lines": "136"
+   "source_lines": "136",
+   "line_start": 136,
+   "line_end": 136
   },
   "R24": {
    "id": "R24",
@@ -431,7 +477,9 @@
    "judgment": "Clear prohibition; boundary depends on what is marked obsolete.",
    "paraphrase": "Obsolete modules - do not use.",
    "verbatim": true,
-   "source_lines": "137"
+   "source_lines": "137",
+   "line_start": 137,
+   "line_end": 137
   },
   "R25": {
    "id": "R25",
@@ -449,7 +497,9 @@
    "judgment": "Consolidates three cleanliness rows into one norm.",
    "paraphrase": "Essential tests only. Archive obsolete tests. Maintain clean test suites.",
    "verbatim": true,
-   "source_lines": "139"
+   "source_lines": "139",
+   "line_start": 139,
+   "line_end": 139
   },
   "R26": {
    "id": "R26",
@@ -467,7 +517,9 @@
    "judgment": "Generic consult-the-docs rule; duplicate-in-spirit of R06 which names the specific references.",
    "paraphrase": "Reference documentation - consult frequently.",
    "verbatim": true,
-   "source_lines": "140"
+   "source_lines": "140",
+   "line_start": 140,
+   "line_end": 140
   },
   "R27": {
    "id": "R27",
@@ -485,7 +537,9 @@
    "judgment": "Consolidates L117 and L127. Concretizes R07's 'adopt ready/valid' into a universal requirement.",
    "paraphrase": "All inter-module communication uses ready/valid protocol (ready/valid signals between all FSMs).",
    "verbatim": true,
-   "source_lines": "117"
+   "source_lines": "117",
+   "line_start": 117,
+   "line_end": 117
   },
   "R28": {
    "id": "R28",
@@ -503,7 +557,9 @@
    "judgment": "Concretizes R07's 'FIFO decoupling'.",
    "paraphrase": "FIFOs between pipeline stages for flow control and timing isolation.",
    "verbatim": true,
-   "source_lines": "118"
+   "source_lines": "118",
+   "line_start": 118,
+   "line_end": 118
   },
   "R29": {
    "id": "R29",
@@ -521,7 +577,9 @@
    "judgment": "Prohibition enabled by the FIFO decoupling rule — non-blocking flow is what FIFOs buy.",
    "paraphrase": "No Blocking Operations.",
    "verbatim": true,
-   "source_lines": "131"
+   "source_lines": "131",
+   "line_start": 131,
+   "line_end": 131
   },
   "R30": {
    "id": "R30",
@@ -539,7 +597,9 @@
    "judgment": "Behavioral rule grounded by the distribution-formula and capacity context nodes — unapplicable without them.",
    "paraphrase": "Automatic partitioning across rows (V) and columns (C).",
    "verbatim": true,
-   "source_lines": "119"
+   "source_lines": "119",
+   "line_start": 119,
+   "line_end": 119
   },
   "R31": {
    "id": "R31",
@@ -557,7 +617,9 @@
    "judgment": "Hard boundary on a specific path; maximally checkable.",
    "paraphrase": "AMD GEMM RTL: reference implementation (READ-ONLY).",
    "verbatim": true,
-   "source_lines": "180"
+   "source_lines": "180",
+   "line_start": 180,
+   "line_end": 180
   },
   "R32": {
    "id": "R32",
@@ -575,7 +637,9 @@
    "judgment": "Three closing slogans; aspirational parents whose teeth are the concrete testing/doc rules elsewhere.",
    "paraphrase": "Think rigorously. Test thoroughly. Document clearly.",
    "verbatim": false,
-   "source_lines": ""
+   "source_lines": "",
+   "line_start": null,
+   "line_end": null
   },
   "R33": {
    "id": "R33",
@@ -593,7 +657,9 @@
    "judgment": "Architectural separation rule; a concrete facet of R03 modularity, grounded by the dual-memory context.",
    "paraphrase": "Clear separation of control and data paths.",
    "verbatim": true,
-   "source_lines": "108"
+   "source_lines": "108",
+   "line_start": 108,
+   "line_end": 108
   },
   "C01": {
    "id": "C01",
@@ -611,7 +677,9 @@
    "judgment": "Core term. Hand-tagged PERMISSION but it has no deontic force — a definition. Grounds any rule that reasons over NVs.",
    "paraphrase": "Native Vector (NV): a vector of GFP numbers, may contain multiple groups.",
    "verbatim": true,
-   "source_lines": "35–36"
+   "source_lines": "35–36",
+   "line_start": 35,
+   "line_end": 36
   },
   "C02": {
    "id": "C02",
@@ -629,7 +697,9 @@
    "judgment": "Hand-tagged PRESCRIPTION but it states an architectural fact, not an obligation — context. Grounds the partitioning and modular-RTL rules.",
    "paraphrase": "Row: a row of compute tiles, each with its own row_bram for activations (mapped to a GDDR6 channel); row_bram holds the left matrix.",
    "verbatim": true,
-   "source_lines": "52–53"
+   "source_lines": "52–53",
+   "line_start": 52,
+   "line_end": 53
   },
   "C03": {
    "id": "C03",
@@ -647,7 +717,9 @@
    "judgment": "Hand-tagged PREFERENCE ('could be prescription'); really a structural definition that grounds the control/data separation rule.",
    "paraphrase": "Dual-Memory Architecture: BRAM for low-latency result storage and command buffering; GDDR6 for high-bandwidth matrix data.",
    "verbatim": true,
-   "source_lines": "105–107"
+   "source_lines": "105–107",
+   "line_start": 105,
+   "line_end": 107
   },
   "C04": {
    "id": "C04",
@@ -665,7 +737,9 @@
    "judgment": "Architectural definition grounding partitioning and modular-RTL rules.",
    "paraphrase": "2-D Tile Array: 16x16 compute tiles in rows/columns; mlp_bram holds shared weights (right matrix) broadcast to all columns.",
    "verbatim": true,
-   "source_lines": "116–117"
+   "source_lines": "116–117",
+   "line_start": 116,
+   "line_end": 117
   },
   "C05": {
    "id": "C05",
@@ -683,7 +757,9 @@
    "judgment": "These formulas define exactly how R30's 'automatic partitioning' behaves — the rule is unverifiable without them.",
    "paraphrase": "First (V % num_rows) rows get (V/num_rows + 1) NVs; first (C % num_cols) columns get (C/num_cols + 1) NVs; distribute evenly, remainder to lower-indexed partitions.",
    "verbatim": true,
-   "source_lines": "66"
+   "source_lines": "66",
+   "line_start": 66,
+   "line_end": 66
   },
   "C06": {
    "id": "C06",
@@ -701,7 +777,9 @@
    "judgment": "A capacity constraint the partitioning/dispatch logic must respect; bounds R30.",
    "paraphrase": "Maximum safe back-to-back FETCH-DISPATCH operations = number of columns (each tile BRAM holds 128 NVs; each FETCH brings 128 NVs; N columns x 128 = capacity).",
    "verbatim": true,
-   "source_lines": "69–72"
+   "source_lines": "69–72",
+   "line_start": 69,
+   "line_end": 72
   },
   "C07": {
    "id": "C07",
@@ -719,7 +797,9 @@
    "judgment": "Named architectural patterns (hand: PREFERENCE) that ground the FIFO/decoupling and modular rules.",
    "paraphrase": "Circular Buffer Pattern: dual-pointer (rd_ptr/wr_ptr) streaming. Hierarchical Buffering: multiple BRAM levels to decouple stages.",
    "verbatim": true,
-   "source_lines": "109–110"
+   "source_lines": "109–110",
+   "line_start": 109,
+   "line_end": 110
   }
  },
  "edges": [
@@ -933,5 +1013,8 @@
    "type": "support (defines)",
    "rationale": "R03's 'clear module boundaries and interfaces' relies on decoupling mechanisms at those boundaries; C07's buffering patterns ('hierarchical buffering: multiple BRAM levels to decouple stages') define the standard means by which modules are kept independent across their interfaces. The link is more indirect than C07->R28 — C07 grounds modularity in general rather than any specific clause of R03."
   }
- ]
+ ],
+ "source_text": "# CLAUDE.md - Elastix GEMM Engine Project\n\nThis file provides high-level guidance for the GEMM engine sub-project.\n\n**IMPORTANT**: Read the Critical Terminology section below at the beginning of every conversation to ensure correct understanding of the architecture.\n\n## Project Overview\n\nThe **gemm/** directory contains the production MS2.0 GEMM (General Matrix Multiply) engine for the Achronix AC7t1500 Speedster7t FPGA.\n\n**Current Objective: 2-D MultiRow GEMM Architecture**\n\nThe project is transitioning from single-row multi-tile to a full 2-D array architecture:\n- **Target**: 16 rows × 16 columns (256 compute tiles)\n- **Memory**: Each row connected to one GDDR6 channel (8 channels total, 2 rows per channel)\n- **Compute**: ACX_MLP72 primitives for GFP8 dot products\n- **Reference Design**: AMD GEMM architecture patterns adapted for Achronix hardware\n\n## Core Philosophy\n\n- **Production-Ready Code**: This is the main production GEMM engine - all code should be robust and validated\n- **Modular Architecture**: MS2.0 design with clear module boundaries and interfaces\n- **Incremental Development**: Build, test, and validate incrementally - never make large untested changes\n- **Reference-Based Design**: Always consult MULTI_ROW_REFERENCE.md and AMD_GEMM_REFERENCE.md for architectural patterns\n- **AMD Design Patterns**: Adopt ready-valid handshaking, FIFO decoupling, and coding conventions from AMD reference\n\n## Critical Terminology (MUST READ)\n\n**GFP Number Formats:**\n- **GFP8**: Group Floating-Point with 8-bit mantissa, 5-bit exponent\n- **GFP4**: Group Floating-Point with 4-bit mantissa, 5-bit exponent\n- **Group Size**: Number of GFP numbers sharing one exponent (default: 32)\n\n**Vector Concepts:**\n- **Native Vector (NV)**: A vector of GFP numbers, may contain multiple groups\n  - Default size: 128 GFP numbers (128 bytes mantissa, 4 bytes exponent)\n  - Hardware atomic unit for data movement\n- **Grouped Dimension (GD)**: Matrix dimension along which GFP numbers are grouped (usually inner dimension in GEMM)\n- **UnGrouped Dimension (UGD)**: Matrix dimension that is not grouped (usually outer dimensions: batch, column)\n\n**Dispatcher-Specific Terms:**\n- **man_nv_cnt**: Total number of Native Vectors to distribute\n- **ugd_vec_size**: Number of NVs dispatched to a column before switching to next column\n  - Example: ugd_vec_size=8 means dispatch 8×4=32 lines to one tile, then switch to next\n\n**MATMUL Command Dimensions:**\n- **Left UGD length (B/batch/dim_b/left_ugd_len)**: Number of UGD vectors to process on left\n- **Right UGD length (C/column/dim_c/right_ugd_len)**: Number of UGD vectors to process on right\n- **UGD vector length (V/inner dimension/dim_v/vec_len)**: Number of Native Vectors per UGD\n\n**Architecture Terms (2-D MultiRow):**\n- **Row**: A row of compute tiles, each row has its own row_bram for activations (mapped to GDDR6 channel)\n- **Column**: A column of compute tiles, all columns share weight data from mlp_bram\n- **Tile**: Single compute unit at intersection of row and column\n- **num_rows_gp**: Number of rows in the array (default: 16)\n- **num_cols_gp**: Number of columns in the array (default: 16)\n\n**Memory Block (128 NVs):**\n- **Format**: 16 exponent lines + 512 mantissa lines = 528 lines total (256-bit wide)\n- **Exponent**: 128 NVs × 4 bytes = 512 bytes → 16 lines\n- **Mantissa**: 128 NVs × 128 bytes = 16384 bytes → 512 lines\n\n**V/C Distribution (Work Partitioning):**\n- **V across rows**: First (V % num_rows) rows get (V / num_rows + 1) NVs\n- **C across columns**: First (C % num_cols) columns get (C / num_cols + 1) NVs\n- **Pattern**: Distribute evenly, remainder goes to lower-indexed partitions\n\n**Memory Management Rule:**\n- **Maximum safe back-to-back FETCH-DISPATCH operations = Number of Columns**\n  - Each tile BRAM holds 128 NVs\n  - Each FETCH brings 128 NVs to distribute\n  - With N columns: N dispatches × 128 NVs = N columns × 128 NV capacity\n\n**Key Understanding:**\n- Dispatcher distributes Native Vectors in round-robin fashion with batches of ugd_vec_size\n- Each column tracks its own write pointer for multi-batch address management\n- C (right_ugd_len) is NOT the number of columns, it's the number of Native Vectors to distribute\n\n## Key Integration Points\n\n### Model Converter Integration\nThe GEMM hardware is actively used by the **model_converter** project (`/home/workstation/ElastiCore/projects/model_converter/`):\n- Shared command interface (5-opcode microcode: 0xF0-0xF4)\n- Common API through `elastiapi.hpp`\n- Coordinated testing patterns\n\n### Critical Operational Notes\n\n- **Build Process**: Always use `./build_and_flash.sh` for automated workflow\n- **Recovery First**: Keep recovery procedures ready - device hangs are recoverable\n- **Validation Required**: After any change, run `test_registers` to verify device health\n- **No Hardcoded Results**: All tests must use golden references or computed values\n\n## Development Workflow\n\n1. **Make Changes**: Edit RTL or software following modular design principles\n2. **Build**: Use `make clean && make` (never skip clean)\n3. **Program**: Use `./build_and_flash.sh` script\n4. **Validate**: Run test suite starting with `test_registers`\n5. **Document**: Update README.md for technical changes, CHANGELOG.md for fixes\n\n## Architecture Philosophy\n\n### Memory System Design\n- **Dual-Memory Architecture**:\n  - BRAM: Low-latency result storage and command buffering\n  - GDDR6: High-bandwidth matrix data storage\n  - Clear separation of control and data paths\n- **Circular Buffer Pattern**: Dual-pointer management (rd_ptr/wr_ptr) for streaming results\n- **Hierarchical Buffering**: Multiple BRAM levels to decouple processing stages\n\n### MS2.0 → 2-D MultiRow Design Principles\n- **2-D Tile Array**: 16×16 compute tiles with row/column organization\n- **Separate Memory Paths**:\n  - **row_bram**: Per-row activation storage (left matrix), one per row\n  - **mlp_bram**: Shared weight storage (right matrix), broadcast to all columns\n- **Ready-Valid Handshaking**: All inter-module communication uses ready/valid protocol\n- **FIFO Decoupling**: FIFOs between pipeline stages for flow control and timing isolation\n- **V/C Work Distribution**: Automatic partitioning across rows (V) and columns (C)\n- **Column Adder Tree**: FP accumulation across rows within each column\n- **Output Buffer**: Synchronizes results from all columns before output\n\n### State Machine Philosophy\n- **Master Control FSM**: Centralized command parsing and orchestration\n- **Dispatcher Control FSM**: Autonomous GDDR6 fetch management\n- **Compute Engine FSM**: Independent matrix computation pipeline\n- **Clear Handshaking**: Ready/valid signals between all FSMs\n\n### Data Flow Architecture\n- **Streaming Design**: Continuous data flow from GDDR6 → BRAM → Compute → Results\n- **No Blocking Operations**: All stages can operate concurrently\n- **Automatic Flow Control**: Back-pressure handling through FIFO status\n\n## File Organization Philosophy\n\n- **src/rtl/**: Core RTL modules - keep modular and parameterized\n- **src/rtl/archive/**: Obsolete modules - do not use\n- **sw_test/**: Essential tests only - archive obsolete tests\n- **sim/**: Simulation environment - maintain clean test suites\n- **doc/**: Reference documentation - consult frequently\n\n## Testing Philosophy\n\n- **Incremental Testing**: Start with basic health checks, build complexity\n- **Golden Reference**: Python model → SystemVerilog reference → Hardware\n- **Result Validation**: Never assume - always verify against references\n- **Sanity Checks**: Run `test_registers` after every hardware operation\n\n## When to Update This File\n\nUpdate CLAUDE.md only for:\n- Major architectural shifts (e.g., MS2.0 → 2-D MultiRow migration)\n- Changes in development philosophy or workflow\n- New integration points with other projects\n- Critical operational procedure changes\n\n**Current Status**: Transitioning from single-row multi-tile to 2-D MultiRow architecture. Reference manuals (MULTI_ROW_REFERENCE.md, AMD_GEMM_REFERENCE.md) define target architecture.\n\nFor technical details, specifications, and implementation notes, update README.md instead.\n\n## References\n\n- **Technical Details**: See [README.md](README.md)\n- **Change History**: See [CHANGELOG.md](CHANGELOG.md)\n- **Technical Documentation**: See [REFERENCES.md](REFERENCES.md)\n\n### Key Reference Documents\n\n**Primary References (2-D MultiRow):**\n- **[MULTI_ROW_REFERENCE.md](MULTI_ROW_REFERENCE.md)**: Complete 2-D array architecture, memory layout, data flow, ready-valid patterns\n- **[AMD_GEMM_REFERENCE.md](AMD_GEMM_REFERENCE.md)**: AMD reference design analysis, reusable patterns, coding conventions to adopt\n\n**Legacy References (Single-Row):**\n- **[STATE_TRANSITIONS_REFERENCE.md](STATE_TRANSITIONS_REFERENCE.md)**: FSM state transitions and command flow\n- **[SINGLE_ROW_REFERENCE.md](SINGLE_ROW_REFERENCE.md)**: Single-row multi-tile architecture (basis for 2-D expansion)\n- **[RESULT_BUFFER_REFERENCE.md](RESULT_BUFFER_REFERENCE.md)**: Result buffering and arbitration\n- **[MULTI_TILE_DISPATCH_REFERENCE.md](MULTI_TILE_DISPATCH_REFERENCE.md)**: Tile dispatch mechanisms\n\n**External References:**\n- **AMD GEMM RTL**: `/home/dev/Dev/elastix_gemm/amd_gemm/ip/` - Reference implementation (READ-ONLY)\n- **AMD Common IP**: `/home/dev/Dev/elastix_gemm/amd_gemm/ip/common/` - Reusable FIFO, adapter, BRAM modules\n\n---\n\n**Remember**: This is production hardware. Think rigorously, test thoroughly, document clearly.",
+ "source_name": "gemm/CLAUDE.md",
+ "source_url": "https://github.com/junhao-elastix/elastix_gemm/blob/be2d7948ebad183b298436264d43ed333e252248/gemm/CLAUDE.md"
 }

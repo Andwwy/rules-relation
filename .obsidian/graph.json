@@ -1,6 +1,6 @@
 {
   "collapse-filter": false,
-  "search": "path:\"clinerules-tdd/Rules\" OR path:\"clinerules-tdd/Context\"",
+  "search": "path:\"elastix_gemm/Rules\" OR path:\"clinerules-tdd/Context\"",
   "showTags": false,
   "showAttachments": false,
   "hideUnresolved": false,
@@ -43,16 +43,16 @@
       }
     }
   ],
-  "collapse-display": false,
+  "collapse-display": true,
   "showArrow": true,
   "textFadeMultiplier": -1,
   "nodeSizeMultiplier": 1.56213107638889,
   "lineSizeMultiplier": 1.24375868055556,
   "collapse-forces": false,
-  "centerStrength": 0.457248263888889,
-  "repelStrength": 9.65885416666667,
-  "linkStrength": 0.810112847222222,
-  "linkDistance": 180,
-  "scale": 0.7565294349318655,
+  "centerStrength": 0.378428819444444,
+  "repelStrength": 10.9288194444444,
+  "linkStrength": 0.724001736111111,
+  "linkDistance": 433,
+  "scale": 0.7931764484964484,
   "close": false
 }
