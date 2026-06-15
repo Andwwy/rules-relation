@@ -88,6 +88,43 @@ def locate_in_source(text, lines, hint=None):
     return best if best_score >= 0.5 else None
 
 
+def add_char_offsets(nodes, source_text):
+    """For each located node, compute the exact character span [char_start, char_end)
+    of its text within source_text, so the UI can highlight at letter level (not
+    just whole lines). Anchored to the node's line range to disambiguate, with an
+    exact-substring match first and a fuzzy fallback; whole-line span if all else
+    fails.
+    """
+    if not source_text:
+        for n in nodes.values():
+            n["char_start"] = n["char_end"] = None
+        return
+    lines = source_text.split("\n")
+    offs, o = [], 0
+    for ln in lines:
+        offs.append(o)
+        o += len(ln) + 1
+    for n in nodes.values():
+        ls, le = n.get("line_start"), n.get("line_end")
+        if not ls or ls < 1 or le > len(lines):
+            n["char_start"] = n["char_end"] = None
+            continue
+        win_start, win_end = offs[ls - 1], offs[le - 1] + len(lines[le - 1])
+        window = source_text[win_start:win_end]
+        text = n["text"]
+        idx = window.find(text)
+        if idx >= 0:
+            cs, ce = win_start + idx, win_start + idx + len(text)
+        else:
+            sm = difflib.SequenceMatcher(None, window, text, autojunk=False)
+            blocks = [b for b in sm.get_matching_blocks() if b.size > 0]
+            if blocks:
+                cs, ce = win_start + blocks[0].a, win_start + blocks[-1].a + blocks[-1].size
+            else:
+                cs, ce = win_start, win_end          # fall back to whole-line span
+        n["char_start"], n["char_end"] = cs, ce
+
+
 def match_node_to_source(node, spans):
     """Find the source span whose selected text best matches the node's paraphrase.
 
@@ -251,6 +288,7 @@ def build_project(proj_dir):
             node["source_lines"] = ""
             node["line_start"] = node["line_end"] = None
     build_project.last_match = (matched, len(nodes), relocated)
+    add_char_offsets(nodes, source_text)
 
     # merge LLM rationales if present
     rfile = OUT / "rationales" / f"{project}.json"
@@ -371,6 +409,7 @@ def build_project_from_csv(proj_dir):
         node["line_start"], node["line_end"] = s, e
         node["source_lines"] = f"{s}" if s == e else f"{s}–{e}"
         nodes[nid] = node
+    add_char_offsets(nodes, source_text)
 
     # relations (from the LLM detection pass)
     edges = []

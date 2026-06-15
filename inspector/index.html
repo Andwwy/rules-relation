@@ -36,14 +36,12 @@
   .srcline { display: flex; padding: 0 12px; white-space: pre-wrap; }
   .srcline .lnno { flex-shrink: 0; width: 34px; text-align: right; padding-right: 12px; color: #c2c2c2; user-select: none; }
   .srcline .lntext { flex: 1; color: #555; word-break: break-word; }
-  /* highlight the current edge's spans: SOURCE = red, TARGET = blue,
-     both-on-same-line = split red/blue so they don't blend */
-  .srcline.hl-src  { background: #ffdede; }
-  .srcline.hl-tgt  { background: #d9e6ff; }
-  .srcline.hl-both { background: linear-gradient(90deg, #ffdede 0%, #ffdede 50%, #d9e6ff 50%, #d9e6ff 100%); }
-  .srcline.hl-src .lntext, .srcline.hl-tgt .lntext, .srcline.hl-both .lntext { color: #1f1f1f; }
-  .srcline.hl-src .lnno { color: #c0392b; }
-  .srcline.hl-tgt .lnno { color: #2b6cb0; }
+  /* letter-level highlight of the current edge's exact rule text:
+     SOURCE = red, TARGET = blue, overlap = purple */
+  .lntext .hl-src  { background: #ffd2d2; border-radius: 2px; box-shadow: inset 0 -1px 0 #e88; }
+  .lntext .hl-tgt  { background: #d2e2ff; border-radius: 2px; box-shadow: inset 0 -1px 0 #88a; }
+  .lntext .hl-both { background: #e9d6f4; border-radius: 2px; box-shadow: inset 0 -1px 0 #a8c; }
+  .lntext .hl-src, .lntext .hl-tgt, .lntext .hl-both { color: #1a1a1a; }
 
   /* ---------- bottom-main: edge inspector (panel) ---------- */
   #inspector { height: 44vh; flex-shrink: 0; overflow-y: auto; padding: 20px 28px; min-height: 80px; border-top: 1px solid var(--border); background: var(--bg); }
@@ -279,31 +277,59 @@ function renderSourceShell() {
   else link.style.display = 'none';
   const text = data.source_text || '';
   if (!text) { $('#src-body').innerHTML = '<div class="empty-state" style="margin-top:30px">Source file not available.<br>Run <code>fetch_sources.py</code> then <code>build_data.py</code>.</div>'; return; }
-  $('#src-body').innerHTML = text.split('\n').map((ln, i) =>
+  srcLines = text.split('\n');
+  srcLineOffsets = []; let o = 0;
+  for (const ln of srcLines) { srcLineOffsets.push(o); o += ln.length + 1; }
+  $('#src-body').innerHTML = srcLines.map((ln, i) =>
     `<div class="srcline" id="srcl-${i+1}"><span class="lnno">${i+1}</span><span class="lntext">${esc(ln) || ' '}</span></div>`).join('');
+  hlLines = new Set();
 }
 
-// Highlight the current edge's spans — SOURCE red, TARGET blue (split if they
-// share a line) — and scroll into view.
-function lineSet(n) {
-  const s = new Set();
-  if (n && n.line_start != null) for (let i = n.line_start; i <= n.line_end; i++) s.add(i);
-  return s;
-}
+// Letter-level highlight: paint exactly each endpoint's character span — SOURCE
+// red, TARGET blue, overlap purple — splitting each affected line into segments.
+let srcLines = [], srcLineOffsets = [], hlLines = new Set();
+
 function highlightSource(e) {
-  document.querySelectorAll('.srcline').forEach(el => el.classList.remove('hl-src', 'hl-tgt', 'hl-both'));
-  const sl = lineSet(data.nodes[e.source]), tl = lineSet(data.nodes[e.target]);
-  const all = new Set([...sl, ...tl]);
-  for (const i of all) {
-    const el = $('#srcl-' + i);
-    if (!el) continue;
-    const inS = sl.has(i), inT = tl.has(i);
-    el.classList.add(inS && inT ? 'hl-both' : inS ? 'hl-src' : 'hl-tgt');
+  const ranges = [];
+  for (const [node, flag] of [[data.nodes[e.source], 1], [data.nodes[e.target], 2]]) {
+    if (node && node.char_start != null) ranges.push([node.char_start, node.char_end, flag]);
   }
-  if (all.size) {
-    const el = $('#srcl-' + Math.min(...all));
-    if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  // reset previously-highlighted lines to plain text (line i is element srcl-(i+1))
+  for (const i of hlLines) { const el = $('#srcl-' + (i + 1)); if (el) el.querySelector('.lntext').textContent = srcLines[i] || ' '; }
+  hlLines = new Set();
+  if (!ranges.length) return;
+
+  const lo = Math.min(...ranges.map(r => r[0])), hi = Math.max(...ranges.map(r => r[1]));
+  let firstLine = null;
+  for (let i = 0; i < srcLines.length; i++) {
+    const start = srcLineOffsets[i], end = start + srcLines[i].length;
+    if (end < lo || start > hi) continue;                 // line outside all ranges
+    const html = segmentLine(i, ranges);
+    if (html === null) continue;                          // no chars highlighted on this line
+    const el = $('#srcl-' + (i + 1)); if (!el) continue;
+    el.querySelector('.lntext').innerHTML = html;
+    hlLines.add(i);
+    if (firstLine === null) firstLine = i;
   }
+  if (firstLine !== null) { const el = $('#srcl-' + (firstLine + 1)); if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+}
+
+function segmentLine(i, ranges) {
+  const txt = srcLines[i], base = srcLineOffsets[i];
+  const flags = new Array(txt.length).fill(0);
+  let any = false;
+  for (const [s, en, f] of ranges) {
+    for (let c = Math.max(s, base); c < Math.min(en, base + txt.length); c++) { flags[c - base] |= f; any = true; }
+  }
+  if (!any) return null;
+  let html = '', j = 0;
+  while (j < txt.length) {
+    const f = flags[j]; let k = j; while (k < txt.length && flags[k] === f) k++;
+    const seg = esc(txt.slice(j, k));
+    html += f === 0 ? seg : `<span class="${f === 1 ? 'hl-src' : f === 2 ? 'hl-tgt' : 'hl-both'}">${seg}</span>`;
+    j = k;
+  }
+  return html;
 }
 
 function rebuildEdges() {
@@ -330,9 +356,10 @@ function nodeCard(n, role) {
   // The rule text itself is shown (and highlighted) in the source pane above, so
   // the card stays compact: id/type, title, and the source line number.
   const side = role === 'source' ? 'src' : role === 'target' ? 'tgt' : '';
+  const topColor = role === 'source' ? '#e05a4f' : role === 'target' ? '#3b7dd8' : c;
   const line = (n.line_start != null)
     ? `<div class="prov-row"><span class="prov ${side}">line ${esc(n.source_lines)}</span></div>` : '';
-  return `<div class="node-card" style="border-top:3px solid ${c}">
+  return `<div class="node-card" style="border-top:3px solid ${topColor}">
     <div class="nc-top"><span class="dot" style="background:${c}"></span><span class="nid">${n.id}</span>
       <span class="ntype">${TYPE_ICON[n.type]||''} ${n.type}</span>
       <span class="role ${side}">${role}</span></div>

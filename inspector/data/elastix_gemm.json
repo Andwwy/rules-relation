@@ -19,7 +19,9 @@
    "verbatim": true,
    "line_start": 5,
    "line_end": 5,
-   "source_lines": "5"
+   "source_lines": "5",
+   "char_start": 131,
+   "char_end": 266
   },
   "R02": {
    "id": "R02",
@@ -39,7 +41,9 @@
    "verbatim": true,
    "line_start": 21,
    "line_end": 21,
-   "source_lines": "21"
+   "source_lines": "21",
+   "char_start": 955,
+   "char_end": 993
   },
   "R03": {
    "id": "R03",
@@ -59,7 +63,9 @@
    "verbatim": true,
    "line_start": 22,
    "line_end": 22,
-   "source_lines": "22"
+   "source_lines": "22",
+   "char_start": 1022,
+   "char_end": 1078
   },
   "R04": {
    "id": "R04",
@@ -79,7 +85,9 @@
    "verbatim": true,
    "line_start": 23,
    "line_end": 23,
-   "source_lines": "23"
+   "source_lines": "23",
+   "char_start": 1110,
+   "char_end": 1149
   },
   "R05": {
    "id": "R05",
@@ -99,7 +107,9 @@
    "verbatim": true,
    "line_start": 23,
    "line_end": 23,
-   "source_lines": "23"
+   "source_lines": "23",
+   "char_start": 1153,
+   "char_end": 1185
   },
   "R06": {
    "id": "R06",
@@ -119,7 +129,9 @@
    "verbatim": true,
    "line_start": 24,
    "line_end": 24,
-   "source_lines": "24"
+   "source_lines": "24",
+   "char_start": 1216,
+   "char_end": 1306
   },
   "R07": {
    "id": "R07",
@@ -139,7 +151,9 @@
    "verbatim": true,
    "line_start": 25,
    "line_end": 25,
-   "source_lines": "25"
+   "source_lines": "25",
+   "char_start": 1334,
+   "char_end": 1423
   },
   "R08": {
    "id": "R08",
@@ -159,7 +173,9 @@
    "verbatim": true,
    "line_start": 89,
    "line_end": 89,
-   "source_lines": "89"
+   "source_lines": "89",
+   "char_start": 4583,
+   "char_end": 4639
   },
   "R09": {
    "id": "R09",
@@ -179,7 +195,9 @@
    "verbatim": true,
    "line_start": 90,
    "line_end": 90,
-   "source_lines": "90"
+   "source_lines": "90",
+   "char_start": 4662,
+   "char_end": 4692
   },
   "R10": {
    "id": "R10",
@@ -199,7 +217,9 @@
    "verbatim": true,
    "line_start": 91,
    "line_end": 91,
-   "source_lines": "91"
+   "source_lines": "91",
+   "char_start": 4751,
+   "char_end": 4813
   },
   "R11": {
    "id": "R11",
@@ -219,7 +239,9 @@
    "verbatim": true,
    "line_start": 92,
    "line_end": 92,
-   "source_lines": "92"
+   "source_lines": "92",
+   "char_start": 4818,
+   "char_end": 4838
   },
   "R12": {
    "id": "R12",
@@ -239,7 +261,9 @@
    "verbatim": true,
    "line_start": 92,
    "line_end": 92,
-   "source_lines": "92"
+   "source_lines": "92",
+   "char_start": 4842,
+   "char_end": 4897
   },
   "R13": {
    "id": "R13",
@@ -259,7 +283,9 @@
    "verbatim": true,
    "line_start": 97,
    "line_end": 97,
-   "source_lines": "97"
+   "source_lines": "97",
+   "char_start": 5016,
+   "char_end": 5040
   },
   "R14": {
    "id": "R14",
@@ -279,7 +305,9 @@
    "verbatim": true,
    "line_start": 97,
    "line_end": 97,
-   "source_lines": "97"
+   "source_lines": "97",
+   "char_start": 5043,
+   "char_end": 5058
   },
   "R15": {
    "id": "R15",
@@ -299,7 +327,9 @@
    "verbatim": true,
    "line_start": 99,
    "line_end": 99,
-   "source_lines": "99"
+   "source_lines": "99",
+   "char_start": 5127,
+   "char_end": 5172
   },
   "R16": {
    "id": "R16",
@@ -319,7 +349,9 @@
    "verbatim": true,
    "line_start": 100,
    "line_end": 100,
-   "source_lines": "100"
+   "source_lines": "100",
+   "char_start": 5190,
+   "char_end": 5240
   },
   "R17": {
    "id": "R17",
@@ -339,7 +371,9 @@
    "verbatim": true,
    "line_start": 100,
    "line_end": 100,
-   "source_lines": "100"
+   "source_lines": "100",
+   "char_start": 5190,
+   "char_end": 5252
   },
   "R18": {
    "id": "R18",
@@ -359,7 +393,9 @@
    "verbatim": true,
    "line_start": 144,
    "line_end": 144,
-   "source_lines": "144"
+   "source_lines": "144",
+   "char_start": 7302,
+   "char_end": 7350
   },
   "R19": {
    "id": "R19",
@@ -379,7 +415,9 @@
    "verbatim": true,
    "line_start": 146,
    "line_end": 146,
-   "source_lines": "146"
+   "source_lines": "146",
+   "char_start": 7450,
+   "char_end": 7462
   },
   "R20": {
    "id": "R20",
@@ -399,7 +437,9 @@
    "verbatim": true,
    "line_start": 146,
    "line_end": 146,
-   "source_lines": "146"
+   "source_lines": "146",
+   "char_start": 7466,
+   "char_end": 7497
   },
   "R21": {
    "id": "R21",
@@ -419,7 +459,9 @@
    "verbatim": true,
    "line_start": 151,
    "line_end": 155,
-   "source_lines": "151–155"
+   "source_lines": "151–155",
+   "char_start": 7601,
+   "char_end": 7829
   },
   "R22": {
    "id": "R22",
@@ -439,7 +481,9 @@
    "verbatim": true,
    "line_start": 159,
    "line_end": 159,
-   "source_lines": "159"
+   "source_lines": "159",
+   "char_start": 8017,
+   "char_end": 8107
   },
   "R23": {
    "id": "R23",
@@ -459,7 +503,9 @@
    "verbatim": true,
    "line_start": 136,
    "line_end": 136,
-   "source_lines": "136"
+   "source_lines": "136",
+   "char_start": 6964,
+   "char_end": 7013
   },
   "R24": {
    "id": "R24",
@@ -479,7 +525,9 @@
    "verbatim": true,
    "line_start": 137,
    "line_end": 137,
-   "source_lines": "137"
+   "source_lines": "137",
+   "char_start": 7038,
+   "char_end": 7067
   },
   "R25": {
    "id": "R25",
@@ -499,7 +547,9 @@
    "verbatim": true,
    "line_start": 139,
    "line_end": 139,
-   "source_lines": "139"
+   "source_lines": "139",
+   "char_start": 7168,
+   "char_end": 7193
   },
   "R26": {
    "id": "R26",
@@ -519,7 +569,9 @@
    "verbatim": true,
    "line_start": 140,
    "line_end": 140,
-   "source_lines": "140"
+   "source_lines": "140",
+   "char_start": 7206,
+   "char_end": 7250
   },
   "R27": {
    "id": "R27",
@@ -539,7 +591,9 @@
    "verbatim": true,
    "line_start": 117,
    "line_end": 117,
-   "source_lines": "117"
+   "source_lines": "117",
+   "char_start": 5993,
+   "char_end": 6049
   },
   "R28": {
    "id": "R28",
@@ -559,7 +613,9 @@
    "verbatim": true,
    "line_start": 118,
    "line_end": 118,
-   "source_lines": "118"
+   "source_lines": "118",
+   "char_start": 6073,
+   "char_end": 6140
   },
   "R29": {
    "id": "R29",
@@ -579,7 +635,9 @@
    "verbatim": true,
    "line_start": 131,
    "line_end": 131,
-   "source_lines": "131"
+   "source_lines": "131",
+   "char_start": 6779,
+   "char_end": 6801
   },
   "R30": {
    "id": "R30",
@@ -599,7 +657,9 @@
    "verbatim": true,
    "line_start": 119,
    "line_end": 119,
-   "source_lines": "119"
+   "source_lines": "119",
+   "char_start": 6170,
+   "char_end": 6224
   },
   "R31": {
    "id": "R31",
@@ -619,7 +679,9 @@
    "verbatim": true,
    "line_start": 180,
    "line_end": 180,
-   "source_lines": "180"
+   "source_lines": "180",
+   "char_start": 9129,
+   "char_end": 9225
   },
   "R32": {
    "id": "R32",
@@ -639,7 +701,9 @@
    "verbatim": false,
    "source_lines": "",
    "line_start": null,
-   "line_end": null
+   "line_end": null,
+   "char_start": null,
+   "char_end": null
   },
   "R33": {
    "id": "R33",
@@ -659,7 +723,9 @@
    "verbatim": true,
    "line_start": 108,
    "line_end": 108,
-   "source_lines": "108"
+   "source_lines": "108",
+   "char_start": 5448,
+   "char_end": 5490
   },
   "C01": {
    "id": "C01",
@@ -679,7 +745,9 @@
    "verbatim": true,
    "line_start": 35,
    "line_end": 35,
-   "source_lines": "35"
+   "source_lines": "35",
+   "char_start": 1721,
+   "char_end": 1799
   },
   "C02": {
    "id": "C02",
@@ -699,7 +767,9 @@
    "verbatim": true,
    "line_start": 52,
    "line_end": 52,
-   "source_lines": "52"
+   "source_lines": "52",
+   "char_start": 2772,
+   "char_end": 2878
   },
   "C03": {
    "id": "C03",
@@ -719,7 +789,9 @@
    "verbatim": true,
    "line_start": 105,
    "line_end": 107,
-   "source_lines": "105–107"
+   "source_lines": "105–107",
+   "char_start": 5309,
+   "char_end": 5443
   },
   "C04": {
    "id": "C04",
@@ -739,7 +811,9 @@
    "verbatim": true,
    "line_start": 116,
    "line_end": 116,
-   "source_lines": "116"
+   "source_lines": "116",
+   "char_start": 5883,
+   "char_end": 5961
   },
   "C05": {
    "id": "C05",
@@ -759,7 +833,9 @@
    "verbatim": true,
    "line_start": 66,
    "line_end": 66,
-   "source_lines": "66"
+   "source_lines": "66",
+   "char_start": 3601,
+   "char_end": 3662
   },
   "C06": {
    "id": "C06",
@@ -779,7 +855,9 @@
    "verbatim": true,
    "line_start": 69,
    "line_end": 72,
-   "source_lines": "69–72"
+   "source_lines": "69–72",
+   "char_start": 3694,
+   "char_end": 3919
   },
   "C07": {
    "id": "C07",
@@ -799,7 +877,9 @@
    "verbatim": true,
    "line_start": 109,
    "line_end": 109,
-   "source_lines": "109"
+   "source_lines": "109",
+   "char_start": 5491,
+   "char_end": 5583
   }
  },
  "edges": [
