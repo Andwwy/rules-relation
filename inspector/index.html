@@ -27,8 +27,8 @@
 
   main { flex: 1; display: flex; min-height: 0; }
 
-  /* ---------- left: source file ---------- */
-  #source-pane { flex: 1.05; min-width: 340px; display: flex; flex-direction: column; background: var(--panel); border-right: 1px solid var(--border); min-height: 0; }
+  /* ---------- top-main: source file (editor) ---------- */
+  #source-pane { flex: 1; display: flex; flex-direction: column; background: var(--panel); min-height: 60px; }
   .src-head { display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-bottom: 1px solid var(--border); font-size: 12.5px; font-weight: 600; flex-shrink: 0; }
   .src-head #src-name { color: var(--text); }
   .src-head #src-link { margin-left: auto; font-size: 11px; color: #6c5ce7; text-decoration: none; font-weight: 600; }
@@ -44,8 +44,8 @@
   .srcline.hl-end { box-shadow: inset 0 -1px 0 #ecd279; }
   .srcline.hl-start.hl-end { box-shadow: inset 0 1px 0 #ecd279, inset 0 -1px 0 #ecd279; }
 
-  /* ---------- center: edge inspector ---------- */
-  #inspector { flex: 1.25; overflow-y: auto; padding: 28px 32px; min-width: 0; }
+  /* ---------- bottom-main: edge inspector (panel) ---------- */
+  #inspector { height: 44vh; flex-shrink: 0; overflow-y: auto; padding: 20px 28px; min-height: 80px; border-top: 1px solid var(--border); background: var(--bg); }
   .edge-stage { display: grid; grid-template-columns: 1fr 200px 1fr; gap: 0; align-items: stretch; margin-bottom: 4px; }
   .node-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; position: relative; box-shadow: 0 1px 3px rgba(0,0,0,.04); }
   .node-card .dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; margin-right: 7px; vertical-align: -2px; border: 2px solid rgba(0,0,0,.18); }
@@ -93,27 +93,32 @@
   .nav .hint { margin-left: auto; font-size: 11px; color: #bbb; }
   .del-btn { color: var(--reject); border-color: #eccfcc !important; }
 
-  /* ---------- right: relation list ---------- */
-  #sidebar { width: 340px; flex-shrink: 0; background: var(--panel); border-left: 1px solid var(--border); display: flex; flex-direction: column; min-height: 0; }
-  #sidebar .sb-head { padding: 12px 14px 8px; border-bottom: 1px solid var(--border); }
-  #sidebar .sb-head .title { font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
+  /* ---------- left: relation list (VSCode Explorer) ---------- */
+  #sidebar { width: 300px; flex-shrink: 0; background: var(--panel); border-right: 1px solid var(--border); display: flex; flex-direction: column; min-height: 0; }
+  #sidebar .sb-head { padding: 10px 12px 8px; border-bottom: 1px solid var(--border); }
+  #sidebar .sb-head .title { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; align-items: center; }
   .filters { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
-  .fchip { font-size: 11px; padding: 2px 9px; border-radius: 10px; border: 1px solid var(--border); background: #fff; cursor: pointer; color: var(--muted); }
+  .fchip { font-size: 10.5px; padding: 2px 8px; border-radius: 10px; border: 1px solid var(--border); background: #fff; cursor: pointer; color: var(--muted); }
   .fchip.on { color: #fff; border-color: transparent; }
-  select.fsel { font-size: 11px; border: 1px solid var(--border); border-radius: 10px; padding: 2px 6px; color: var(--muted); background: #fff; }
+  select.fsel { font-size: 10.5px; border: 1px solid var(--border); border-radius: 10px; padding: 2px 6px; color: var(--muted); background: #fff; }
   #edge-list { flex: 1; overflow-y: auto; }
-  .edge-item { padding: 9px 14px; border-bottom: 1px solid #f0f0f0; cursor: pointer; display: flex; gap: 9px; align-items: flex-start; }
+  /* compact one-liner: "R03 → R04   support   ✓" */
+  .edge-item { padding: 5px 12px; border-bottom: 1px solid #f4f4f4; cursor: pointer; display: flex; gap: 8px; align-items: center; font-size: 12px; white-space: nowrap; }
   .edge-item:hover { background: #f7f7fb; }
   .edge-item.sel { background: #efedfb; box-shadow: inset 3px 0 0 #6c5ce7; }
-  .edge-item .mini { display: flex; align-items: center; gap: 4px; flex-shrink: 0; margin-top: 3px; }
-  .edge-item .mdot { width: 9px; height: 9px; border-radius: 50%; }
-  .edge-item .marrow { font-size: 10px; color: #999; }
-  .edge-item .etext { font-size: 12px; min-width: 0; }
-  .edge-item .etype { font-weight: 700; font-size: 11px; }
-  .edge-item .epair { color: #555; }
-  .edge-item .status { margin-left: auto; flex-shrink: 0; font-size: 13px; margin-top: 1px; }
-  .edge-item .has-comment { font-size: 10px; color: var(--muted); }
-  .add-bar { padding: 10px 14px; border-top: 1px solid var(--border); }
+  .edge-item .epair { font-weight: 700; color: #3a3a3a; flex-shrink: 0; }
+  .edge-item .etype { font-size: 11px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; }
+  .edge-item .cdot { font-size: 10px; opacity: .8; flex-shrink: 0; }
+  .edge-item .status { margin-left: auto; flex-shrink: 0; font-size: 12.5px; }
+  .edge-item.userrow .epair::before { content: "✎ "; color: #6c5ce7; font-weight: 400; }
+  .add-bar { padding: 10px 12px; border-top: 1px solid var(--border); }
+
+  /* ---------- resizable splitters (VSCode-style) ---------- */
+  #main-area { flex: 1; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+  .divider { background: transparent; flex-shrink: 0; transition: background .12s; }
+  .divider:hover, .divider.dragging { background: #6c5ce7; }
+  .divider-v { width: 6px; cursor: col-resize; }
+  .divider-h { height: 6px; cursor: row-resize; }
   .add-bar button { width: 100%; padding: 8px; border-radius: 7px; border: 1px dashed #b9b1ec; background: #f6f5fd; color: #6c5ce7; font-weight: 600; cursor: pointer; font-size: 13px; }
 
   /* ---------- add-edge modal ---------- */
@@ -140,16 +145,6 @@
 </header>
 
 <main>
-  <section id="source-pane">
-    <div class="src-head">
-      <span id="src-name">source</span>
-      <a id="src-link" href="#" target="_blank" rel="noopener" title="Open source on GitHub">↗ source</a>
-    </div>
-    <div id="src-body"></div>
-  </section>
-
-  <section id="inspector"><div class="empty-state">Loading…</div></section>
-
   <aside id="sidebar">
     <div class="sb-head">
       <div class="title"><span id="sb-title">Relations</span><span id="sb-count"></span></div>
@@ -158,6 +153,22 @@
     <div id="edge-list"></div>
     <div class="add-bar"><button onclick="openModal()">＋ Add relation</button></div>
   </aside>
+
+  <div class="divider divider-v" id="div-v" title="Drag to resize"></div>
+
+  <div id="main-area">
+    <section id="source-pane">
+      <div class="src-head">
+        <span id="src-name">source</span>
+        <a id="src-link" href="#" target="_blank" rel="noopener" title="Open source on GitHub">↗ source</a>
+      </div>
+      <div id="src-body"></div>
+    </section>
+
+    <div class="divider divider-h" id="div-h" title="Drag to resize"></div>
+
+    <section id="inspector"><div class="empty-state">Loading…</div></section>
+  </div>
 </main>
 
 <div id="modal">
@@ -201,10 +212,49 @@ let saveTimer = null;
 const $ = s => document.querySelector(s);
 
 async function init() {
+  setupResizers();
   projects = await (await fetch('/api/projects')).json();
   const saved = localStorage.getItem('rri-project');
   renderTabs();
   await loadProject(projects.includes(saved) ? saved : projects[0]);
+}
+
+// Draggable splitters: sidebar width (vertical) and inspector height (horizontal).
+// Sizes persist in localStorage.
+function setupResizers() {
+  const sidebar = $('#sidebar'), inspector = $('#inspector');
+  const sw = +localStorage.getItem('rri-sidebar-w'); if (sw) sidebar.style.width = sw + 'px';
+  const ih = +localStorage.getItem('rri-inspector-h'); if (ih) inspector.style.height = ih + 'px';
+
+  drag($('#div-v'), 'col', e => {
+    const w = Math.min(Math.max(e.clientX - sidebar.getBoundingClientRect().left, 180), 640);
+    sidebar.style.width = w + 'px';
+    localStorage.setItem('rri-sidebar-w', w);
+  });
+  drag($('#div-h'), 'row', e => {
+    const area = $('#main-area').getBoundingClientRect();
+    const h = Math.min(Math.max(area.bottom - e.clientY, 120), area.height - 120);
+    inspector.style.height = h + 'px';
+    localStorage.setItem('rri-inspector-h', Math.round(h));
+  });
+
+  function drag(handle, axis, onMove) {
+    handle.addEventListener('mousedown', ev => {
+      ev.preventDefault();
+      handle.classList.add('dragging');
+      document.body.style.cursor = axis === 'col' ? 'col-resize' : 'row-resize';
+      document.body.style.userSelect = 'none';
+      const move = e => onMove(e);
+      const up = () => {
+        handle.classList.remove('dragging');
+        document.body.style.cursor = ''; document.body.style.userSelect = '';
+        window.removeEventListener('mousemove', move);
+        window.removeEventListener('mouseup', up);
+      };
+      window.addEventListener('mousemove', move);
+      window.addEventListener('mouseup', up);
+    });
+  }
 }
 
 function renderTabs() {
@@ -369,21 +419,14 @@ function renderSidebar() {
 
   $('#edge-list').innerHTML = list.map((e, i) => {
     const a = ann.edges[e.id] || {};
-    const s = data.nodes[e.source], t = data.nodes[e.target];
     const rc = REL_COLOR[e.type] || '#777';
     const st = a.mark ? `<span style="color:${MARK_COLOR[a.mark]}">${MARK_ICON[a.mark]}</span>` : '';
-    return `<div class="edge-item ${i===idx?'sel':''}" onclick="goTo(${i})">
-      <div class="mini">
-        <span class="mdot" style="background:${TYPE_COLOR[s?.type]||'#ccc'}"></span>
-        <span class="marrow">→</span>
-        <span class="mdot" style="background:${TYPE_COLOR[t?.type]||'#ccc'}"></span>
-      </div>
-      <div class="etext">
-        <span class="etype" style="color:${rc}">${esc(e.type)}</span>${e.user_added?' <span class="user-flag">user</span>':''}<br>
-        <span class="epair">${e.source} ${esc(shorten(s?.title))} → ${e.target} ${esc(shorten(t?.title))}</span>
-        ${a.comment ? '<div class="has-comment">💬 ' + esc(shorten(a.comment, 46)) + '</div>' : ''}
-      </div>
-      <div class="status">${st}</div>
+    return `<div class="edge-item ${i===idx?'sel':''}${e.user_added?' userrow':''}" onclick="goTo(${i})"
+                 title="${e.source} → ${e.target} · ${esc(e.type)}">
+      <span class="epair">${e.source} → ${e.target}</span>
+      <span class="etype" style="color:${rc}">${esc(e.type)}</span>
+      ${a.comment ? '<span class="cdot" title="has comment">💬</span>' : ''}
+      <span class="status">${st}</span>
     </div>`;
   }).join('');
   const sel = $('.edge-item.sel');
