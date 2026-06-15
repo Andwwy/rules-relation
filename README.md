@@ -14,7 +14,26 @@ context items extracted from one real-world agent rule file, with the relations 
 nodes and the arrow between them, an LLM-generated rationale for *why* the relation holds,
 and lets you mark each edge (agree / unsure / reject), comment on it, or add new relations.
 
-### Launch
+### Launch with Docker (recommended)
+
+Keeps the app running in the background and surviving reboots/idle.
+
+```bash
+docker compose up -d --build
+```
+
+Then open **http://localhost:7077**.
+
+- **Stays up:** `restart: unless-stopped` — the container comes back after a crash, a
+  Docker/host restart, or waking from idle. It only stays down if you stop it yourself.
+- **Your inputs are stored locally:** marks, comments, and added edges are written to
+  `inspector/annotations/` on your machine (bind-mounted into the container), so they
+  persist across restarts, rebuilds, and `docker compose down`.
+- Stop it with `docker compose stop` (keeps data) or `docker compose down` (removes the
+  container; your annotations stay on disk).
+- After editing the vault, rebuild so the data refreshes: `docker compose up -d --build`.
+
+### Launch without Docker
 
 Requires only **Python 3** (standard library — no `pip install`).
 
@@ -26,7 +45,8 @@ python3 server.py         # serve the app
 
 Then open **http://localhost:7077**.
 
-Set a different port with `PORT=8080 python3 server.py`.
+Set a different port with `PORT=8080 python3 server.py`. The server binds to `127.0.0.1`
+by default; set `HOST=0.0.0.0` to expose it on your network (Docker does this automatically).
 
 ### What you can do
 

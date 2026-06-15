@@ -1,14 +1,22 @@
 {
  "edges": {
   "R03--support--R04": {
-   "mark": "unsure",
-   "updated_at": "2026-06-11T15:51:34+01:00",
-   "comment": "Should be refinement"
+   "mark": "agree",
+   "updated_at": "2026-06-15T00:18:16-04:00",
+   "comment": ""
   },
   "R05--support--R04": {
-   "mark": "unsure",
-   "updated_at": "2026-06-11T15:52:49+01:00",
-   "comment": "refinement, this is also specific guide for the workflow"
+   "mark": "agree",
+   "updated_at": "2026-06-15T00:18:02-04:00",
+   "comment": ""
+  },
+  "R06--support--R04": {
+   "mark": "agree",
+   "updated_at": "2026-06-15T00:17:57-04:00"
+  },
+  "R07--support--R04": {
+   "mark": "agree",
+   "updated_at": "2026-06-15T00:18:20-04:00"
   }
  },
  "added": []

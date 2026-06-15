@@ -20,6 +20,7 @@ DATA = ROOT / "data"
 ANN = ROOT / "annotations"
 ANN.mkdir(exist_ok=True)
 PORT = int(os.environ.get("PORT", 7077))
+HOST = os.environ.get("HOST", "127.0.0.1")  # set HOST=0.0.0.0 in Docker
 
 _lock = threading.Lock()
 SAFE = re.compile(r"^[\w.-]+$")
@@ -127,5 +128,5 @@ class Handler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    print(f"Edge inspector → http://localhost:{PORT}")
-    ThreadingHTTPServer(("127.0.0.1", PORT), Handler).serve_forever()
+    print(f"Edge inspector → http://localhost:{PORT}  (binding {HOST}:{PORT})")
+    ThreadingHTTPServer((HOST, PORT), Handler).serve_forever()

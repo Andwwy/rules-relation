@@ -1,0 +1,16 @@
+services:
+  inspector:
+    build: .
+    image: rules-relation-inspector
+    container_name: rules-relation-inspector
+    ports:
+      - "7077:7077"
+    volumes:
+      # User inputs (marks, comments, user-added edges) are written here by the
+      # server and bind-mounted to the host, so they persist locally across
+      # container restarts, rebuilds, and removal.
+      - ./inspector/annotations:/app/inspector/annotations
+    # Keep the app up: restart on crash, on Docker/host restart, and after the
+    # machine wakes from idle. Only a manual `docker compose down`/stop keeps it
+    # down. (The server itself has no idle timeout — it runs until stopped.)
+    restart: unless-stopped
